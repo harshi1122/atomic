@@ -1,0 +1,45 @@
+# Credit to Giannis Koutsaftakis
+# https://dev.to/kouts/deploy-storybook-to-github-pages-3bij
+name: Deploy Storybook
+
+on:
+  push:
+    paths:
+      - .github/workflows/storybook.yml
+      - .storybook/**
+      - src/**
+      - stories/**
+      - package.json
+      - yarn.lock
+      - .gitignore
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node v14 📦
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies 📥
+        run: yarn install
+
+      - name: Build Project and Storybook 🏗️
+        run: |
+          yarn build
+          yarn sb:build
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: main
+          folder: storybook-static
+          target-folder: docs

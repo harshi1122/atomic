@@ -1,0 +1,187 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="Customize/Theming" />
+
+# Theming Atomic
+
+To make minor changes to Atomic's components, you can configure its [custom CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*).
+With Atomic's default styling, all components inherit values from these properties — ensuring a consistent experience across the application.
+This configuration process is similar to theming in other component libraries.
+
+Assuming you're using the `AtomicProvider` component, you may configure these properties through its `properties` prop.
+
+```tsx
+import { AtomicProvider } from '@locktech/atomic'
+
+export const App = () => (
+  <AtomicProvider
+    properties={{ ... }}
+  />
+)
+```
+
+Alternatively, though typically not recommended, you may instantiate the properties using the `<CSSProvider />` component.
+
+```tsx
+import { CSSProvider } from '@locktech/atomic'
+
+export const App = () => (
+  <CSSProvider
+    color={{ ... }}
+    radius={{ ... }}
+    space={{ ... }}
+    ...
+  />
+)
+```
+
+## Custom Values
+
+The fields of `properties`, or props of `CSSProvider`, support custom values.
+These values will be added as custom properties to the browser's `:root` node.
+Custom values are 100% interchangable with Atomic's hard-coded counterparts — a color is a color.
+
+```tsx
+// All of Atomic's default values are exported for extension
+import { AtomicColor, AtomicSpace } from '@locktech/atomic'
+
+export const App = () => (
+  <AtomicProvider
+    properties={{
+      color: {
+        ...AtomicColor,
+        orange: {
+          0: ..., // use in CSS via: var(--color-orange-0)
+          1: ..., // var(--color-orange-1)
+        }
+      },
+      space: {
+        ...AtomicSpace,
+        reallyBig: '400rem', // var(--space-reallyBig)
+      }
+    }}
+  />
+)
+```
+
+## Usage
+
+Values can be accessed using CSS' built in `var` function:
+
+```ts
+const style = {
+  backgroundColor: 'var(--color-neutral-4)'
+}
+```
+
+You may also use the `cssvar` function, which allows you to reference values using dot-notation:
+
+```ts
+import { cssvar } from '@locktech/atomic'
+
+const style = {
+  backgroundColor: cssvar('color.neutral.4', 'gray'), // Like `var()`, cssvar supports a default value
+}
+```
+
+## Breakpoints
+
+Breakpoints are a bit of a black-sheep in the theming family.
+The values you provide, or Atomic's defaults, are stored using [Recoil's Atom API](https://recoiljs.org/docs/api-reference/core/atom).
+
+You may access these values from your application using the provided hook:
+
+```tsx
+import { useBreakpoints } from '@locktech/atomic'
+
+export const MyComponent = () => {
+  const bps = useBreakpoints()
+
+  console.log(bps.sm) // '..px'
+  console.log(bps.xs) // Custom values can be accessed like Atomic's defaults
+}
+```
+
+Or directly through the instantiated `atom`:
+
+```tsx
+import { useRecoilValue } from 'recoil'
+import { BreakpointAtom } from '@locktech/atomic'
+
+export const MyComponent = () => {
+  const bps = useRecoilValue(BreakpointAtom)
+
+  console.log(bps.sm) // '..px'
+  console.log(bps.xs) // Custom values can be accessed like defaults
+}
+```
+
+You may use `BreakpointAtom` to update the breakpoints from your application.
+
+## Color
+
+For each color you define with Atomic, you *must* provide 10 shades (indices `0-9`) which presumably increase in darkness — `0` is the lightest shade, `9` the darkest.
+
+Each of these shades should be provided in [hex-triplet](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet) form.
+Each shade will have three custom CSS properties generated.
+
+* `--color-{name}-{shade}` — The hex-triplet as it was provided.
+* `--color-{name}-{shade}-rgb` — Comma-delimited list of the color's [RGB](https://en.wikipedia.org/wiki/RGB_color_model) components — ready for use in `rgb()` and `rgba()` CSS functions.
+* `--color-{name}-{shade}-text` — The `--color-neutral-` shade which best meets the [W3 contrast requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) of this color.
+  * So called "bright" colors will recieve a shade of `9`, "dim" colors a shade of `0`.
+
+### BYOC
+
+Bring-your-own-colors is one of Atomic's differences from its inspirations.
+What it means is that Atomic [does *not* provide](https://chakra-ui.com/docs/theming/theme#black--white) an [assortment of colors](https://tailwindcss.com/docs/customizing-colors) that [you can pick from](https://getbootstrap.com/docs/5.1/customize/color/#all-colors).
+(Though, the future is colorful)
+
+Atomic relies upon four colors, providing defaults for each: `danger`, `neutral`, `success`, and `primary`.
+Additional colors will need to be added by you, using the [API explained above](#custom-values).
+
+## Spacing
+
+Atomic will automatically provide a negative variant for each given key-value pair.
+
+```ts
+const four = cssvar('space.4')
+const negativeFour = cssvar('space.-4')
+```
+
+## Typography (Font)
+
+By default, Atomic will try to use the [device's preferred font-families](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family#values) (see `system-ui`),
+with a variety of known families as fallbacks. A standard font can be provided for each *type* of font through the `type` field on the `AtomicProvider` component's `properties` prop.
+
+```tsx
+export const App = () => (
+  <AtomicProvider
+    properties={{
+      type: {
+        family: {
+          mono: '...',
+          sans: '...',
+          serif: '...',
+        },
+      },
+    }}
+  >
+    {/* ... */}
+  </AtomicProvider>
+)
+```
+
+The default *type* of font which will be applied to your application's text can be configured by customizing Atomic's CSS reset:
+
+```tsx
+export const App = () => (
+  <AtomicProvider
+    normalize={{
+      fontFamily: 'serif',
+    }}
+  >
+    {/* ... */}
+  </AtomicProvider>
+)
+```
+

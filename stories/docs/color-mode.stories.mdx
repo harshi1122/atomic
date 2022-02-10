@@ -1,0 +1,22 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs"
+
+<Meta title="Guides/Color Mode" />
+
+# Color Mode
+
+Atomic provides first-class support for defining styles to be used in bright and dim lighting environments.
+It also includes methods and hooks for swapping between them, respecting a user's preferred choice, and overwriting that preference.
+Finally, these configurations will be persisted — loaded before an application to mitigate ["flashing"](https://css-tricks.com/flash-of-inaccurate-color-theme-fart/)
+(see video in linked article) from one set of styles to the other.
+
+## Global Values
+
+When a user wants your application in dark-mode, it's safe to assume you'll want to set your typography's color to something which strongly contrasts the dark background.
+Atomic provides custom CSS properties to fulfil this need — with many components relying upon the values listed below.
+
+> These values are added by the `<CSSProvider>` component, or by it through `<AtomicProvider>`.
+
+| Property     	| Bright                   	| Dim                    	|
+|--------------	|--------------------------	|-----------------------	|
+| `color.text` 	| `color.neutral.9`        	| `color.neutral.0`     	|
+| `color.hint` 	| `color.neutral.6`        	| `color.neutral.3`     	|

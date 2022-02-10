@@ -1,0 +1,73 @@
+{
+  "name": "@locktech/atomic",
+  "version": "0.0.1",
+  "license": "MIT",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": {
+    "import": "./dist/index.modern.js",
+    "require": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "microbundle -f cjs,modern -o ./dist/index.js -i ./src/index.ts --jsx React.createElement --globals React",
+    "build:watch": "yarn build -w",
+    "dev": "concurrently -n BUILD,SB, -c red,magenta  \"yarn build:watch\" \"yarn sb\"",
+    "gi": "zx ./scripts/gi.mjs",
+    "sb": "start-storybook -p 6006",
+    "sb:build": "build-storybook",
+    "test": "jest",
+    "test:watch": "yarn test --watchAll"
+  },
+  "eslintConfig": {
+    "extends": "@redwoodjs/eslint-config/shared.js",
+    "root": true,
+    "globals": {
+      "React": "readonly"
+    },
+    "parserOptions": {
+      "requireConfigFile": false
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/eslint-plugin": "^7.16.5",
+    "@redwoodjs/eslint-config": "^0.41.0",
+    "@redwoodjs/structure": "^0.41.0",
+    "@storybook/addon-actions": "6.5.0-alpha.22",
+    "@storybook/addon-essentials": "6.5.0-alpha.22",
+    "@storybook/addon-links": "6.5.0-alpha.22",
+    "@storybook/react": "6.5.0-alpha.22",
+    "@storybook/theming": "6.5.0-alpha.22",
+    "@types/jest": "^27.4.0",
+    "babel-loader": "^8.2.3",
+    "concurrently": "^7.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.7",
+    "jest-watch-typeahead": "^1.0.0",
+    "microbundle": "^0.14.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "storybook-addon-themes": "^6.1.0",
+    "tocbot": "^4.18.0",
+    "zx": "^4.3.0"
+  },
+  "dependencies": {
+    "@apollo/client": "3.5.8",
+    "@headlessui/react": "^1.4.3",
+    "@redwoodjs/auth": "0.44.1",
+    "@redwoodjs/forms": "0.44.1",
+    "@redwoodjs/web": "0.44.1",
+    "@use-gesture/react": "^10.2.5",
+    "clsx": "^1.1.1",
+    "csstype": "^3.0.10",
+    "framer-motion": "^6.2.4",
+    "goober": "^2.1.7",
+    "recoil": "^0.6.1"
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  }
+}

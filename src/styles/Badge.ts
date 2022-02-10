@@ -1,0 +1,47 @@
+import type { BadgeProps, BadgeVariants } from '../components/interface'
+import type { ComponentStyles } from '../context'
+import type { Color } from '../theme'
+import { cssvar } from '../util'
+
+const coloredFont = (c: Color) => ({
+  color: cssvar(`color.${c}.8`),
+  '.dark &': {
+    color: cssvar(`color.${c}.1`),
+  },
+})
+
+export const BadgeStyles: ComponentStyles<BadgeProps, BadgeVariants> = {
+  base: {
+    borderRadius: cssvar('radius.sm'),
+    borderStyle: 'solid',
+    borderWidth: '1px',
+    fontSize: cssvar('type.size.sm'),
+    fontWeight: cssvar('type.weight.medium'),
+    letterSpacing: cssvar('type.letterSpacing.wide'),
+    display: 'inline-flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding: `${cssvar('space.0.5')} ${cssvar('space.1.5')}`,
+    userSelect: 'none',
+  },
+  variants: {
+    variant: {
+      fill: (p) => ({
+        backgroundColor: cssvar(`color.${p.color}.5`),
+        borderColor: cssvar(`color.${p.color}.5`),
+        color: cssvar(`color.${p.color}.5.text`),
+      }),
+      ghost: (p) => ({
+        backgroundColor: `rgba(${cssvar(`color.${p.color}.5.rgb`)}, 0.5)`,
+        borderColor: 'transparent',
+        ...coloredFont(p.color),
+      }),
+      outline: (p) => ({
+        backgroundColor: 'transparent',
+        borderColor: cssvar(`color.${p.color}.5`),
+        ...coloredFont(p.color),
+      }),
+    },
+  },
+}

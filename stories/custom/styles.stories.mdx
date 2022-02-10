@@ -1,0 +1,29 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="Customize/Styling" />
+
+<!-- This document is subject to a rewrite -->
+
+# Styling Atomic
+
+In addition to making [minor changes](?path=/story/atomic-theming--page) to Atomic's presentation, you also have the ability to fully customize the styles which dictate the low-level apperance of Atomic's components.
+
+> The API described below takes inspiration from [Chakra UI](https://chakra-ui.com/) — a big thank you to those involved 💕
+
+## Variables
+
+Atomic relies heavily on CSS' [custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*).
+When providing styles, you have the opportunity to define a few specific properties — whose value's will take effect under certain conditions.
+
+* `bps` — Set the value of a custom CSS property depending on if the related breakpoint is being triggered.
+* `color` — Specify a property values to be used for "bright" or "dim" lighting modes.
+
+> Custom CSS property usage [mimics that of custom theme values](http://localhost:6006/?path=/story/customize-theming--page#usage).
+
+## Styles
+
+Component styles fall into two categories:
+
+* `base` — Styles which will always be applied to a component, setting its default visual apperance.
+* `variants` — Styles which will apply conditionally, depending on the presence of a dynamic value.
+  * Components may define as many variants as they like, with each having as many variations as needed.

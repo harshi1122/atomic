@@ -1,0 +1,13 @@
+# RedwoodJS
+.redwood
+.env
+
+# Built package and dependencies
+dist/
+node_modules/
+
+# Misc
+yarn-error.log
+
+# Storybook
+storybook-static

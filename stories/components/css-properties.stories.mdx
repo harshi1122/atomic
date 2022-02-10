@@ -1,0 +1,37 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="Components/CSS Properties" />
+
+# Custom CSS Properties
+
+Define one or many [custom CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) from the comfort of your React application.
+
+> `selector` can be any valid [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) — letting you scope property values to a very specific, and potentially dynamic, set of elements.
+
+## CSSProperty
+
+```tsx
+import { CSSProperty } from '@locktech/atomic'
+
+export const App = () => (
+  <CSSProperty
+    selector=":root" // A CSS selector under which this property is added
+    property="my-border" // The 'key' of the CSS property
+    value="1px dashed #ff0000" // The property's value
+  />
+)
+```
+
+## CSSProperties
+
+```tsx
+import { CSSProperties } from '@locktech/atomic'
+
+export const App = () => (
+  <CSSProperties
+    selector=":root" // A CSS selector under which all properties are added
+    name="foo" // An optional prefix, added to each property
+    properties={{ key: 'value' }} // A `Record` of key-value properties to be added
+  />
+)
+```

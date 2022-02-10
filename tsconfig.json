@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "declaration": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "typeRoots": ["./node_modules/@types"],
+    "jsx": "react-jsx",
+    "types": ["jest"]
+  },
+  "include": ["./src", "./types", "./node_modules/microbundle/index.d.ts"]
+}

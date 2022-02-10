@@ -1,0 +1,49 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="Hooks/useBreakpoint" />
+
+## useBreakpoints
+
+A hook which will return the configured `BreakpointRecord`, containing a key-value map of an application or Atomic's default breakpoints.
+
+```tsx
+// App.tsx
+import { AtomicProivder } from '@locktech/atomic'
+
+export const App = () => (
+  <AtomicProvider
+    properties={{
+      xs: '...', // Add a custom breakpoint
+      sm: '...',
+    }}
+  >
+    {/* ... */}
+  </AtomicProvider>
+)
+
+// Component.tsx
+import { useBreakpoints } from '@locktech/atomic'
+
+export const Component = () => {
+  const bps = useBreakpoints()
+
+  console.log(bps) // { xs: '...', sm: '...', ... }
+
+  return ...
+}
+```
+
+## useTriggersBreakpoint
+
+A hook which will return `true` when the device's width is *greater* than the provided breakpoint.
+This simulates the [`@media (min-width: -)` media query](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).
+
+```tsx
+import { useTriggersBreakpoint } from '@locktech/atomic'
+
+export const Component = () => {
+  const isSm = useTriggersBreakpoint('sm')
+
+  return ...
+}
+```
