@@ -102,7 +102,7 @@ const MenuListPanel: FC<MenuListRefProps> = ({
 export const MenuListSheetAnims: MenuListAnimationVariants = {
   close: {
     opacity: 0,
-    translateY: '10px',
+    translateY: '100px',
     transition: {
       duration: 0.3,
       ease: 'backOut',
@@ -171,7 +171,8 @@ const MenuListSheet: FC<MenuListRefProps> = ({
   const onDragEnd = useCallback(
     (e: TouchEvent, p: PanInfo) => {
       if (!dragStart || !dragging) return onCancelDrag(e)
-      if (p.point.y < dragStart.screenY) return onCancelDrag(e)
+      if (p.point.y < dragStart.screenY && p.velocity.y < 200)
+        return onCancelDrag(e)
 
       const btnId = listRef.current.getAttribute('aria-labelledby')
       document.getElementById(btnId).click()
