@@ -6,7 +6,6 @@ import {
   useElementScroll,
 } from 'framer-motion'
 import type { PanInfo, Variant } from 'framer-motion'
-import type { EventHandler } from 'framer-motion/types/events/types'
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import type {
   ComponentPropsWithRef as CP,
@@ -129,61 +128,105 @@ const MenuListSheet: FC<MenuListRefProps> = ({
 
   // --
 
+  // Scroll lock - adopted from HeadlessUI
+  useEffect(
+    // https://github.com/tailwindlabs/headlessui/blob/4ed344aa87bce15c31315d9f712a2bc8058906a8/packages/%40headlessui-react/src/components/dialog/dialog.tsx#L229
+    () => {
+      const overflow = document.documentElement.style.overflow
+      const paddingRight = document.documentElement.style.paddingRight
+
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth
+
+      document.documentElement.style.overflow = 'hidden'
+      document.documentElement.style.paddingRight = `${scrollbarWidth}px`
+
+      return () => {
+        document.documentElement.style.overflow = overflow
+        document.documentElement.style.paddingRight = paddingRight
+      }
+    },
+    []
+  )
+
+  // --
+
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress: scrollY } = useElementScroll(ref)
 
   // --
 
-  const [isDragging, setIsDragging] = useState<boolean>(false)
   const dragControls = useDragControls()
+  const [dragStart, setDragStart] = useState<Touch>(undefined)
+  const [dragging, setDragging] = useState<boolean>(false)
 
-  const onPanStart: EventHandler = useCallback(
-    (e, i: PanInfo) => {
-      if (i.delta.y < 0) return
+  const onCancelDrag = useCallback(
+    (_) => {
+      setDragging(false)
+      setDragStart(undefined)
+    },
+    [setDragging, setDragStart]
+  )
+
+  const onDragEnd = useCallback(
+    (e: TouchEvent, p: PanInfo) => {
+      if (!dragStart || !dragging) return onCancelDrag(e)
+      if (p.point.y < dragStart.screenY) return onCancelDrag(e)
+
+      const btnId = listRef.current.getAttribute('aria-labelledby')
+      document.getElementById(btnId).click()
+    },
+    [dragging, dragStart, listRef, onCancelDrag]
+  )
+
+  const onTouchStart = useCallback(
+    (e: TouchEvent) => {
       if (scrollY.get() !== 0) return
 
-      setIsDragging(true)
+      const touch = e.touches.item(0)
+      if (!touch) return
+
+      setDragStart(touch)
+    },
+    [scrollY, setDragStart]
+  )
+
+  const onTouchMove = useCallback(
+    (e: TouchEvent) => {
+      if (scrollY.get() !== 0) return onCancelDrag(e)
+      if (!dragStart) return onCancelDrag(e)
+
+      const touch = e.touches.item(0)
+      if (!touch) return onCancelDrag(e)
+
+      if (touch.screenY < dragStart.screenY) return onCancelDrag(e)
+
+      e.preventDefault()
+      e.stopPropagation()
+
+      if (dragging) return
+
+      setDragging(true)
       dragControls.start(e)
     },
-    [dragControls, setIsDragging, scrollY]
+    [dragging, dragControls, dragStart, onCancelDrag, scrollY]
   )
 
-  const onPanEnd: EventHandler = useCallback(
-    () => setIsDragging(false),
-    [setIsDragging]
-  )
+  useEffect(() => {
+    if (!ref.current) return
 
-  const onDragEnd: EventHandler = useCallback(
-    // Close the menu when it's dragged down at a relatively
-    // high velocity - but low enough to pick up short, quick gestures.
-    (_, i: PanInfo) => {
-      if (!listRef.current) return
-      if (i.velocity.y < 450) return
+    const el = ref.current
 
-      const menuBtnId = listRef.current.getAttribute('aria-labelledby')
-      document.getElementById(menuBtnId).click()
-    },
-    [listRef]
-  )
+    el.addEventListener('touchstart', onTouchStart, { passive: false })
+    el.addEventListener('touchmove', onTouchMove, { passive: false })
+    el.addEventListener('touchend', onCancelDrag, { passive: false })
 
-  useEffect(
-    // Prevent browser touch events from interfering with framer-motion
-    () => {
-      if (!ref.current) return
-
-      const handler = (e: TouchEvent) => isDragging && e.preventDefault()
-      const el = ref.current
-
-      el.addEventListener('touchstart', handler, { passive: false })
-      el.addEventListener('touchmove', handler, { passive: false })
-
-      return () => {
-        el.removeEventListener('touchstart', handler)
-        el.removeEventListener('touchmove', handler)
-      }
-    },
-    [isDragging, ref]
-  )
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart)
+      el.removeEventListener('touchmove', onTouchMove)
+      el.removeEventListener('touchend', onCancelDrag)
+    }
+  }, [onCancelDrag, onTouchMove, onTouchStart, ref])
 
   // --
 
@@ -196,17 +239,15 @@ const MenuListSheet: FC<MenuListRefProps> = ({
       exit="close"
       initial="close"
       //--
+      ref={ref}
+      style={{ touchAction: dragging ? 'none' : 'pan-y' }}
       drag="y"
       dragControls={dragControls}
       dragListener={false}
       dragSnapToOrigin
-      dragTransition={{ bounceDamping: 50, bounceStiffness: 600 }}
-      whileDrag={{ cursor: 'grabbing' }}
-      ref={ref}
-      style={{ touchAction: isDragging ? 'none' : 'pan-y' }}
+      dragTransition={{ bounceDamping: 60, bounceStiffness: 600 }}
       onDragEnd={onDragEnd}
-      onPanStart={onPanStart}
-      onPanEnd={onPanEnd}
+      whileDrag={{ cursor: 'grabbing' }}
     >
       {children}
     </motion.div>
