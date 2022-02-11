@@ -60,7 +60,6 @@
     "@redwoodjs/auth": "0.44.1",
     "@redwoodjs/forms": "0.44.1",
     "@redwoodjs/web": "0.44.1",
-    "@use-gesture/react": "^10.2.5",
     "clsx": "^1.1.1",
     "csstype": "^3.0.10",
     "framer-motion": "^6.2.4",
