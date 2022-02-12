@@ -2,17 +2,29 @@ import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
 <Meta title="Hooks/useToggle" />
 
-## useToggle
+# useToggle
 
-Returns a boolean state and a function to toggle that state's value each time the function is invoked.
-Optionally, a value can be provided to the function — which will be used to set the state's current value.
+Returns a tuple containing:
+
+* A boolean state.
+* A function to toggle that state.
+* A function to set the state explicity.
+
+## Example
 
 ```tsx
 import { useToggle } from '@locktech/atomic'
 
 export const MyComponent = () => {
-  const [open, toggleOpen] = useToggle()
+  const [open, toggleOpen, setOpen] = useToggle(false)
 
   return ...
 }
 ```
+
+## Parameters
+
+| Property     	| Required     	| Default     	| Description                                                                                                                                  	|
+|--------------	|--------------	|--------------	|----------------------------------------------------------	 |
+| `initial`    	| `true`      	| `false`      	| The initial value of the toggle when it is first returned. |
+
