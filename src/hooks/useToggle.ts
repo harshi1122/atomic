@@ -5,9 +5,9 @@ type ToggleTuple = [boolean, () => void, Dispatch<SetStateAction<boolean>>]
 
 /**
  * Returns a tuple containing:
- * * a boolean state
- * * a function to toggle that state
- * * a function to set the state manually.
+ * * A boolean state.
+ * * A function to toggle that state.
+ * * A function to set the state manually.
  *
  * @param i The value state will be set to on first render.
  *
