@@ -4,7 +4,9 @@ import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
 ## useBreakpoints
 
-A hook which will return the configured `BreakpointRecord`, containing a key-value map of an application or Atomic's default breakpoints.
+A hook which will return the configured `BreakpointRecord`, containing a key-value map of Atomic or your application's breakpoints.
+
+### Example
 
 ```tsx
 // App.tsx
@@ -13,7 +15,7 @@ import { AtomicProivder } from '@locktech/atomic'
 export const App = () => (
   <AtomicProvider
     properties={{
-      xs: '...', // Add a custom breakpoint
+      xs: '...', // An "application" or custom breakpoint
       sm: '...',
     }}
   >
@@ -35,15 +37,28 @@ export const Component = () => {
 
 ## useTriggersBreakpoint
 
-A hook which will return `true` when the device's width is *greater* than the provided breakpoint.
-This simulates the [`@media (min-width: -)` media query](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).
+A hook which returns a boolean when the corresponding [width media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/width) would be applied.
+This media feature is typically used to create responsive designs, to adapt styles to a multitude of devices: mobile, desktop, embedded, ...
+
+Specifically, the `max` and `min` variants of the media feature are covered:
+* `max` — Return `false` when the device's width is **greater than** the breakpoint's.
+* `min` — Return `true` when the device's width is **greater than** the breakpoint's.
+
+### Example
 
 ```tsx
 import { useTriggersBreakpoint } from '@locktech/atomic'
 
 export const Component = () => {
-  const isSm = useTriggersBreakpoint('sm')
-
+  const isAtLeastSm = useTriggersBreakpoint('sm') // returns `true` when the device's width is at least the breakpoint "sm"
+  const isWiderThan400px = useTriggersBreakpoint('400px', 'max') // returns `false` when the device's width is less than 400px
   return ...
 }
 ```
+
+### Parameters
+
+| Property     	| Required     	| Default     	| Description                                                                                          	 |
+|--------------	|--------------	|--------------	|------------------------------------------------------------------------------------------------------	 |
+| `bp`        	| `true`      	| `undefined`  	| One of Atomic or your application's breakpoints, or an arbitrary width.                                |
+| `variant`     | `false`      	| `'min'`     	| Which [width media feature variant](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/width#syntax) is used to determine if the given breakpoint is triggered.       |
