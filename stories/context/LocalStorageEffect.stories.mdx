@@ -1,0 +1,32 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="Global State/Effects/Local Storage" />
+
+# Local Storage
+
+The `LocalStorageEffect` is an [Atom Effect](https://recoiljs.org/docs/guides/atom-effects) which provides the attached atom
+persistent storage via the [browser's local storage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+
+* The effect will `parse` and `stringify` the atom's state when reading and writing it from and to local storage.
+* When the atom is first used, the effect will try to set its state to the current value in local storage.
+* The value in local storage is set whenever the atom's state changes.
+* The value in local storage is removed whenever the atom's state is [reset](https://recoiljs.org/docs/api-reference/core/useResetRecoilState).
+
+## Example
+
+```ts
+import { atom } from 'recoil'
+import { LocalStorageEffect } from '@locktech/atomic'
+
+export const MyAtom = atom({
+  key: 'myAtom',
+  default: 42,
+  effects: [LocalStorageEffect('myAtom')],
+})
+```
+
+## Parameters
+
+| Property     	| Required     	| Default     	| Description                                                                                                                                  	|
+|--------------	|--------------	|--------------	|---------------------------------------------------------------------------------------------------------------------------------------------	|
+| `key`       	| `true`       	| `-`         	| The [`keyName`](https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem#parameters) used to reference this value in local storage. 	|
