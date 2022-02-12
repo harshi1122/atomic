@@ -10,28 +10,48 @@ Define one or many [custom CSS properties](https://developer.mozilla.org/en-US/d
 
 ## CSSProperty
 
+### Example
+
 ```tsx
 import { CSSProperty } from '@locktech/atomic'
 
 export const App = () => (
   <CSSProperty
-    selector=":root" // A CSS selector under which this property is added
-    property="my-border" // The 'key' of the CSS property
-    value="1px dashed #ff0000" // The property's value
+    selector=":root"
+    property="my-border"
+    value="1px dashed #ff0000"
   />
 )
 ```
 
+### Parameters
+
+| Property     	| Required     	| Default     	| Description                                                                  	|
+|--------------	|--------------	|--------------	|------------------------------------------------------------------------------	|
+| `selector`   	| `false`     	| `:root`      	| The CSS selector under which this property will be added. 	                  |
+| `property`   	| `true`      	| `undefined`  	| The 'key' of the CSS property - which will be used to access it from styles. 	|
+| `value`   	  | `true`      	| `undefined`  	| The property's value.                                                       	|
+
 ## CSSProperties
+
+### Example
 
 ```tsx
 import { CSSProperties } from '@locktech/atomic'
 
 export const App = () => (
   <CSSProperties
-    selector=":root" // A CSS selector under which all properties are added
-    name="foo" // An optional prefix, added to each property
-    properties={{ key: 'value' }} // A `Record` of key-value properties to be added
+    selector=":root"
+    name="foo"
+    properties={{ key: 'value' }}
   />
 )
 ```
+
+### Parameters
+
+| Property     	| Required     	| Default     	| Description                                                                  	|
+|--------------	|--------------	|--------------	|------------------------------------------------------------------------------	|
+| `selector`   	| `false`     	| `:root`      	| The CSS selector under which this property will be added. 	                  |
+| `name`    	  | `false`      	| `undefined`  	| An optional string which will be prefixed to each property.                  	|
+| `properties` 	| `true`     	  | `undefined`  	| A `Record` of key-value pairs to be added as properties.                    	|
