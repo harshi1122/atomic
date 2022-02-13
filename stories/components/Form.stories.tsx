@@ -9,12 +9,13 @@ import {
   FieldError,
   FieldHint,
   FieldLabel,
+  Flex,
   Form,
   FormError,
   Input,
-  Flex,
   Select,
   Text,
+  useTriggersBreakpoint,
 } from '../../dist'
 import type { FormProps } from '../../dist'
 
@@ -24,21 +25,26 @@ export default {
   argTypes: { onSubmit: { action: 'onSubmit' } },
 } as Meta
 
-const Template: Story<FormProps> = (args) => (
-  <Card outline shadow="sm">
-    <Flex gap={6} p={6}>
-      <Flex gap={2}>
-        <Text as="h1" size="2xl" weight="bold">
-          Who goes there?
-        </Text>
-        <Text color="hint" size="sm">
-          Enter your password and provided secret to continue.
-        </Text>
-      </Flex>
-      <Form {...args} />
+const Template: Story<FormProps> = (args) => {
+  const isMd = useTriggersBreakpoint('md')
+  return (
+    <Flex {...(isMd ? { m: 'auto', p: [6, 0, 0, 0], width: '50%' } : {})}>
+      <Card outline shadow="sm">
+        <Flex gap={6} p={6}>
+          <Flex gap={2}>
+            <Text as="h1" size="2xl" weight="bold">
+              Who goes there?
+            </Text>
+            <Text color="hint" size="sm">
+              Enter your password and provided secret to continue.
+            </Text>
+          </Flex>
+          <Form {...args} />
+        </Flex>
+      </Card>
     </Flex>
-  </Card>
-)
+  )
+}
 Template.args = {
   ...Form.defaultProps,
   children: (
