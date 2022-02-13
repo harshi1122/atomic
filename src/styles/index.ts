@@ -18,6 +18,7 @@ import {
 import {
   CheckboxStyles,
   FieldErrorStyles,
+  FieldLabelStyles,
   FormErrorStyles,
   InputStyles,
   SelectButtonStyles,
@@ -40,6 +41,7 @@ export const AtomicStyles = {
   MenuItem: MenuItemStyles,
   Checkbox: CheckboxStyles,
   FieldError: FieldErrorStyles,
+  FieldLabel: FieldLabelStyles,
   FormError: FormErrorStyles,
   Card: CardStyles,
   Glass: GlassStyles,

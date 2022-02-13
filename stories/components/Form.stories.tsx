@@ -58,7 +58,7 @@ Template.args = {
           validation={{ required: true }}
         />
         <FieldError name="password" />
-        <FieldHint name="password">
+        <FieldHint hideError name="password">
           Just a thought: Your birthday is a terrible idea for a password.
         </FieldHint>
       </Flex>

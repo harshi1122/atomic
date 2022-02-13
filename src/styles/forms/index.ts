@@ -1,5 +1,6 @@
 export * from './FormError'
 export * from './FieldError'
+export * from './FieldLabel'
 export * from './Checkbox'
 export * from './Input'
 export * from './Select'
