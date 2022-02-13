@@ -17,9 +17,5 @@ export const TextStyles: ComponentStyles<TextProps, TextVariants> = {
     textOverflow: p.wrap ? 'initial' : 'ellipsis',
     whiteSpace: p.wrap ? 'normal' : 'nowrap',
     overflow: p.wrap ? 'initial' : 'hidden',
-    transitionDuration: '200ms',
-    transitionProperty:
-      'color, font-family, font-size, font-weight, letter-spacing, line-height',
-    transitionTimingFunction: 'ease-in-out',
   }),
 }
