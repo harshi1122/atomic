@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react'
 
-import { color } from '../index'
+import { color, radius } from '../index'
 
 import { Button } from '../../dist'
 import type { ButtonProps } from '../../dist'
@@ -10,6 +10,7 @@ export default {
   component: Button,
   argTypes: {
     color,
+    radius,
     rounded: { control: 'boolean' },
     size: {
       control: 'select',

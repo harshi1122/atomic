@@ -7,9 +7,10 @@ import {
   transform,
   typeSize,
   weight,
+  wrap,
 } from '../index'
 
-import { Button, FieldError, Form, Input, Layout } from '../../dist'
+import { Button, FieldError, Form, Input, Flex } from '../../dist'
 import type { FieldErrorProps } from '../../dist'
 
 export default {
@@ -18,17 +19,17 @@ export default {
   decorators: [
     (Fn) => (
       <Form>
-        <Layout gap={2}>
+        <Flex gap={2}>
           <Input
             name="username"
             placeholder="Username"
             validation={{ required: true }}
           />
           <Fn />
-        </Layout>
-        <Layout align="flex-end">
+        </Flex>
+        <Flex align="flex-end">
           <Button type="submit">Submit</Button>
-        </Layout>
+        </Flex>
       </Form>
     ),
   ],
@@ -39,7 +40,7 @@ export default {
     size: typeSize,
     transform,
     weight,
-    wrap: { control: 'boolean' },
+    wrap,
   },
 } as Meta
 

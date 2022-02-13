@@ -2,7 +2,7 @@ import type { Meta, Story } from '@storybook/react'
 
 // import { color } from '../index'
 
-import { Divider, Layout, Paper } from '../../dist'
+import { Divider, Flex, Paper } from '../../dist'
 import type { DividerProps } from '../../dist'
 
 export default {
@@ -17,11 +17,11 @@ export default {
 } as Meta
 
 const Template: Story<DividerProps> = (args) => (
-  <Layout gap={8}>
+  <Flex gap={8}>
     <Paper color="neutral.5" height="50px" width="100%" />
     <Divider {...args} />
     <Paper color="neutral.5" height="50px" width="100%" />
-  </Layout>
+  </Flex>
 )
 Template.args = Divider.defaultProps
 
@@ -31,11 +31,11 @@ Default.args = {
 }
 
 export const Vertical: Story<DividerProps> = (args) => (
-  <Layout gap={8} row>
+  <Flex gap={8} row>
     <Paper color="neutral.5" height="50px" width="100%" />
     <Divider {...args} />
     <Paper color="neutral.5" height="50px" width="100%" />
-  </Layout>
+  </Flex>
 )
 Vertical.args = {
   ...Template.args,

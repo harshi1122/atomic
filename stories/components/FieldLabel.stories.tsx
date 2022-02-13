@@ -7,9 +7,10 @@ import {
   transform,
   typeSize,
   weight,
+  wrap,
 } from '../index'
 
-import { FieldLabel, Form, Input, Layout } from '../../dist'
+import { FieldLabel, Form, Input, Flex } from '../../dist'
 import type { FieldLabelProps } from '../../dist'
 
 export default {
@@ -18,10 +19,10 @@ export default {
   decorators: [
     (Fn) => (
       <Form>
-        <Layout gap={2}>
+        <Flex gap={2}>
           <Fn />
           <Input name="username" placeholder="Username" />
-        </Layout>
+        </Flex>
       </Form>
     ),
   ],
@@ -32,7 +33,7 @@ export default {
     size: typeSize,
     transform,
     weight,
-    wrap: { control: 'boolean' },
+    wrap,
   },
 } as Meta
 

@@ -2,12 +2,12 @@ import type { Meta, Story } from '@storybook/react'
 
 import { spacing } from '../index'
 
-import { Layout, Paper, Text } from '../../dist'
-import type { LayoutProps, PaperProps, TextProps } from '../../dist'
+import { Flex, Paper, Text } from '../../dist'
+import type { FlexProps, PaperProps, TextProps } from '../../dist'
 
 export default {
-  title: 'Components/Layout',
-  component: Layout,
+  title: 'Components/Flex',
+  component: Flex,
   argTypes: {
     gap: spacing,
     order: { control: 'number' },
@@ -40,7 +40,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<LayoutProps> = (args) => (
+const Template: Story<FlexProps> = (args) => (
   <>
     <style
       dangerouslySetInnerHTML={{
@@ -51,11 +51,11 @@ const Template: Story<LayoutProps> = (args) => (
       `,
       }}
     />
-    <Layout {...args} />
+    <Flex {...args} />
   </>
 )
 Template.args = {
-  ...Layout.defaultProps,
+  ...Flex.defaultProps,
   m: [0],
   p: [0],
 }
@@ -68,32 +68,32 @@ const PP: PaperProps = {
 
 const TP: TextProps = { color: 'primary.5.text' }
 
-export const Default: Story<LayoutProps> = Template.bind({})
+export const Default: Story<FlexProps> = Template.bind({})
 Default.args = {
   ...Template.args,
   children: (
     <>
       {[0, 1, 2, 3, 4, 5, 6].map((i) => (
         <Paper key={i} {...PP}>
-          <Layout center fill>
+          <Flex center fill>
             <Text {...TP}>{i}</Text>
-          </Layout>
+          </Flex>
         </Paper>
       ))}
     </>
   ),
 }
 
-export const Centered: Story<LayoutProps> = Template.bind({})
+export const Centered: Story<FlexProps> = Template.bind({})
 Centered.args = {
   ...Template.args,
   children: (
     <>
       {[0, 1, 2, 3, 4, 5, 6].map((i) => (
         <Paper key={i} {...PP}>
-          <Layout center fill>
+          <Flex center fill>
             <Text {...TP}>{i}</Text>
-          </Layout>
+          </Flex>
         </Paper>
       ))}
     </>

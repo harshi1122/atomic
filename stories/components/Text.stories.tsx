@@ -7,9 +7,10 @@ import {
   transform,
   typeSize,
   weight,
+  wrap,
 } from '../index'
 
-import { Paper, Layout, Text } from '../../dist'
+import { Paper, Flex, Text } from '../../dist'
 import type { TextProps } from '../../dist'
 
 export default {
@@ -22,7 +23,7 @@ export default {
     size: typeSize,
     transform,
     weight,
-    wrap: { control: 'boolean' },
+    wrap,
   },
 } as Meta
 
@@ -62,9 +63,9 @@ Ellipsis.args = {
 
 export const Color: Story<TextProps> = (args) => (
   <Paper color={args.color.replace('.text', '')}>
-    <Layout p={3}>
+    <Flex p={3}>
       <Text {...args}>Some kind of sample text</Text>
-    </Layout>
+    </Flex>
   </Paper>
 )
 Color.args = {

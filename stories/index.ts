@@ -134,6 +134,8 @@ export const weight = {
   options: ['thin', 'light', 'normal', 'medium', 'semibold', 'bold'],
 }
 
+export const wrap = { control: 'boolean' }
+
 // General
 
 export const blur = {

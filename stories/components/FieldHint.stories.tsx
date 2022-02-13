@@ -7,9 +7,10 @@ import {
   transform,
   typeSize,
   weight,
+  wrap,
 } from '../index'
 
-import { FieldHint, FieldLabel, Form, Input, Layout } from '../../dist'
+import { FieldHint, FieldLabel, Form, Input, Flex } from '../../dist'
 import type { FieldHintProps } from '../../dist'
 
 export default {
@@ -22,16 +23,17 @@ export default {
     size: typeSize,
     transform,
     weight,
-    wrap: { control: 'boolean' },
+    wrap,
+    hideError: { control: 'boolean' },
   },
   decorators: [
     (Fn) => (
       <Form>
-        <Layout gap={2}>
+        <Flex gap={2}>
           <FieldLabel name="username">Username</FieldLabel>
           <Input name="username" placeholder="Username" />
           <Fn />
-        </Layout>
+        </Flex>
       </Form>
     ),
   ],
