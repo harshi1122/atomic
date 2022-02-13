@@ -24,6 +24,21 @@ export interface InputProps extends InputFieldProps, Partial<InputVariants> {
 
 /**
  * A wrapper around RedwoodJS' [`InputField`](https://redwoodjs.com/docs/forms.html#input-fields) component.
+ *
+ * **Note:** You may just as easily use the `useStyler` API (demo below) to access just the Input's styles,
+ * and apply those to any of [Redwood's input components](https://redwoodjs.com/docs/forms.html#overview).
+ *
+ * @example
+ * <Input name="password" type="password" />
+ *
+ * // Manually apply the Input's styles to a component.
+ *
+ * import { css, useStyler } from '@locktech/atomic'
+ *
+ * const Password = () => {
+ *   const styles = useStyler('Input', { variant: 'fill' })
+ *   return <PasswordField className={css(styles)} ... />
+ * }
  */
 export const Input: FC<InputProps> = ({
   errorClassName,
