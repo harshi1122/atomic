@@ -38,7 +38,7 @@ const compDest = p.resolve(compDestDir, compDestFile)
 
 const ComponentTemplate = `import type { ComponentPropsWithRef as CP, FC } from 'react'
 
-import { useStyler } from '../../hooks'
+import { useStyler } from '../../context'
 import { css } from '../../css'
 // import type { Color } from '../../theme'
 
@@ -110,8 +110,8 @@ const stylerImports = await fs.readFile(stylerCtx)
 
 const stylesImport = `import { ${name}Styles } from './${name}'
 // import anchor`
-const stylesExport = `// export anchor
-  ${name}: ${name}Styles,`
+const stylesExport = `${name}: ${name}Styles,
+  // export anchor`
 
 await fs.writeFile(
   stylerCtx,
