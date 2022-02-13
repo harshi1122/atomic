@@ -144,6 +144,17 @@ export const StylerAtomFamily = atomFamily<StylerStyles, StylerObjectKeys>({
 /**
  * Returns the `base` and `variant` styles configured for the `ComponentStyles`
  * identified by `key`, using `p` to conditionally apply variant styling.
+ *
+ * **Note:** This component returns a `CSSObject` - or an object containing CSS properties and values, and potentially nested styling.
+ * You should use [`css()`](https://goober.js.org/api/css) to convert this object into a className.
+ *
+ * @example
+ * import { css, useStyler } from '@locktech/atomic'
+ *
+ * const MyComponent = () => {
+ *   const styles = useStyler('MyStyles', { ... })
+ *   return <div className={css(styles)} ... />
+ * }
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useStyler = (key: StylerObjectKeys, p: any = {}): CSSObject => {
