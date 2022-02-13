@@ -5,6 +5,15 @@ import { useStyler } from '../../context'
 import { css } from '../../css'
 import type { Space } from '../../theme'
 
+// ==
+
+type OrArray<T> = T | Array<T>
+
+type Margin = OrArray<Space> | OrArray<Property.Margin>
+type Padding = OrArray<Space> | OrArray<Property.Padding>
+
+// ==
+
 export type FlexVariants = {}
 
 export interface FlexProps extends CP<'div'>, Partial<FlexVariants> {
@@ -56,11 +65,13 @@ export interface FlexProps extends CP<'div'>, Partial<FlexVariants> {
    */
   justify?: Property.JustifyContent
   /**
-   * Control the `margin` of all sides.
+   * Control the `margin` of this Flex component.
+   *
+   * The value can be an array, where each member corresponds to a [side]() of the component.
    *
    * @default 0
    */
-  m?: Space | Space[]
+  m?: Margin
   /**
    * The order this Flex will appear relative its siblings.
    *
@@ -68,11 +79,11 @@ export interface FlexProps extends CP<'div'>, Partial<FlexVariants> {
    */
   order?: number
   /**
-   * Control the `margin` of all sides.
+   * Control the `padding` of this Flex component.
    *
    * @default 0
    */
-  p?: Space | Space[]
+  p?: Padding
   /**
    * Set `flex-direction` to "row" instead of the default "column".
    *
@@ -103,6 +114,18 @@ export interface FlexProps extends CP<'div'>, Partial<FlexVariants> {
    * @default 'initial'
    */
   z?: Property.ZIndex
+  /**
+   * **Note:** This property does **not** take effect when the `fill` or `fillY` props are used.
+   *
+   * @default 'initial'
+   */
+  height?: Property.Height
+  /**
+   * **Note:** This property does **not** take effect when the `fill` or `fillX` props are used.
+   *
+   * @default 'initial'
+   */
+  width?: Property.Width
 }
 
 /**
@@ -135,6 +158,8 @@ export const Flex: FC<FlexProps> = ({
   shrink,
   wrap,
   z,
+  height,
+  width,
   ...props
 }: FlexProps) => {
   const styles = useStyler('Flex', {
@@ -154,6 +179,8 @@ export const Flex: FC<FlexProps> = ({
     shrink,
     wrap,
     z,
+    height,
+    width,
   })
   return <div className={css(styles)} {...props} />
 }
@@ -176,4 +203,6 @@ Flex.defaultProps = {
   shrink: false,
   wrap: false,
   z: 'initial',
+  height: 'initial',
+  width: 'initial',
 }
