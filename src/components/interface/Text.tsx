@@ -61,13 +61,13 @@ export type TextProps = Partial<TextVariants> & {
    */
   family?: TypeFamily
   /**
-   * The amount of space between each letter in this Text.
+   * The `letter-spacing` to use for this Text.
    *
    * @default 'normal'
    */
   letterSpacing?: TypeLetterSpace
   /**
-   * The amount of space a single line of this Text takes up.
+   * The `line-height` to use for this Text.
    *
    * @default 'normal'
    */
