@@ -22,16 +22,16 @@ const withAtomic = (Fn, ctx) => {
 
 const order = [
   'Atomic',
-  ['Introduction', 'Quick Start', 'Theming', 'Color Mode', 'Styling', 'CSS Properties'],
+  ['Introduction'],
   'Customize',
   ['Theming', 'Styling'],
   'Guides',
-  'Global State',
+  'State Management',
   ['Introduction'],
   'Hooks',
   ['Introduction'],
   'Components',
-  ['CSS Properties', 'Recoil Debugger']
+  ['CSS Properties']
 ]
 
 // taken from atomic's default breakpoints
