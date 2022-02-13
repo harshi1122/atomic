@@ -5,10 +5,11 @@ import type { InputFieldProps } from '@redwoodjs/forms'
 
 import { useStyler } from '../../../context'
 import { css } from '../../../css'
-// import type { Color } from '../../../theme'
 
 export type InputVariants = {
   /**
+   * Select alternative styles for this Input.
+   *
    * @default 'fill'
    */
   variant: 'fill' | 'outline'
@@ -21,6 +22,9 @@ export interface InputProps extends InputFieldProps, Partial<InputVariants> {
   errorClassName?: string
 }
 
+/**
+ * A wrapper around RedwoodJS' [`InputField`](https://redwoodjs.com/docs/forms.html#input-fields) component.
+ */
 export const Input: FC<InputProps> = ({
   errorClassName,
   variant,

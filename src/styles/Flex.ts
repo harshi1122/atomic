@@ -1,8 +1,8 @@
-import type { LayoutProps, LayoutVariants } from '../components/interface'
+import type { FlexProps, FlexVariants } from '../components/interface'
 import type { ComponentStyles } from '../context'
 import { cssvar } from '../util'
 
-export const LayoutStyles: ComponentStyles<LayoutProps, LayoutVariants> = {
+export const FlexStyles: ComponentStyles<FlexProps, FlexVariants> = {
   colors: {},
   base: (p) => ({
     display: 'flex',
@@ -23,6 +23,8 @@ export const LayoutStyles: ComponentStyles<LayoutProps, LayoutVariants> = {
     padding: Array.isArray(p.p)
       ? p.p.map((p) => cssvar(`space.${p}`)).join(' ')
       : cssvar(`space.${p.p}`),
+
+    zIndex: p.z,
 
     '& > *:not([disabled]) ~ *:not([disabled])': {
       [`margin-${

@@ -33,6 +33,14 @@ type TextElements =
 export type TextVariants = {}
 
 export type TextProps = Partial<TextVariants> & {
+  /**
+   * An element or another component to render this Text as.
+   *
+   * This allows you to use [semantic elements](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantics_in_html),
+   * defining the meaning of your element to your users, screen readers, and fellow developers.
+   *
+   * @default 'p'
+   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   as?: TextElements | CT<any>
   children?: ReactNode
@@ -47,37 +55,58 @@ export type TextProps = Partial<TextVariants> & {
    */
   color?: `${Color}.${ColorShade}`
   /**
+   * The `font-family` used by this Text.
+   *
    * @default 'sans'
    */
   family?: TypeFamily
   /**
+   * The amount of space between each letter in this Text.
+   *
    * @default 'normal'
    */
   letterSpacing?: TypeLetterSpace
   /**
+   * The amount of space a single line of this Text takes up.
+   *
    * @default 'normal'
    */
   lineHeight?: TypeLineHeight
   /**
+   * The `font-size` to use for this Text.
+   *
    * @default 'normal'
    */
   size?: TypeSize
   /**
+   * A `text-transform` to apply to this Text.
+   *
    * @default 'none'
    */
   transform?: Property.TextTransform
   /**
+   * The `font-weight` of this Text.
+   *
    * @default 'normal'
    */
   weight?: TypeWeight
   /**
-   * Specifiy whether or not text should wrap to a newline to be cut-off with an ellipsis.
+   * Specifiy whether or not text should wrap to a newline or be cut-off with an ellipsis.
    *
    * @default true
    */
   wrap?: boolean
 } & { [key: string]: unknown }
 
+/**
+ * A component for representing type and declaratively styling it using Atomic's
+ * [theme](https://locktech.github.io/atomic/?path=/story/customize-theming--page) properties.
+ * The props of this component let you quickly set most typography related CSS properties.
+ *
+ * @example
+ * <Text>Hello world</Text>
+ * <Text as="h1" family="serif" weight="bold">Hello world</Text>
+ */
 export const Text: FC<TextProps> = ({
   as: Component,
   className,

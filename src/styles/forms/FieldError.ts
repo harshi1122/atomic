@@ -17,5 +17,4 @@ export const FieldErrorStyles: ComponentStyles<
   base: {
     display: 'block',
   },
-  variants: {},
 }

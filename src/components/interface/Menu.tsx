@@ -25,7 +25,16 @@ import { useTriggersBreakpoint } from '../../hooks'
 
 export type MenuListAnimationVariants = Record<'close' | 'open', Variant>
 
-export type MenuListVariants = {
+type MenuListComponentProps = {
+  animations: MenuListAnimationVariants
+  children: ReactNode
+  className?: string
+  listRef: MutableRefObject<HTMLDivElement>
+}
+
+// --
+
+export type MenuListPanelVariants = {
   /**
    * Which side the `Menu.List` will anchor itself to.
    *
@@ -34,28 +43,10 @@ export type MenuListVariants = {
   side: 'left' | 'right' | 'center'
 }
 
-export type MenuListProps = CP<typeof HMenu.Items> &
-  Partial<MenuListVariants> & {
-    /**
-     * Override the animations used when the menu is a "panel" or "sheet".
-     */
-    animations?: Record<'panel' | 'sheet', MenuListAnimationVariants>
-    /**
-     * @default HeadlessUI.Menu.Items
-     */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    as?: any
-    children: ReactNode
-    className?: string
-  }
+type MenuListPanelProps = Partial<MenuListPanelVariants> &
+  MenuListComponentProps
 
-type MenuListRefProps = MenuListProps & {
-  listRef: MutableRefObject<HTMLDivElement>
-}
-
-// --
-
-export const MenuListPanelAnims: MenuListAnimationVariants = {
+export const MenuListPanelAnimations: MenuListAnimationVariants = {
   close: {
     opacity: 0,
     scaleX: '96%',
@@ -76,7 +67,7 @@ export const MenuListPanelAnims: MenuListAnimationVariants = {
   },
 }
 
-const MenuListPanel: FC<MenuListRefProps> = ({
+const MenuListPanel: FC<MenuListPanelProps> = ({
   children,
   animations,
   className,
@@ -87,7 +78,7 @@ const MenuListPanel: FC<MenuListRefProps> = ({
     <motion.div
       key="menu-list"
       className={clsx(css(styles), className)}
-      variants={animations.panel}
+      variants={animations}
       animate="open"
       exit="close"
       initial="close"
@@ -99,7 +90,9 @@ const MenuListPanel: FC<MenuListRefProps> = ({
 
 // --
 
-export const MenuListSheetAnims: MenuListAnimationVariants = {
+type MenuListSheetProps = MenuListComponentProps
+
+export const MenuListSheetAnimations: MenuListAnimationVariants = {
   close: {
     opacity: 0,
     translateY: '100px',
@@ -118,7 +111,7 @@ export const MenuListSheetAnims: MenuListAnimationVariants = {
   },
 }
 
-const MenuListSheet: FC<MenuListRefProps> = ({
+const MenuListSheet: FC<MenuListSheetProps> = ({
   animations,
   children,
   className,
@@ -235,7 +228,7 @@ const MenuListSheet: FC<MenuListRefProps> = ({
     <motion.div
       key="menu-list"
       className={clsx(css(styles), className)}
-      variants={animations.sheet}
+      variants={animations}
       animate="open"
       exit="close"
       initial="close"
@@ -257,11 +250,45 @@ const MenuListSheet: FC<MenuListRefProps> = ({
 
 // --
 
-const MenuList: FC<MenuListProps> = ({ as: As, ...p }: MenuListProps) => {
+export type MenuListProps = CP<typeof HMenu.Items> &
+  Partial<MenuListPanelVariants> & {
+    /**
+     * @default HeadlessUI.Menu.Items
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    as?: any
+    children: ReactNode
+    className?: string
+    /**
+     * [Animation variations](https://www.framer.com/docs/animation/#variants) used by the Menu when it is displayed as a dropdown, on larger devices.
+     */
+    panelAnimations?: MenuListAnimationVariants
+    /**
+     * [Animation variations](https://www.framer.com/docs/animation/#variants) used by the List when it is displayed as a bottom-sheet, on smaller devices.
+     */
+    sheetAnimations?: MenuListAnimationVariants
+  }
+
+/**
+ * A container for many `Menu.Items` which provides a responsive design, adapting to the device its rendered on.
+ *
+ * * For `small` devices: a sheet is used which takes up a majority of the screen, ensuring all options are clearly visible and selectable.
+ *   * This is inspired by Material Design's [bottom sheet](https://material.io/components/sheets-bottom) component.
+ * * For `larger` devices: a dropdown is used, which can open from a variety of anchor points all near the Menu's trigger.
+ *
+ * Both adaptations will restrict the visible height, allowing the menu to be scrolled if more space is required to show all items.
+ */
+const MenuList: FC<MenuListProps> = ({
+  as: As,
+  panelAnimations,
+  sheetAnimations,
+  ...p
+}: MenuListProps) => {
   const isSm = useTriggersBreakpoint('sm')
 
   const FragmentOrPortal = isSm ? Fragment : Portal
   const PanelOrSheet = isSm ? MenuListPanel : MenuListSheet
+  const animations = isSm ? panelAnimations : sheetAnimations
 
   // HeadlessUI "controls" the tab index, even when set to `static`.
   // This ensure Headless' menu is not focusable - which is fine as our menu, "motion.div", is.
@@ -293,7 +320,11 @@ const MenuList: FC<MenuListProps> = ({ as: As, ...p }: MenuListProps) => {
             {open && (
               <>
                 <Overlay show={!isSm} />
-                <PanelOrSheet listRef={listRef} {...p} />
+                <PanelOrSheet
+                  animations={animations}
+                  listRef={listRef}
+                  {...p}
+                />
               </>
             )}
           </AnimatePresence>
@@ -305,11 +336,9 @@ const MenuList: FC<MenuListProps> = ({ as: As, ...p }: MenuListProps) => {
 
 MenuList.displayName = 'Menu.List'
 MenuList.defaultProps = {
-  animations: {
-    panel: MenuListPanelAnims,
-    sheet: MenuListSheetAnims,
-  },
   as: HMenu.Items,
+  panelAnimations: MenuListPanelAnimations,
+  sheetAnimations: MenuListSheetAnimations,
   side: 'left',
 }
 
@@ -324,6 +353,12 @@ export type MenuItemVariants = {
 
 export type MenuItemProps = CP<typeof HMenu.Item> & Partial<MenuItemVariants>
 
+/**
+ * Represents a single, unique item in the Menu.
+ *
+ * Items are styled depending on if:
+ * * They are `active` - a user is actively hovering over or focused on the item.
+ */
 const MenuItem: FC<MenuItemProps> = ({ size, ...p }: MenuItemProps) => {
   const styles = useStyler('MenuItem', { size })
   return (
@@ -354,6 +389,9 @@ type Menu = FC<MenuProps> & {
   Item: typeof MenuItem
 }
 
+/**
+ * A component for gathering feedback on a list of possible choices.
+ */
 export const Menu: Menu = ({ ...p }: MenuProps) => {
   const styles = useStyler('Menu', { ...p })
   return <HMenu as="div" className={css(styles)} {...p} />

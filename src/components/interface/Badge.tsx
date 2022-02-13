@@ -6,6 +6,8 @@ import type { Color } from '../../theme'
 
 export type BadgeVariants = {
   /**
+   * Styles to apply to the Badge, updating its apperance slightly.
+   *
    * @default 'fill'
    */
   variant: 'fill' | 'ghost' | 'outline'
@@ -13,11 +15,16 @@ export type BadgeVariants = {
 
 export interface BadgeProps extends CP<'span'>, Partial<BadgeVariants> {
   /**
+   * One of Atomic or your application's configured colors.
+   *
    * @default 'neutral'
    */
   color?: Color
 }
 
+/**
+ * A small component for conveying short snippets of information in a stylized, attention grabbing box.
+ */
 export const Badge: FC<BadgeProps> = ({ color, variant, ...p }: BadgeProps) => {
   const styles = useStyler('Badge', { color, variant })
   return <span className={css(styles)} {...p} />

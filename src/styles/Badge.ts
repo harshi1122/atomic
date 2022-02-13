@@ -24,6 +24,10 @@ export const BadgeStyles: ComponentStyles<BadgeProps, BadgeVariants> = {
     justifyContent: 'flex-start',
     padding: `${cssvar('space.0.5')} ${cssvar('space.1.5')}`,
     userSelect: 'none',
+    width: 'fit-content',
+    '& > :not([hidden]) ~ :not([hidden])': {
+      marginLeft: cssvar('space.1'),
+    },
   },
   variants: {
     variant: {

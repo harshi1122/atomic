@@ -10,8 +10,8 @@ import type { InputVariants } from './Input'
 import {
   Menu,
   MenuListAnimationVariants,
-  MenuListPanelAnims,
-  MenuListSheetAnims,
+  MenuListPanelAnimations,
+  MenuListSheetAnimations,
 } from '../Menu'
 import type { MenuItemVariants } from '../Menu'
 
@@ -44,10 +44,9 @@ const SelectButtonIcon = () => (
 )
 
 interface SelectButtonProps extends Partial<InputVariants> {
-  children?: ReactNode
+  children?: ((ctx: SelectContextValue) => ReactNode) | ReactNode
   /**
-   * A decorative icon which is placed at the end of the Button,
-   * indicating the input differs from others.
+   * A decorative icon which is placed at the end of the Button, indicating the input differs from others.
    */
   icon?: FC
   /**
@@ -58,6 +57,17 @@ interface SelectButtonProps extends Partial<InputVariants> {
   placeholder?: string
 }
 
+/**
+ * The "Input" portion of the Select component.
+ * This is the component the user will interact with to open the Select-menu,
+ * and will display the currently selected value.
+ *
+ * You may provide a function as this component's `children`.
+ * This function will be called with an object containing the following properties:
+ *
+ * * `error` - The `FieldError` of this Select, should it be failing `validation`.
+ * * `value` - The currently selected value.
+ */
 const SelectButton: FC<SelectButtonProps> = ({
   children,
   icon: Icon,
@@ -103,22 +113,28 @@ export interface SelectListProps {
 
 // --
 
-export const SelectListPanelAnims: MenuListAnimationVariants = {
+export const SelectListPanelAnimations: MenuListAnimationVariants = {
   close: {
-    ...MenuListPanelAnims.close,
+    ...MenuListPanelAnimations.close,
     scaleX: '100%',
     scaleY: '96%',
   },
-  open: MenuListPanelAnims.open,
+  open: MenuListPanelAnimations.open,
 }
 
 // --
 
+/**
+ * A component to be wrapped around a list of Select items.
+ *
+ * This component wraps `Menu.Items`, providing additional, befitting styles and tweaking the animations to fit.
+ */
 const SelectList: FC<SelectListProps> = (p) => {
   const styles = useStyler('SelectList')
   return (
     <Menu.List
-      animations={{ panel: SelectListPanelAnims, sheet: MenuListSheetAnims }}
+      panelAnimations={SelectListPanelAnimations}
+      sheetAnimations={MenuListSheetAnimations}
       as={Listbox.Options}
       className={css(styles)}
       {...p}
@@ -131,6 +147,16 @@ const SelectList: FC<SelectListProps> = (p) => {
 export type SelectOptionProps = CP<typeof Listbox.Option> &
   Partial<MenuItemVariants>
 
+/**
+ * Represents a single item in this Select component.
+ *
+ * The item will either render its provided `value`, or its `children` - should one be provided.
+ *
+ * Items can be three different states:
+ * * `active` when actively hovered over or focused on.
+ * * `disabled` when activating and selecting the item is disallowed.
+ * * `selected` when the item is the Select components current value.
+ */
 const SelectOption: FC<SelectOptionProps> = ({
   children,
   size,
@@ -184,6 +210,8 @@ export type SelectProps = Omit<CP<typeof Listbox>, 'onChange' | 'value'> & {
    */
   name: string
   /**
+   * Apply validation rules for this Select.
+   *
    * @default {}
    */
   validation?: RegisterOptions
@@ -195,6 +223,10 @@ type Select = FC<SelectProps> & {
   Option: typeof SelectOption
 }
 
+/**
+ * A component for selecting a _single_ value, with integration with Redwood's form API.
+ * Thie component can be used as a drop-in replacement for other field components.
+ */
 export const Select: Select = ({
   children,
   defaultValue,

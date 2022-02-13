@@ -4,7 +4,7 @@
 
 import { BadgeStyles } from './Badge'
 import { ButtonStyles } from './Button'
-import { LayoutStyles } from './Layout'
+import { FlexStyles } from './Flex'
 import { PaperStyles } from './Paper'
 import { TextStyles } from './Text'
 import { GlassStyles } from './Glass'
@@ -19,7 +19,6 @@ import {
   CheckboxStyles,
   FieldErrorStyles,
   FormErrorStyles,
-  FormStyles,
   InputStyles,
   SelectButtonStyles,
   SelectListStyles,
@@ -44,11 +43,10 @@ export const AtomicStyles = {
   FieldError: FieldErrorStyles,
   FormError: FormErrorStyles,
   Card: CardStyles,
-  Form: FormStyles,
   Glass: GlassStyles,
   Text: TextStyles,
   Paper: PaperStyles,
-  Layout: LayoutStyles,
+  Flex: FlexStyles,
   Input: InputStyles,
   Badge: BadgeStyles,
   Button: ButtonStyles,

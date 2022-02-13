@@ -10,7 +10,7 @@ export const GlassStyles: ComponentStyles<GlassProps, GlassVariants> = {
     borderColor: p.outline
       ? `rgb(${cssvar(`color.${p.color}.rgb`)}, ${p.opaque})`
       : 'transparent',
-    borderRadius: cssvar(`radius.${p.radius}`),
+    borderRadius: cssvar(`radius.${p.radius}`, p.radius),
     borderStyle: 'solid',
     borderWidth: '1px',
     backdropFilter: `blur(${p.blur}px) hue-rotate(${p.hue}deg) saturate(${p.saturate}%) sepia(${p.sepia}%)`,

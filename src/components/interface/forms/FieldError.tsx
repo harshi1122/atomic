@@ -15,6 +15,12 @@ export interface FieldErrorProps
     RWFieldErrorProps,
     Partial<FieldErrorVariants> {}
 
+/**
+ * An opinionated wrapper around RedwoodJS' [`FieldError`](https://redwoodjs.com/docs/forms.html#fielderror) and the `Text` components.
+ *
+ * The `color.fieldError.text` custom CSS property is added and this component styled with it.
+ * The property is set to a `color.danger` shade which best contrasts the current color mode.
+ */
 export const FieldError: FC<FieldErrorProps> = ({ ...p }: FieldErrorProps) => {
   const styles = useStyler('FieldError')
   return <Text className={css(styles)} {...p} />

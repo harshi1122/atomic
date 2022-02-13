@@ -20,17 +20,21 @@ export interface OverlayProps
    */
   animations?: OverlayAnimationVariants
   /**
+   * Set to `true` to allow this Overlay to respond to interactions.
+   *
    * @default false
    */
   interactive?: boolean
   /**
+   * Set to `true` to toggle this Overlay's visbility "on".
+   *
    * @default true
    */
   show?: boolean
   /**
-   * Set the `z-index` CSS property for this Overlay component.
+   * Set the `z-index` CSS property for this Overlay.
    *
-   * @default 9
+   * @default 5
    */
   z?: number
 }
@@ -56,8 +60,22 @@ export const OverlayAnims: OverlayAnimationVariants = {
 
 // --
 
+/**
+ * A component which can be used to add a animatable overlay ontop of other elements.
+ * By default, this overlay will be placed at `z-index: 5`.
+ *
+ * This component is implemented using framer-motion's [`motion`](https://www.framer.com/docs/component/) component.
+ * You **should** place it within a [`AnimatePresence`](https://www.framer.com/docs/animate-presence/) and control its visibility using the `show` prop.
+ *
+ * @example
+ * <AnimatePresence>
+ *   <Overlay show={showOverlay} />
+ *   ...
+ * </AnimatePresence>
+ */
 export const Overlay: FC<OverlayProps> = forwardRef(
   ({ animations, interactive, show, z, ...p }, ref: Ref<HTMLDivElement>) => {
+    const overlay = useStyler('Overlay', { z })
     const glass = useStyler('Glass', {
       ...Glass.defaultProps,
       blur: 8,
@@ -66,11 +84,9 @@ export const Overlay: FC<OverlayProps> = forwardRef(
       opaque: 0.3,
       outline: false,
       radius: 'none',
-      saturate: 100,
+      // saturate: 100,
       shadow: 'none',
     })
-
-    const overlay = useStyler('Overlay', { z })
 
     return show ? (
       <motion.div
@@ -96,5 +112,5 @@ Overlay.defaultProps = {
   animations: OverlayAnims,
   interactive: false,
   show: true,
-  z: 9,
+  z: 5,
 }

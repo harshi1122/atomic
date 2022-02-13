@@ -7,6 +7,8 @@ export interface RecoilDebuggerProps {
   /**
    * Captures and logs changes to Recoil's state as they occur.
    *
+   * To improve readability, only atoms whose state changes will be logged.
+   *
    * @default true
    */
   captureChanges?: boolean
@@ -20,6 +22,7 @@ export interface RecoilDebuggerProps {
    * A list of atom `keys` to be included in debugging.
    *
    * **Note:** When provided, forms an allowlist - debugging only the given keys.
+   * An empty array signifies "debug no keys".
    *
    * @default undefined
    */
@@ -27,6 +30,8 @@ export interface RecoilDebuggerProps {
   /**
    * Store each and every [Snaptshot](https://recoiljs.org/docs/api-reference/core/Snapshot)
    * the debugger comes across, [respecting unique IDs](https://recoiljs.org/docs/api-reference/core/Snapshot#snapshot-ids).
+   *
+   * As can be expected, take caution when enabling this feature and working with (many) large atoms.
    *
    * **Note:** Snapshots are always saved, regardless of whether they contain
    * `excluded` or `included` keys or contain nodes that haven't actually changed value.
@@ -37,13 +42,10 @@ export interface RecoilDebuggerProps {
 }
 
 /**
- * A component which subscribes to changes to the Recoil state,
- * providing tools for inspecting and managing it.
+ * A component which subscribes to changes to the Recoil state, providing tools for inspecting and managing it.
  *
- * **Note:** It is **your** responsibility to remove this component
- * from your application before building and shipping it.
- * A simple workaround would be to only render it when the `process.env.NODE_ENV`
- * environment variable is set to `'development'`.
+ * **Note:** It is **your** responsibility to remove this component from your application before building and shipping it.
+ * A simple workaround would be to only render it when the `process.env.NODE_ENV` environment variable is set to `'development'`.
  */
 export const RecoilDebugger: FC<RecoilDebuggerProps> = ({
   captureChanges,

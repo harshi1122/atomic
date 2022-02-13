@@ -5,9 +5,9 @@ import { useStyler } from '../../context'
 import { css } from '../../css'
 import type { Space } from '../../theme'
 
-export type LayoutVariants = {}
+export type FlexVariants = {}
 
-export interface LayoutProps extends CP<'div'>, Partial<LayoutVariants> {
+export interface FlexProps extends CP<'div'>, Partial<FlexVariants> {
   /**
    * Set the `align-items` property of this component.
    *
@@ -62,7 +62,7 @@ export interface LayoutProps extends CP<'div'>, Partial<LayoutVariants> {
    */
   m?: Space | Space[]
   /**
-   * The order this Layout will appear relative its siblings.
+   * The order this Flex will appear relative its siblings.
    *
    * @default undefined
    */
@@ -97,9 +97,28 @@ export interface LayoutProps extends CP<'div'>, Partial<LayoutVariants> {
    * @default false
    */
   wrap?: boolean
+  /**
+   * Override the `z-index` of this Flex.
+   *
+   * @default 'initial'
+   */
+  z?: Property.ZIndex
 }
 
-export const Layout: FC<LayoutProps> = ({
+/**
+ * A component to quickly and declaratively position elements using the
+ * [CSS Flexible Box Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Flex), `display: flex`.
+ *
+ * > "...(Flex is) optimized for user interface design, and the layout of items in one dimension."
+ *
+ * This component's props have a near 1-to-1 relationships with the major properties of flex-box.
+ * It also tries to make building complex, nested layouts easier -
+ * by supporting properties for use when a `Flex` is the child of another `Flex`.
+ *
+ * This component provides controls for defining the `margin` and `padding` surrounding its elements,
+ * and for defining space to be placed between each element (the `gap` prop) - which adapts to the provided `flex-direction`.
+ */
+export const Flex: FC<FlexProps> = ({
   align,
   center,
   fill,
@@ -115,9 +134,10 @@ export const Layout: FC<LayoutProps> = ({
   reverse,
   shrink,
   wrap,
+  z,
   ...props
-}: LayoutProps) => {
-  const styles = useStyler('Layout', {
+}: FlexProps) => {
+  const styles = useStyler('Flex', {
     align,
     center,
     fill,
@@ -133,12 +153,13 @@ export const Layout: FC<LayoutProps> = ({
     reverse,
     shrink,
     wrap,
+    z,
   })
   return <div className={css(styles)} {...props} />
 }
 
-Layout.displayName = 'Layout'
-Layout.defaultProps = {
+Flex.displayName = 'Flex'
+Flex.defaultProps = {
   align: 'initial',
   center: false,
   fill: false,
@@ -154,4 +175,5 @@ Layout.defaultProps = {
   reverse: false,
   shrink: false,
   wrap: false,
+  z: 'initial',
 }

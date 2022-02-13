@@ -1,6 +1,6 @@
 export * from './Badge'
 export * from './Button'
-export * from './Layout'
+export * from './Flex'
 export * from './Paper'
 export * from './Text'
 export * from './Glass'

@@ -24,7 +24,7 @@ export const ButtonStyles: ComponentStyles<ButtonProps, ButtonVariants> = {
   /* eslint-enable prettier/prettier */
   base: (p) => ({
     borderColor: cssvar(`color.${p.color}.5`),
-    borderRadius: cssvar(`radius.${p.rounded ? 'full' : 'md'}`),
+    borderRadius: cssvar(`radius.${p.rounded ? 'full' : p.radius}`),
     borderStyle: 'solid',
     borderWidth: '1px',
     fontWeight: cssvar('type.weight.semibold'),
