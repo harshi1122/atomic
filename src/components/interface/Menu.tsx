@@ -162,9 +162,9 @@ const MenuListSheet: FC<MenuListSheetProps> = ({
   )
 
   const onDragEnd = useCallback(
-    (e: TouchEvent, p: PanInfo) => {
+    (e: PointerEvent, p: PanInfo) => {
       if (!dragStart || !dragging) return onCancelDrag(e)
-      if (p.point.y < dragStart.screenY && p.velocity.y < 200)
+      if (p.point.y < dragStart.screenY && p.velocity.y < 200.0)
         return onCancelDrag(e)
 
       const btnId = listRef.current.getAttribute('aria-labelledby')
@@ -240,6 +240,9 @@ const MenuListSheet: FC<MenuListSheetProps> = ({
       dragListener={false}
       dragSnapToOrigin
       dragTransition={{ bounceDamping: 60, bounceStiffness: 600 }}
+      dragConstraints={{
+        bottom: ref.current ? ref.current.clientHeight * 0.35 : 150,
+      }}
       onDragEnd={onDragEnd}
       whileDrag={{ cursor: 'grabbing' }}
     >
