@@ -14,15 +14,15 @@ export const FlexStyles: ComponentStyles<FlexProps, FlexVariants> = {
     flexWrap: p.wrap ? 'wrap' : 'initial',
     order: p.order || 'initial',
 
-    width: ((p.fill || p.fillX) && '100%') || 'initial',
-    height: ((p.fill || p.fillY) && '100%') || 'initial',
+    height: ((p.fill || p.fillY) && '100%') || p.height,
+    width: ((p.fill || p.fillX) && '100%') || p.width,
 
     margin: Array.isArray(p.m)
       ? p.m.map((m) => cssvar(`space.${m}`)).join(' ')
-      : cssvar(`space.${p.m}`),
+      : cssvar(`space.${p.m}`, p.m.toString()),
     padding: Array.isArray(p.p)
       ? p.p.map((p) => cssvar(`space.${p}`)).join(' ')
-      : cssvar(`space.${p.p}`),
+      : cssvar(`space.${p.p}`, p.p.toString()),
 
     zIndex: p.z,
 
