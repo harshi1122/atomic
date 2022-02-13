@@ -29,7 +29,6 @@ import { ModalStyles } from './Modal'
 // import anchor
 
 export const AtomicStyles = {
-  // export anchor
   Modal: ModalStyles,
   Overlay: OverlayStyles,
   SelectButton: SelectButtonStyles,
@@ -50,4 +49,5 @@ export const AtomicStyles = {
   Input: InputStyles,
   Badge: BadgeStyles,
   Button: ButtonStyles,
+  // export anchor
 }
