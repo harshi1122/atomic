@@ -41,6 +41,7 @@ const RemovedProps = [
   'weight',
   'width',
   'wrap',
+  'z',
 ]
 
 /**
