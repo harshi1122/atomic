@@ -3,7 +3,6 @@ import type { Meta, Story } from '@storybook/react'
 // import { color } from '../index'
 
 import {
-  Button,
   Card,
   Checkbox,
   FieldError,
@@ -14,6 +13,7 @@ import {
   FormError,
   Input,
   Select,
+  Submit,
   Text,
   useTriggersBreakpoint,
 } from '../../dist'
@@ -50,7 +50,9 @@ Template.args = {
   children: (
     <Flex gap={6}>
       <Flex gap={2}>
-        <FieldLabel name="password">Password</FieldLabel>
+        <FieldLabel name="password" required>
+          Password
+        </FieldLabel>
         <Input
           name="password"
           placeholder="Password"
@@ -83,9 +85,7 @@ Template.args = {
         <FieldLabel name="remember">Remember this device?</FieldLabel>
       </Flex>
       <Flex align="flex-end">
-        <Button color="primary" type="submit">
-          Submit
-        </Button>
+        <Submit color="primary">Submit</Submit>
       </Flex>
     </Flex>
   ),
