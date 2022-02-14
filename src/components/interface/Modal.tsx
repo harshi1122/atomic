@@ -15,16 +15,16 @@ export type ModalVariants = {}
 
 export interface ModalProps extends Partial<ModalVariants> {
   /**
-   * Override the [animation variations](https://www.framer.com/docs/animation/#variants) used when the modal content enters and exits the screen.
+   * Override the [animation variations](https://www.framer.com/docs/animation/#variants) used when the Modal content enters and exits the screen.
    */
   contentAnimations?: ModalAnimationVariants
   /**
-   * Override the [animation variations](https://www.framer.com/docs/animation/#variants) used by the modal's overlay.
+   * Override the [animation variations](https://www.framer.com/docs/animation/#variants) used by the Modal's overlay.
    */
   overlayAnimations?: OverlayAnimationVariants
   children: ReactNode
   /**
-   * A function, which will be invoked with `false` when the modal should close.
+   * A function, which will be invoked with `false` when the Modal should close.
    *
    * @default undefined
    */
