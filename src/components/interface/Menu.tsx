@@ -95,7 +95,7 @@ type MenuListSheetProps = MenuListComponentProps
 export const MenuListSheetAnimations: MenuListAnimationVariants = {
   close: {
     opacity: 0,
-    translateY: '100px',
+    translateY: '150px',
     transition: {
       duration: 0.3,
       ease: 'backOut',
@@ -236,13 +236,15 @@ const MenuListSheet: FC<MenuListSheetProps> = ({
       ref={ref}
       style={{ touchAction: dragging ? 'none' : 'pan-y' }}
       drag="y"
-      dragControls={dragControls}
-      dragListener={false}
-      dragSnapToOrigin
-      dragTransition={{ bounceDamping: 60, bounceStiffness: 600 }}
       dragConstraints={{
         bottom: ref.current ? ref.current.clientHeight * 0.35 : 150,
       }}
+      dragControls={dragControls}
+      dragElastic={{ bottom: 0.5 }}
+      dragListener={false}
+      dragMomentum={false}
+      dragSnapToOrigin
+      dragTransition={{ bounceDamping: 60, bounceStiffness: 600 }}
       onDragEnd={onDragEnd}
       whileDrag={{ cursor: 'grabbing' }}
     >

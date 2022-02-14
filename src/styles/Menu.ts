@@ -135,7 +135,7 @@ export const MenuItemStyles: ComponentStyles<MenuItemProps, MenuItemVariants> =
         sm: {
           fontSize: cssvar('type.size.sm'),
           letterSpacing: cssvar('type.letterSpacing.wide'),
-          padding: `${cssvar('space.1.5')} ${cssvar('space.2')}`,
+          padding: `${cssvar('space.1')} ${cssvar('space.2')}`,
           '& > *:not([hidden]) ~ *:not([hidden])': {
             marginLeft: cssvar('space.2.5'),
           },
