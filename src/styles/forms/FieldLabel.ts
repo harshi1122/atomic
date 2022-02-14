@@ -13,3 +13,18 @@ export const FieldLabelStyles: ComponentStyles = {
     },
   },
 }
+
+export const FieldLabelRequiredStyles: ComponentStyles = {
+  colors: {
+    'fieldLabel.required': [cssvar('color.danger.6'), cssvar('color.danger.4')],
+  },
+  base: {
+    color: cssvar('fieldLabel.required'),
+    fontWeight: cssvar('type.weight.bold'),
+    paddingLeft: cssvar('space.0.5'),
+
+    '&[title]': {
+      textDecoration: 'none',
+    },
+  },
+}

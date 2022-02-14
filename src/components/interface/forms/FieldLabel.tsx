@@ -9,7 +9,24 @@ import type { TextProps } from '../Text'
 import { useStyler } from '../../../context'
 import { css } from '../../../css'
 
-export interface FieldLabelProps extends Omit<TextProps, 'as'>, LabelProps {}
+// ==
+
+const DefaultLabelRequired = { children: '*', title: 'Required Field' }
+
+// ==
+
+export interface FieldLabelProps extends Omit<TextProps, 'as'>, LabelProps {
+  /**
+   * Visually denote this field as being required.
+   *
+   * This prop's value can be of two types, prompting slightly different behavior:
+   * * `true` - Use Atomic's default children (`*`) and title (`Required Field`) for the denotion's `<attr>` element.
+   * * `object` - Provide custom children and title props for the denotion's `<attr>` element.
+   *
+   * @default false
+   */
+  required?: boolean | typeof DefaultLabelRequired
+}
 
 /**
  * An wrapper around RedwoodJS' [`Label`](https://redwoodjs.com/docs/forms.html#label) and the `Text` components,
@@ -28,6 +45,8 @@ export const FieldLabel: FC<FieldLabelProps> = ({
   //
   errorClassName,
   //
+  children,
+  required,
   ...p
 }: FieldLabelProps) => {
   const textStyles = useStyler('Text', {
@@ -45,12 +64,22 @@ export const FieldLabel: FC<FieldLabelProps> = ({
     () => css({ ...textStyles, ...labelStyles }),
     [labelStyles, textStyles]
   )
+
+  const requiredStyles = useStyler('FieldLabelRequired')
   return (
     <Label
       className={className}
       errorClassName={clsx(className, errorClassName)}
       {...p}
-    />
+    >
+      {children}
+      {required && (
+        <abbr
+          className={css(requiredStyles)}
+          {...(typeof required === 'object' ? required : DefaultLabelRequired)}
+        />
+      )}
+    </Label>
   )
 }
 
@@ -58,4 +87,5 @@ FieldLabel.displayName = 'FieldLabel'
 FieldLabel.defaultProps = {
   ...Text.defaultProps,
   errorClassName: 'danger',
+  required: false,
 }
