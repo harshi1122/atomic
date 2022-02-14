@@ -22,8 +22,6 @@ type ToggleTuple = [boolean, () => void, Dispatch<SetStateAction<boolean>>]
  */
 export const useToggle = (i: ToggleInitial = false): ToggleTuple => {
   const [state, setState] = useState(i)
-
   const toggle = useCallback(() => setState(!state), [setState, state])
-
   return [state, toggle, setState]
 }
