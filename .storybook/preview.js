@@ -26,7 +26,7 @@ const order = [
   'Customize',
   ['Theming', 'Styling'],
   'Guides',
-  'State Management',
+  'State',
   ['Introduction'],
   'Hooks',
   ['Introduction'],
