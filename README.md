@@ -4,7 +4,7 @@
     <span style="font-size:2rem;font-weight:bold;letter-spacing:0.05rem;">Atomic</span>
   </h1>
 
-  > A UI component library and toolkit, purpose-built for [RedwoodJS](https://redwoodjs.com) applications.
+  > UI component and toolkit library, purpose-built for [RedwoodJS](https://redwoodjs.com) applications.
 
   <br />
 </div>
