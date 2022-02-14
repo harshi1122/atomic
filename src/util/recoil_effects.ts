@@ -6,7 +6,7 @@ import type { AtomEffect } from 'recoil'
  *
  * This effect is simple in its approach:
  * * The effect will `parse` and `stringify` the atom's state when reading and writing it from and to local storage.
- * * When the atom is first used, the effect will try to set its state to the value stored in local storage.
+ * * When the atom is first read, the effect will try to set its state to the value stored in local storage.
  * * The value in local storage is set whenever the atom's state changes.
  * * The value in local storage is removed whenever the atom's state is [reset](https://recoiljs.org/docs/api-reference/core/useResetRecoilState).
  *
