@@ -37,10 +37,6 @@ export const cssProperties = (
     .join('\n')
 }
 
-// Because these functions and constants are to be used alongside CSS-in-JS,
-// "cssvar", "lightmode", and "darkmode" are all lowercase to fit CSS' syntax.
-// "var()", "@media (prefers-color-scheme: light|dark)", ...
-
 /**
  * Returns an instance of the [CSS `var()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/var()),
  * which will return the value held by `k`.
@@ -58,23 +54,3 @@ export const cssProperties = (
  */
 export const cssvar = <R = string>(k: string, d?: string): R =>
   `var(--${normalKey(k)}${d ? `, ${d}` : ''})` as unknown as R
-
-/**
- * Scopes a `var()` function, returning a function which
- * will append `p` to the argument provided for `k`.
- *
- * @example
- * const colorVar = cssPrimeVar('color')
- *
- * const var = colorVar('primary.1') // var(--color-primary-1)
- */
-export const cssScopeVar =
-  (p: string): typeof cssvar =>
-  (k: string, d?: string) =>
-    cssvar(`${p}-${k}`, d)
-
-/**
- * [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
- */
-// export const darkmode = '[data-color-scheme="dark"] &, body.dark &'
-export const darkmode = 'body.dark &'
