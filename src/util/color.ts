@@ -3,7 +3,7 @@
  *
  * Taken from: https://stackoverflow.com/a/39077686/12943215
  */
-export const hexToRgb = (color: string) =>
+export const hexToRgb = (color: string): [number, number, number] =>
   color
     .replace(
       /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
@@ -28,19 +28,18 @@ export const rgbToHex = (r: number, g: number, b: number) =>
     .join('')
 
 /**
- * Checks the contrast of a [hex-triplet color](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet),
- * adhearing to the [W3 contrast requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html).
+ * Checks the contrast of a color using an algorithm suggested by [WCAG20 contrast guidelines](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html).
  *
  * @param {string} color - A hex-triplet (#RRGGBB) to check the contrast of.
- * @param {number} threshold - A minimum value the [brightness](https://www.w3.org/TR/AERT/#color-contrast) of the color must be to be considered "bright".
+ * @param {number} threshold - A minimum value the [brightness](https://www.w3.org/TR/AERT/#color-contrast) of the color must be to be considered "bright". Defaults to `125`.
  *
  * @returns {boolean}
- * * `true` - When the provided color is bright.
- * * `false` - When the provided color is dim.
+ * * `true` - When the provided color is "bright".
+ * * `false` - When the provided color is "dim".
  */
 export const isColorBright = (c: string, threshold = 125): boolean => {
   const [r, g, b] = hexToRgb(c)
-  // https://www.w3.org/TR/AERT/#color-contrast
+  // https://www.w3.org/TR/AERT/#:~:text=((Red%20value%20X%20299)%20%2B%20(Green%20value%20X%20587)%20%2B%20(Blue%20value%20X%20114))%20/%201000
   const brightness = Math.round((r * 299 + g * 587 + b * 114) / 1000)
   return brightness > threshold
 }
