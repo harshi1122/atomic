@@ -48,6 +48,7 @@ export const AtomicSpace: SpaceRecord = {
 // --
 
 export const setSpaceProperties = (sr: SpaceRecord = AtomicSpace) => {
+  // provides negative variants for all given spaces, skipping values of `0`
   const nSr = {}
   Object.keys(sr).forEach(
     (s) => parseInt(s) !== 0 && (nSr[`-${s}`] = `-${sr[s]}`)
