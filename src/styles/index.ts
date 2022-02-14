@@ -19,6 +19,7 @@ import {
   CheckboxStyles,
   FieldErrorStyles,
   FieldLabelStyles,
+  FieldLabelRequiredStyles,
   FormErrorStyles,
   InputStyles,
   SelectButtonStyles,
@@ -27,6 +28,7 @@ import {
 import { DividerStyles } from './Divider'
 import { OverlayStyles } from './Overlay'
 import { ModalStyles } from './Modal'
+import { DialogStyles } from './Dialog'
 // import anchor
 
 export const AtomicStyles = {
@@ -42,6 +44,7 @@ export const AtomicStyles = {
   Checkbox: CheckboxStyles,
   FieldError: FieldErrorStyles,
   FieldLabel: FieldLabelStyles,
+  FieldLabelRequired: FieldLabelRequiredStyles,
   FormError: FormErrorStyles,
   Card: CardStyles,
   Glass: GlassStyles,
@@ -51,5 +54,6 @@ export const AtomicStyles = {
   Input: InputStyles,
   Badge: BadgeStyles,
   Button: ButtonStyles,
+  Dialog: DialogStyles,
   // export anchor
 }
