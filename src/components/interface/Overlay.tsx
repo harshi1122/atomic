@@ -41,7 +41,7 @@ export interface OverlayProps
 
 // --
 
-export const OverlayAnims: OverlayAnimationVariants = {
+export const OverlayAnimations: OverlayAnimationVariants = {
   close: {
     opacity: 0,
     transition: {
@@ -109,7 +109,7 @@ export const Overlay: FC<OverlayProps> = forwardRef(
 )
 
 Overlay.defaultProps = {
-  animations: OverlayAnims,
+  animations: OverlayAnimations,
   interactive: false,
   show: true,
   z: 5,
