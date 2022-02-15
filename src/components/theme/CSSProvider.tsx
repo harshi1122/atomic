@@ -36,12 +36,6 @@ export interface CSSProviderProps {
    */
   colors?: ColorRecord
   /**
-   * Override the default `:focus` styling, used by interactive components.
-   *
-   * @default '0px 0px 0px 4px rgba(96, 165, 250, 0.4)'
-   */
-  focus?: string
-  /**
    * Border radii.
    */
   radius?: RadiusRecord
@@ -90,10 +84,7 @@ export interface CSSProviderProps {
  *  }}
  * />
  */
-export const CSSProvider: FC<CSSProviderProps> = ({
-  focus = '0px 0px 0px 4px rgba(96, 165, 250, 0.4)',
-  ...p
-}) => {
+export const CSSProvider: FC<CSSProviderProps> = (p) => {
   useSetBreakpoints(p.bps)
   return createGlobalStyles`
     :root {
@@ -102,8 +93,6 @@ export const CSSProvider: FC<CSSProviderProps> = ({
       ${setShadowProperties(p.shadow)}
       ${setSpaceProperties(p.space)}
       ${setTypeProperties(p.type)}
-
-      ${cssProperty('focus', focus)}
 
       ${cssProperty('color.text', cssvar('color.neutral.9'))}
       ${cssProperty('color.hint', cssvar('color.neutral.6'))}
