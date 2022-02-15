@@ -94,6 +94,12 @@ export interface DialogProps extends Partial<DialogVariants> {
   overlayAnimations?: OverlayAnimationVariants
 }
 
+/**
+ * A component which renders a full-height panel which slides in from the side of the screen.
+ * The panel builds off the `Card` styling, providing an opinionated background for your content.
+ *
+ * On mobile device, the Dialog can be swipped in the direction it slid in from, dismissing the panel.
+ */
 export const Dialog: FC<DialogProps> = ({
   children,
   leftAnimations,
