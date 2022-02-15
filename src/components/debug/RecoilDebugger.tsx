@@ -84,6 +84,7 @@ export const RecoilDebugger: FC<RecoilDebuggerProps> = ({
   return null
 }
 
+RecoilDebugger.displayName = 'RecoilDebugger'
 RecoilDebugger.defaultProps = {
   captureChanges: true,
   excludedKeys: [],

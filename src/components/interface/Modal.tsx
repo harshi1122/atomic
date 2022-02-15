@@ -108,6 +108,7 @@ export const Modal: FC<ModalProps> = ({
   )
 }
 
+Modal.displayName = 'Modal'
 Modal.defaultProps = {
   contentAnimations: ContentAnimations,
   overlayAnimations: Overlay.defaultProps.animations,

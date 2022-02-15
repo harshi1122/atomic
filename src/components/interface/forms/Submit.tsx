@@ -28,4 +28,5 @@ export const Submit: FC<SubmitProps> = ({
   return <SubmitButton className={css(styles)} {...p} />
 }
 
+Submit.displayName = 'Submit'
 Submit.defaultProps = Button.defaultProps

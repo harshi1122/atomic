@@ -1,3 +1,5 @@
+import type { FC } from 'react'
+
 import { createGlobalStyles } from '../../css'
 import { cssProperty } from '../../util'
 
@@ -25,14 +27,16 @@ export interface CSSPropertyProps {
 /**
  * Upserts a single scoped [CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/--*).
  */
-export const CSSProperty = ({
+export const CSSProperty: FC<CSSPropertyProps> = ({
   property,
   selector = ':root',
   value,
-}: CSSPropertyProps) => {
+}) => {
   return createGlobalStyles`
     ${selector} {
       ${cssProperty(property, value)}
     }
   `()
 }
+
+CSSProperty.displayName = 'CSSProperty'

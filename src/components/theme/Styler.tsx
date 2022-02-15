@@ -137,6 +137,7 @@ export const Styler: FC<StylerProps> = ({ styler }) => {
   )
 }
 
+Styler.displayName = 'Styler'
 Styler.defaultProps = {
   styler: AtomicStyles,
 }

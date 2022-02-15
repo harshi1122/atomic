@@ -1,3 +1,5 @@
+import type { FC } from 'react'
+
 import { createGlobalStyles } from '../../css'
 import type { TypeFamily } from '../../theme'
 import { cssvar } from '../../util'
@@ -19,7 +21,9 @@ export interface NormalizeProps {
  *
  * A few additional tweaks have been added for React and RedwoodJS.
  */
-export const Normalize = ({ fontFamily = 'sans' }: NormalizeProps) => {
+export const Normalize: FC<NormalizeProps> = ({
+  fontFamily = 'sans',
+}: NormalizeProps) => {
   return createGlobalStyles`
     *,
     *::before,
@@ -85,4 +89,9 @@ export const Normalize = ({ fontFamily = 'sans' }: NormalizeProps) => {
       isolation: isolate;
     }
   `()
+}
+
+Normalize.displayName = 'Normalize'
+Normalize.defaultProps = {
+  fontFamily: 'sans',
 }

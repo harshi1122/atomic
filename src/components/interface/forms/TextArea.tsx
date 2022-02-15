@@ -17,3 +17,5 @@ export const TextArea: FC<TextAreaProps> = ({ variant, ...p }) => {
   const styles = useStyler('Input', { variant })
   return <TextAreaField className={css(styles)} {...p} />
 }
+
+TextArea.displayName = 'TextArea'

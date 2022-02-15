@@ -18,6 +18,7 @@ export const Divider: FC<DividerProps> = ({ ...p }: DividerProps) => {
   return <hr className={css(styles)} {...p} />
 }
 
+Divider.displayName = 'Divider'
 Divider.defaultProps = {
   variant: 'horizontal',
 }

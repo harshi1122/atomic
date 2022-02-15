@@ -76,6 +76,7 @@ export const AtomicProvider: FC<AtomicProviderProps> = ({
   )
 }
 
+AtomicProvider.displayName = 'AtomicProvider'
 AtomicProvider.defaultProps = {
   normalize: { fontFamily: 'sans' },
 }

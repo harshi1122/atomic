@@ -173,6 +173,7 @@ export const Dialog: FC<DialogProps> = ({
   )
 }
 
+Dialog.displayName = 'Dialog'
 Dialog.defaultProps = {
   leftAnimations: DialogLeftAnimations,
   rightAnimations: DialogRightAnimations,

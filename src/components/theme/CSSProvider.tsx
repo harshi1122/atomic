@@ -1,3 +1,5 @@
+import type { FC } from 'react'
+
 import { createGlobalStyles } from '../../css'
 import {
   useSetBreakpoints,
@@ -88,10 +90,10 @@ export interface CSSProviderProps {
  *  }}
  * />
  */
-export const CSSProvider = ({
+export const CSSProvider: FC<CSSProviderProps> = ({
   focus = '0px 0px 0px 4px rgba(96, 165, 250, 0.4)',
   ...p
-}: CSSProviderProps) => {
+}) => {
   useSetBreakpoints(p.bps)
   return createGlobalStyles`
     :root {
@@ -113,3 +115,5 @@ export const CSSProvider = ({
     }
   `()
 }
+
+CSSProvider.displayName = 'CSSProvider'

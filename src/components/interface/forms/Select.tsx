@@ -142,6 +142,8 @@ const SelectList: FC<SelectListProps> = (p) => {
   )
 }
 
+SelectList.displayName = 'Select.List'
+
 // ==
 
 export type SelectOptionProps = CP<typeof Listbox.Option> &
