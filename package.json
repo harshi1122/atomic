@@ -57,9 +57,9 @@
   "dependencies": {
     "@apollo/client": "3.5.8",
     "@headlessui/react": "^1.4.3",
-    "@redwoodjs/auth": "0.44.1",
-    "@redwoodjs/forms": "0.44.1",
-    "@redwoodjs/web": "0.44.1",
+    "@redwoodjs/forms": "0.45.0",
+    "@redwoodjs/router": "0.45.0",
+    "@redwoodjs/web": "0.45.0",
     "clsx": "^1.1.1",
     "csstype": "^3.0.10",
     "framer-motion": "^6.2.4",
