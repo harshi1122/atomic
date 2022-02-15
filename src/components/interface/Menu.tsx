@@ -395,7 +395,9 @@ type Menu = FC<MenuProps> & {
 }
 
 /**
- * A component for gathering feedback on a list of possible choices.
+ * A [Menu](https://www.w3.org/TR/wai-aria-practices/#menu) component for gathering feedback on a list of possible choices.
+ *
+ * This component provide a [Menu Button](https://www.w3.org/TR/wai-aria-practices/#menubutton) to trigger the Menu, but provides **no** styling.
  */
 export const Menu: Menu = ({ ...p }: MenuProps) => {
   const styles = useStyler('Menu', { ...p })

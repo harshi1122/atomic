@@ -61,17 +61,11 @@ export const ContentAnimations: ModalAnimationVariants = {
 // --
 
 /**
- * A component which renders content above the "root" content in the application.
+ * A [Dialog](https://www.w3.org/TR/wai-aria-practices/#dialog_modal) component which renders content floating above the application's.
  *
  * The user's attention will be forced on the Modal, and any other interaction with the application blocked.
  *
  * The Modal has been built with accessibility in mind, powered by [HeadlessUI](https://headlessui.dev/react/dialog).
- * Some key takeaways are:
- * * The user will [automatically focus](https://headlessui.dev/react/dialog#managing-focus-within-your-dialog) on the first appropriate (`Button`, `Input`, etc.) element in the Modal's content.
- * * The Modal responds to all [expected keyboard interactions](https://headlessui.dev/react/dialog#keyboard-interaction).
- * * Clicking the `Overlay` component will trigger the `onClose` prop.
- * * Tabbing is restricted to only the Modal's content.
- * * The root content will not be scrollable.
  */
 export const Modal: FC<ModalProps> = ({
   contentAnimations,

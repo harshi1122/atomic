@@ -226,8 +226,10 @@ type Select = FC<SelectProps> & {
 }
 
 /**
- * A component for selecting a _single_ value, with integration with Redwood's form API.
- * Thie component can be used as a drop-in replacement for other field components.
+ * A [Listbox](https://www.w3.org/TR/wai-aria-practices/#Listbox) component for selecting a value,
+ * with integration with Redwood's form API.
+ *
+ * The Select has been built with accessibility in mind, powered by [HeadlessUI](https://headlessui.dev/react/listbox).
  */
 export const Select: Select = ({
   children,

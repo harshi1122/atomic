@@ -13,8 +13,8 @@ export interface CheckboxProps
     Partial<CheckboxVariants> {}
 
 /**
- * A wrapper around RedwoodJS' [`CheckboxField`](https://redwoodjs.com/docs/forms.html#input-fields) component.
- * Used to gather yes/no feedback from the user, with integration with Redwood's forms.
+ * A [Checkbox](https://www.w3.org/TR/wai-aria-practices/#checkbox) component which wraps
+ * RedwoodJS' [`CheckboxField`](https://redwoodjs.com/docs/forms.html#input-fields).
  */
 export const Checkbox: FC<CheckboxProps> = (p: CheckboxProps) => {
   const styles = useStyler('Checkbox')

@@ -95,10 +95,14 @@ export interface DialogProps extends Partial<DialogVariants> {
 }
 
 /**
- * A component which renders a full-height panel which slides in from the side of the screen.
- * The panel builds off the `Card` styling, providing an opinionated background for your content.
+ * A [Dialog](https://www.w3.org/TR/wai-aria-practices/#dialog_modal) component which renders a full-height panel
+ * that slides in from the side of the screen. The panel builds off the `Card` styling, providing an opinionated background for your content.
  *
- * On mobile device, the Dialog can be swipped in the direction it slid in from, dismissing the panel.
+ * The user's attention will be forced on the Dialog, and any other interaction with the application blocked.
+ *
+ * The Dialog has been built with accessibility in mind, powered by [HeadlessUI](https://headlessui.dev/react/dialog).
+ *
+ * On mobile device, the Dialog can be swipped in the direction it slid in from, causing the panel to dismiss.
  */
 export const Dialog: FC<DialogProps> = ({
   children,

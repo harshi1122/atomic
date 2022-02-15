@@ -45,7 +45,7 @@ export interface ButtonProps extends CP<'button'>, Partial<ButtonVariants> {
 }
 
 /**
- * A stylized component for detecting click, touch, and tap interactions.
+ * A stylized [Button](https://www.w3.org/TR/wai-aria-practices/#button) component, used to trigger actions and events.
  *
  * **Note:** Due to this components intended ambiguity, it has been implemented using the [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) API
  * - you may use the `ref` prop to access its element in the browser's DOM.
