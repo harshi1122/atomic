@@ -4,8 +4,10 @@ import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
 # Recoil Debugger
 
-Atomic provides you with a component for [debugging](https://recoiljs.org/docs/guides/dev-tools) Recoil's state.
-Provided by this component are tools for inspecting, logging, and managing this state — all facilitated by [Recoil's Snapshots](https://recoiljs.org/docs/api-reference/core/Snapshot).
+Atomic provides you with a component for [debugging](https://recoiljs.org/docs/guides/dev-tools) Recoil's state;
+provided are tools for inspecting, logging, and managing this state — all facilitated by [Recoil's Snapshot API](https://recoiljs.org/docs/api-reference/core/Snapshot).
+
+### Example
 
 ```tsx
 import { RecoilDebugger } from '@locktech/atomic'
@@ -18,44 +20,13 @@ const App = () => (
 )
 ```
 
-## Logging Changes
+### Props
 
-By default, the debugger will `console.log` every change which occurs to every [atom](https://recoiljs.org/docs/api-reference/core/atom) you or Atomic has registered with Recoil.
-This can easily be toggled *off* using the `captureChanges` prop.
+| Property     	      | Required     	| Default     	| Description                                           |
+|-------------------- |--------------	|--------------	|-----------------------------------------------------	|
+| `captureChanges`    | `false`     	| `true`        | `console.log` all changes to Recoil's state.          |
+| `excludedKeys`      | `false`     	| `[]`          | Exclude atoms with these keys from debugging.         |
+| `includedKeys`      | `false`      	| `undefined`  	| Include (only) atoms with these keys in debugging.   	|
+| `storeSnapshots`    | `false`      	| `false`     	| Store every Snapshot the debugger encounters. 	      |
 
-```tsx
-// Details omitted for brevity
-const App = () => (
-  <RecoilDebugger captureChanges={false} />
-)
-```
-
-### Filtering Changes
-
-
-Sometimes, seeing every change can be overwhelming;
-Atomic provides you with two props you may use to control which atoms are logged.
-
-```tsx
-const App = () => (
-  <RecoilDebugger
-    // Exclude atoms with these keys from logging.
-    excludedKeys={['...']}
-    // Include only atoms with these keys in logging.
-    includedKeys={['...']}
-  />
-)
-```
-
-## Storing Snapshots
-
-The debugger **can** keep track of *every* Snapshot it encounters — i.e., every Snapshot which occurs in your application.
-Only [unique](https://recoiljs.org/docs/api-reference/core/Snapshot#snapshot-ids) Snapshots will be stored — helping to mitigate duplication.
-
-> This feature is pending further implementation and **will** only eat memory if enabled today.
-
-```tsx
-const App = () => (
-  <RecoilDebugger storeSnapshots />
-)
-```
+> `storeSnapshots` lacks implementation and, as of now, only serves to take eat-up your application's memory.
