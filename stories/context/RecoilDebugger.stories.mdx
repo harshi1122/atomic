@@ -5,7 +5,7 @@ import { Meta, Story, Canvas } from "@storybook/addon-docs";
 # Recoil Debugger
 
 Atomic provides you with a component for [debugging](https://recoiljs.org/docs/guides/dev-tools) Recoil's state.
-Provided by this component are tools for inspecting, logging, and managing its state — facilitated by [Snapshots](https://recoiljs.org/docs/api-reference/core/Snapshot).
+Provided by this component are tools for inspecting, logging, and managing this state — all facilitated by [Recoil's Snapshots](https://recoiljs.org/docs/api-reference/core/Snapshot).
 
 ```tsx
 import { RecoilDebugger } from '@locktech/atomic'
@@ -51,6 +51,8 @@ const App = () => (
 
 The debugger **can** keep track of *every* Snapshot it encounters — i.e., every Snapshot which occurs in your application.
 Only [unique](https://recoiljs.org/docs/api-reference/core/Snapshot#snapshot-ids) Snapshots will be stored — helping to mitigate duplication.
+
+> This feature is pending further implementation and **will** only eat memory if enabled today.
 
 ```tsx
 const App = () => (
