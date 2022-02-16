@@ -1,8 +1,8 @@
 import type { ModalProps, ModalVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
-export const ModalStyles: ComponentStyles<ModalProps, ModalVariants> = {
+export const ModalStyles: StylerStyles<ModalProps, ModalVariants> = {
   bps: {
     sm: {
       'modal.margin': `${cssvar('space.6')} auto`,

@@ -1,8 +1,8 @@
 import type { DividerProps, DividerVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
-export const DividerStyles: ComponentStyles<DividerProps, DividerVariants> = {
+export const DividerStyles: StylerStyles<DividerProps, DividerVariants> = {
   colors: {
     /* eslint-disable prettier/prettier */
     'divider.backgroundColor': [cssvar('color.neutral.1'), cssvar('color.neutral.7')],

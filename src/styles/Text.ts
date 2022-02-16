@@ -1,8 +1,8 @@
 import type { TextProps, TextVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
-export const TextStyles: ComponentStyles<TextProps, TextVariants> = {
+export const TextStyles: StylerStyles<TextProps, TextVariants> = {
   base: (p) => ({
     color: cssvar(`color.${p.color}`, p.color),
     fontFamily: cssvar(`type.family.${p.family}`, p.family),

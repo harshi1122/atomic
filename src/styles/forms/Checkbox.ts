@@ -2,10 +2,10 @@ import type {
   CheckboxProps,
   CheckboxVariants,
 } from '../../components/interface'
-import type { ComponentStyles } from '../../context'
+import type { StylerStyles } from '../../context'
 import { cssvar } from '../../util'
 
-export const CheckboxStyles: ComponentStyles<CheckboxProps, CheckboxVariants> =
+export const CheckboxStyles: StylerStyles<CheckboxProps, CheckboxVariants> =
   {
     /* eslint-disable prettier/prettier */
     colors: {

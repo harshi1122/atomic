@@ -2,10 +2,10 @@ import type {
   FieldErrorProps,
   FieldErrorVariants,
 } from '../../components/interface'
-import type { ComponentStyles } from '../../context'
+import type { StylerStyles } from '../../context'
 import { cssvar } from '../../util'
 
-export const FieldErrorStyles: ComponentStyles<
+export const FieldErrorStyles: StylerStyles<
   FieldErrorProps,
   FieldErrorVariants
 > = {

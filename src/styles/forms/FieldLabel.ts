@@ -1,7 +1,7 @@
-import type { ComponentStyles } from '../../context'
+import type { StylerStyles } from '../../context'
 import { cssvar } from '../../util'
 
-export const FieldLabelStyles: ComponentStyles = {
+export const FieldLabelStyles: StylerStyles = {
   colors: {
     'fieldLabel.error': [cssvar('color.danger.8'), cssvar('color.danger.1')],
   },
@@ -14,7 +14,7 @@ export const FieldLabelStyles: ComponentStyles = {
   },
 }
 
-export const FieldLabelRequiredStyles: ComponentStyles = {
+export const FieldLabelRequiredStyles: StylerStyles = {
   colors: {
     'fieldLabel.required': [cssvar('color.danger.6'), cssvar('color.danger.4')],
   },

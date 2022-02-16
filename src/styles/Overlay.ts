@@ -1,7 +1,7 @@
 import type { OverlayProps, OverlayVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 
-export const OverlayStyles: ComponentStyles<OverlayProps, OverlayVariants> = {
+export const OverlayStyles: StylerStyles<OverlayProps, OverlayVariants> = {
   bps: {},
   colors: {},
   base: (p) => ({

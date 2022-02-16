@@ -1,5 +1,5 @@
 import type { ButtonProps, ButtonVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
 // consolidates repeated styling for a "ghosty" looking button
@@ -15,7 +15,7 @@ const ghostyButton = (p: ButtonProps) => ({
   },
 })
 
-export const ButtonStyles: ComponentStyles<ButtonProps, ButtonVariants> = {
+export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
   /* eslint-disable prettier/prettier */
   colors: {
     'button.disabled.backgroundColor': [cssvar('color.neutral.2'), cssvar('color.neutral.6')],

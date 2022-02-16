@@ -1,8 +1,8 @@
 import type { PaperProps, PaperVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
-export const PaperStyles: ComponentStyles<PaperProps, PaperVariants> = {
+export const PaperStyles: StylerStyles<PaperProps, PaperVariants> = {
   base: (p) => ({
     backgroundColor: cssvar(`color.${p.color}`, p.color),
     backgroundImage: p.image && `url('${p.image}')`,

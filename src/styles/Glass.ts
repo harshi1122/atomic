@@ -1,8 +1,8 @@
 import type { GlassProps, GlassVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
-export const GlassStyles: ComponentStyles<GlassProps, GlassVariants> = {
+export const GlassStyles: StylerStyles<GlassProps, GlassVariants> = {
   colors: {},
   base: (p) => ({
     backgroundColor: `rgb(${cssvar(`color.${p.color}.rgb`)}, ${p.opaque})`,

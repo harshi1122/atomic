@@ -1,5 +1,5 @@
 import type { BadgeProps, BadgeVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import type { Color } from '../theme'
 import { cssvar } from '../util'
 
@@ -10,7 +10,7 @@ const coloredFont = (c: Color) => ({
   },
 })
 
-export const BadgeStyles: ComponentStyles<BadgeProps, BadgeVariants> = {
+export const BadgeStyles: StylerStyles<BadgeProps, BadgeVariants> = {
   base: {
     borderRadius: cssvar('radius.sm'),
     borderStyle: 'solid',

@@ -4,11 +4,11 @@ import type {
   MenuItemProps,
   MenuItemVariants,
 } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import type { CSSObject } from '../css'
 import { cssvar } from '../util'
 
-export const MenuStyles: ComponentStyles<MenuProps, MenuVariants> = {
+export const MenuStyles: StylerStyles<MenuProps, MenuVariants> = {
   bps: {
     sm: {
       'menu.position': 'relative',
@@ -38,7 +38,7 @@ const MenuListStyles: CSSObject = {
   },
 }
 
-export const MenuListPanelStyles: ComponentStyles = {
+export const MenuListPanelStyles: StylerStyles = {
   colors: {
     /* eslint-disable prettier/prettier */
     'menu.divider.backgroundColor': [cssvar('color.neutral.0'), cssvar('divider.backgroundColor')],
@@ -75,7 +75,7 @@ export const MenuListPanelStyles: ComponentStyles = {
   },
 }
 
-export const MenuListSheetStyles: ComponentStyles = {
+export const MenuListSheetStyles: StylerStyles = {
   base: {
     ...MenuListStyles,
     borderRadius: `${cssvar('radius.md')} ${cssvar('radius.md')} 0 0`,
@@ -92,7 +92,7 @@ export const MenuListSheetStyles: ComponentStyles = {
   },
 }
 
-export const MenuItemStyles: ComponentStyles<MenuItemProps, MenuItemVariants> =
+export const MenuItemStyles: StylerStyles<MenuItemProps, MenuItemVariants> =
   {
     /* eslint-disable prettier/prettier */
     colors: {

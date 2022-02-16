@@ -1,10 +1,10 @@
 import type { CardProps, CardVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
 import { PaperStyles } from './Paper'
 
-export const CardStyles: ComponentStyles<CardProps, CardVariants> = {
+export const CardStyles: StylerStyles<CardProps, CardVariants> = {
   colors: {
     'card.backgroundColor': ['white', cssvar('color.neutral.8')],
     'card.borderColor': [cssvar('color.neutral.1'), cssvar('color.neutral.7')],

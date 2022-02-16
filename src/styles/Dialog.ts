@@ -1,17 +1,17 @@
 import type { DialogProps, DialogVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
-export const DialogStyles: ComponentStyles<DialogProps, DialogVariants> = {
+export const DialogStyles: StylerStyles<DialogProps, DialogVariants> = {
   bps: {
     sm: {
-      'dialog.maxWidth': '25rem',
+      'dialog.maxWidth': '27rem',
     },
   },
   base: {
     backgroundColor: cssvar('card.backgroundColor'),
 
-    width: '25rem',
+    width: '100%',
     maxWidth: cssvar('dialog.maxWidth', '90%'),
 
     position: 'absolute',

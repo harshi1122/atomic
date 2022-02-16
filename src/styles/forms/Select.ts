@@ -1,8 +1,8 @@
-import type { ComponentStyles } from '../../context'
+import type { StylerStyles } from '../../context'
 
 // ==
 
-export const SelectButtonStyles: ComponentStyles = {
+export const SelectButtonStyles: StylerStyles = {
   // bps: {},
   // colors: {},
   base: {
@@ -17,7 +17,7 @@ export const SelectButtonStyles: ComponentStyles = {
 
 // ==
 
-export const SelectListStyles: ComponentStyles = {
+export const SelectListStyles: StylerStyles = {
   // bps: {},
   // colors: {},
   base: {

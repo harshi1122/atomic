@@ -2,10 +2,10 @@ import type {
   FormErrorProps,
   FormErrorVariants,
 } from '../../components/interface'
-import type { ComponentStyles } from '../../context'
+import type { StylerStyles } from '../../context'
 import { cssvar } from '../../util'
 
-export const FormErrorStyles: ComponentStyles<
+export const FormErrorStyles: StylerStyles<
   FormErrorProps,
   FormErrorVariants
 > = {

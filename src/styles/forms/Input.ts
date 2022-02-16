@@ -1,8 +1,8 @@
 import type { InputProps, InputVariants } from '../../components/interface'
-import type { ComponentStyles } from '../../context'
+import type { StylerStyles } from '../../context'
 import { cssvar } from '../../util'
 
-export const InputStyles: ComponentStyles<InputProps, InputVariants> = {
+export const InputStyles: StylerStyles<InputProps, InputVariants> = {
   colors: {
     /* eslint-disable prettier/prettier */
     'input.backgroundColor': [cssvar('color.neutral.0'), cssvar('color.neutral.7')],

@@ -1,8 +1,8 @@
 import type { FlexProps, FlexVariants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
-export const FlexStyles: ComponentStyles<FlexProps, FlexVariants> = {
+export const FlexStyles: StylerStyles<FlexProps, FlexVariants> = {
   colors: {},
   base: (p) => ({
     display: 'flex',
