@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react'
 import { RecoilRoot } from 'recoil'
 
-import { setup } from '../../css'
+import { setup as setupGoober } from '../../css'
 
 import { RecoilDebugger } from '../debug'
 import type { RecoilDebuggerProps } from '../debug'
@@ -12,8 +12,7 @@ import type { NormalizeProps } from './Normalize'
 import { Styler } from './Styler'
 import type { StylerObject } from '../../context'
 
-// Setup the goober library
-setup()
+setupGoober()
 
 export interface AtomicProviderProps {
   children?: ReactNode
@@ -40,11 +39,35 @@ export interface AtomicProviderProps {
    */
   recoil?: RecoilDebuggerProps
   /**
-   * Customize the style of Atomic's components.
+   * Set the low-level visual apperance of Atomic's components by customizing values available through its CSS-in-JS API.
    *
-   * This is similar to customizing the styles of Chakra UI's components.
+   * The object provided should contain a map of unique keys to `StylerObjects` — objects which provide CSS rules and custom properties.
+   *
+   * Each of these `StylerObjects` should provide the following:
+   * * `bps` — [Custom CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) which will be applied based on the device's width.
+   * * `colors` — Custom CSS properties which will be applied based on the user's [preferred color scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+   * * `base` — CSS rules which are always provided for the given `key`.
+   * * `variants` — CSS rules which will be conditionally provided, based on some dynamic value.
+   *
+   * Custom CSS properties will be applied to the browser, making their values available to any rules which make use of them.
+   *
+   * CSS rules can be accessed using the `useStyler` hook. As expected: `base` styles will always be returned and `variant` styles will be added based on the presence of a dynamic value.
    *
    * @default undefined
+   *
+   * @example
+   *
+   * const App = () => (
+   *   <AtomicProvider
+   *     styler={{
+   *       Button: {
+   *         base: { ... },
+   *         variants: { ... },
+   *       },
+   *     }}
+   *   >
+   *     // ..
+   * )
    */
   styler?: StylerObject
 }
@@ -67,7 +90,7 @@ export const AtomicProvider: FC<AtomicProviderProps> = ({
 }: AtomicProviderProps) => {
   return (
     <RecoilRoot>
-      {typeof recoil === 'object' && <RecoilDebugger {...recoil} />}
+      {typeof recoil === 'object' ? <RecoilDebugger {...recoil} /> : null}
       <Normalize {...normalize} />
       <CSSProvider {...properties} />
       <Styler styler={styler} />

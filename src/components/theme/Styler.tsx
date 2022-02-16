@@ -4,9 +4,9 @@ import { useRecoilCallback } from 'recoil'
 
 import { StylerAtomFamily } from '../../context'
 import type {
+  StylerAtomState,
   StylerObject,
   StylerObjectKeys,
-  StylerStyles,
 } from '../../context'
 import { CSSProperties } from '../css'
 import { createGlobalStyles } from '../../css'
@@ -18,15 +18,23 @@ import type { PR } from '../../util'
 
 // ==
 
+// The types which `parseSO` splits a `StylerObject` into.
+
+type BreakpointProperties = PR<Breakpoint, Record<string, string>>
+type ColorProperties = Record<'base' | 'dark', Record<string, string>>
+type AtomStyles = Record<StylerObjectKeys, StylerAtomState>
+
+// --
+
 export interface StylerProps {
   /**
-   * Override Atomic's default `StylerObject`, which defines the low-level visual apperance of its components.
+   * Override Atomic's default `StylerObject`.
    *
-   * **Note:** This override is all-or-nothing - you **will** need to merge Atomic's styles with your own if your goal is to only add new styles.
+   * **Note:** This override is all-or-nothing - you **will** need to merge Atomic's defaults with your customizations if your goal is to only add new styles.
    *
    * @example
    * // The example below demonstrates merging Atomic's defaults with some customizations.
-   * import { AtomicStyles } from '@locktech/atomic'
+   * import { AtomicProvider, AtomicStyles } from '@locktech/atomic'
    *
    * const App = () => (
    *   <AtomicProvider styler={{ ...AtomicStyles, Button: { ... } }}>
@@ -37,25 +45,16 @@ export interface StylerProps {
   styler?: StylerObject
 }
 
-// --
-
-type Breakpoints = PR<Breakpoint, Record<string, string>>
-type Colors = Record<'base' | 'dark', Record<string, string>>
-type Styles = Record<StylerObjectKeys, StylerStyles>
-
 // ==
 
 /**
- * Parses a `StylerObject`, splitting each of its member's `base` and `variant` styles from their custom CSS properties - merging the later together.
- *
- * All styles will be merged under a single `styles` object, with each member's styles still seperated;
- * meanwhile, custom properties are kept seperated but each group contains all member's properties merged together.
+ * Parses a `StylerObject`, splitting its `base` and `variant` styles from custom CSS properties.
  */
 const parseSO = (o: StylerObject) => {
-  const bps: Breakpoints = {}
-  const colors: Colors = { base: {}, dark: {} }
+  const bps: BreakpointProperties = {}
+  const colors: ColorProperties = { base: {}, dark: {} }
   // @ts-expect-error Fields are populated in for-loop below
-  const styles: Styles = {}
+  const styles: AtomStyles = {}
 
   Object.keys(o).forEach((ok) => {
     styles[ok] = {
@@ -63,14 +62,14 @@ const parseSO = (o: StylerObject) => {
       variants: o[ok].variants,
     }
 
-    // merge all breakpoints into many `Record<string, string>` objects (provided via `bps`)
+    // merge all breakpoints into many `Record<string, string>` objects (provided via `bps`).
     o[ok].bps &&
       Object.keys(o[ok].bps).forEach((bp) => {
         bps[bp] = { ...bps[bp], ...o[ok].bps[bp] }
       })
 
     // merge all colors into two `Record<string, string>` objects (provided via `colors`),
-    // one for "base" (bright) colors the other for "dark" (dim)
+    // one for "base" (bright) colors the other for "dark" (dim).
     o[ok].colors &&
       Object.keys(o[ok].colors).forEach((c) => {
         colors.base[c] = o[ok].colors[c][0]
@@ -84,16 +83,7 @@ const parseSO = (o: StylerObject) => {
 // --
 
 /**
- * The Styler component is used to configure the low-level visual apperance of components which make use of its styles.
- *
- * Once configured, styles can be re-accessed using the `useStyler` hook.
- *
- * Components may define styles which fall into two categories:
- * * `base` - Styles which will always be applied to a component, setting its default visual apperance.
- * * `variants` - Styles which will apply conditionally, depending on the presence of a dynamic value.
- *
- * Components are free to define variants for whatever customizations they have.
- * There can be *n* variants, with each variant having *n* variations..
+ * > See the `styler` prop on the `<AtomicProvider>` component for a user-friendly introduction to the Styler API.
  *
  * > This API is inspired by Chakra-UI, my 💕 to them for the head-start.
  */
@@ -104,7 +94,7 @@ export const Styler: FC<StylerProps> = ({ styler }) => {
    */
   const setStylerStyles = useRecoilCallback(
     ({ set }) =>
-      (styles: Styles) =>
+      (styles: AtomStyles) =>
         Object.keys(styles).forEach((key: StylerObjectKeys) =>
           set(StylerAtomFamily(key), styles[key])
         ),

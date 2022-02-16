@@ -10,24 +10,24 @@ import { AtomicStyles } from '../styles'
 // --
 
 /**
- * Styles which are passed to the Styler API, defining the low-level visual appearance of applicable components.
+ * CSS rules which are passed to the Styler API, defining the low-level visual appearance of components.
+ * Can also be a function which accepts the argument `P` and returns CSS rules.
  */
 export type StylerCSS<P = unknown> = CSSObject | ((p: P) => CSSObject)
 
-type SR = Record<string, string>
-
 /**
- * A collection of CSS properties and values.
+ * A collection of `StylerCSS` rules and themed custom CSS properties.
  *
- * Includes:
- * * Themed custom CSS properties
- * * Base and dynamic variant styling
- *
- * **Note:** Generally speaking, a single collection has a one-to-one relationship with Atomic's components.
- * However, a single component may be composed of many sub-components, each having their own collection.
- * Components can also re-use the collection of another component, so the one-to-one rule is not universal.
+ * Contains the following:
+ * * `bps` - Custom CSS properties, applied depending on the device's width.
+ * * `colors` - Custom CSS properties, applied depending on if the end-user prefers a "light" or "dark" color scheme.
+ * * `base` - `StylerCSS` rules defining visual styling.
+ * * `variants` - `StylerCSS` rules which will be applied conditionally, based on some dynamic value.
  */
-export interface ComponentStyles<P = unknown, V extends SR = SR> {
+export interface StylerStyles<
+  P = unknown,
+  V extends Record<string, string> = Record<string, string>
+> {
   /**
    * Specify Custom CSS properties which will have the value of the configured breakpoint, depending on
    * the width of the device (or viewport) rendering the style.
@@ -38,7 +38,7 @@ export interface ComponentStyles<P = unknown, V extends SR = SR> {
    * This can be done to set a value when no breakpoints are actively triggered.
    *
    * @example
-   * const styles: ComponentStyles = {
+   * const styles: StylerStyles = {
    *   bps: {
    *     sm: {
    *       'menu.background': ...,
@@ -61,7 +61,7 @@ export interface ComponentStyles<P = unknown, V extends SR = SR> {
    * is in the "bright" (light) color-mode, and the second when in the "dim" (dark) color mode.
    *
    * @example
-   * const styles: ComponentStyles = {
+   * const styles: StylerStyles = {
    *   colors: {
    *     'component.backgroundColor': [cssvar('color.neutral.1'), cssvar('color.neutral.9')],
    *   }
@@ -77,9 +77,9 @@ export interface ComponentStyles<P = unknown, V extends SR = SR> {
    *
    * *The example below demonstrates how to get type-support when customizing.*
    * @example
-   * import type { ButtonProps, ButtonVariants, ComponentStyles } from '@locktech/atomic'
+   * import type { ButtonProps, ButtonVariants, StylerStyles } from '@locktech/atomic'
    *
-   * const styles: ComponentStyles<ButtonProps, ButtonVariants> = { ... }
+   * const styles: StylerStyles<ButtonProps, ButtonVariants> = { ... }
    */
   base?: StylerCSS<P>
   /**
@@ -90,9 +90,9 @@ export interface ComponentStyles<P = unknown, V extends SR = SR> {
    *
    * *The example below demonstrates how to get type-support when customizing.*
    * @example
-   * import type { ButtonProps, ButtonVariants, ComponentStyles } from '@locktech/atomic'
+   * import type { ButtonProps, ButtonVariants, StylerStyles } from '@locktech/atomic'
    *
-   * const styles: ComponentStyles<ButtonProps, ButtonVariants> = { ... }
+   * const styles: StylerStyles<ButtonProps, ButtonVariants> = { ... }
    */
   variants?: {
     // this provides autocomplete for variants and their values, while allowing
@@ -106,35 +106,29 @@ export interface ComponentStyles<P = unknown, V extends SR = SR> {
 // --
 
 /**
- * An object defining the `ComponentStyles` used by Atomic and available to your application.
- *
- * Custom CSS properties will be appropriately applied to the window, while `base` and `variant` styles
- * are made available through key-unique [atoms](https://recoiljs.org/docs/api-reference/core/atom).
+ * A map of unique keys to `StylerStyles`.
+ * This may include both Atomic's rules and any required by your application.
  */
-export type StylerObject = typeof AtomicStyles & Record<string, ComponentStyles>
+export type StylerObject = typeof AtomicStyles & Record<string, StylerStyles>
 
 /**
- * The `keys` of `StylerObject` - plus support for custom properties.
+ * Unique keys which can be used to reference the `StylerStyles` stored on a `StylerObject`.
  */
 export type StylerObjectKeys = AnyStringAnd<keyof typeof AtomicStyles>
 
 // --
 
 /**
- * CSS properties stored in the `StylerContext`.
- *
- * These are the values which are accessed using the `useStyler` hook.
+ * The `StylerCSS` rules stored by each [atom](https://recoiljs.org/docs/api-reference/core/atom)
+ * in the Styler API's `StylerAtomFamily`.
  */
-export type StylerStyles = Pick<ComponentStyles, 'base' | 'variants'>
+export type StylerAtomState = Pick<StylerStyles, 'base' | 'variants'>
 
 /**
- * An [`atomFamily`](https://recoiljs.org/docs/api-reference/utils/atomFamily/) which facilitates global access
- * to the different `ComponentStyles`, provided by Atomic or customized for an application.
- *
- * Each `ComponentStyles` entry is stored as a unique [`atom`](https://recoiljs.org/docs/api-reference/core/atom).
- * The `key` used to identify this entry when configuring the `Styler` component (or `AtomicProvider`) is the same key used to identify its atom.
+ * An [`atomFamily`](https://recoiljs.org/docs/api-reference/utils/atomFamily/) which facilitates access
+ * to a `StylerObject`, storing each key as its own [atom](https://recoiljs.org/docs/api-reference/core/atom).
  */
-export const StylerAtomFamily = atomFamily<StylerStyles, StylerObjectKeys>({
+export const StylerAtomFamily = atomFamily<StylerAtomState, StylerObjectKeys>({
   key: 'atomic.styler',
   default: (param) => AtomicStyles[param] || {},
 })
@@ -142,17 +136,19 @@ export const StylerAtomFamily = atomFamily<StylerStyles, StylerObjectKeys>({
 // ==
 
 /**
- * Returns the `base` and `variant` styles configured for the `ComponentStyles`
- * identified by `key`, using `p` to conditionally apply variant styling.
+ * Access the `base` and `variant` CSS rules stored for the given `key`.
+ * These styles should be configured through the `AtomicProvider` (or `Styler`) component, provided through a `StylerObject`.
  *
- * **Note:** This component returns a `CSSObject` - or an object containing CSS properties and values, and potentially nested styling.
- * You should use [`css()`](https://goober.js.org/api/css) to convert this object into a className.
+ * **Note:** This component returns a `CSSObject` - You should use [`css()`](https://goober.js.org/api/css) to convert this object into a `className`.
+ *
+ * @param key A unique `string` which defines the rules which will be accessed.
+ * @param p Dynamic values which define which `variant` rules will be provided.
  *
  * @example
  * import { css, useStyler } from '@locktech/atomic'
  *
  * const MyComponent = () => {
- *   const styles = useStyler('MyStyles', { ... })
+ *   const styles = useStyler('Button', { ... })
  *   return <div className={css(styles)} ... />
  * }
  */
