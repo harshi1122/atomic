@@ -161,8 +161,7 @@ export const useStyler = (key: StylerObjectKeys, p: any = {}): CSSObject => {
   const { base = {}, variants = {} } = useRecoilValue(StylerAtomFamily(key))
 
   const res = useMemo(() => {
-    let _res: CSSObject = {}
-    typeof base === 'function' ? (_res = base(p)) : (_res = base)
+    let _res: CSSObject = typeof base === 'function' ? base(p) : base
 
     Object.keys(variants).forEach((v) => {
       if (typeof p[v] !== 'string' && typeof p[v] !== 'number') return
