@@ -36,6 +36,7 @@
     "@babel/eslint-plugin": "^7.16.5",
     "@redwoodjs/eslint-config": "^0.41.0",
     "@redwoodjs/structure": "^0.41.0",
+    "@redwoodjs/testing": "0.45.0",
     "@storybook/addon-actions": "6.5.0-alpha.22",
     "@storybook/addon-essentials": "6.5.0-alpha.22",
     "@storybook/addon-links": "6.5.0-alpha.22",
