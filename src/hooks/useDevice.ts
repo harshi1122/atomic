@@ -13,16 +13,16 @@ const getDim = (): [number, number] => [window.innerHeight, window.innerWidth]
  * This value will be updated whenever the device is re-sized.
  */
 export const useDeviceDimensions = () => {
-  const [dim, setDim] = useState(getDim())
+  const [dimensions, setDimensions] = useState(getDim())
 
   useEffect(() => {
-    const onResize = () => setDim(getDim())
+    const onResize = () => setDimensions(getDim())
 
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  return dim
+  return dimensions
 }
 
 /**
