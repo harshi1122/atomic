@@ -78,7 +78,7 @@ const ToCStyles = css`
   display: none;
   position: fixed;
   top: 40px;
-  left: calc(50% + 500px + 40px);
+  left: calc(50% + 500px + 60px);
   padding: 10px;
   width: 250px;
   background: var(--background);

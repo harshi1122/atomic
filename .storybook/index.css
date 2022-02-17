@@ -1,9 +1,12 @@
+body.dark .sbdocs.sbdocs-preview {
+  background: var(--color-neutral-9) !important;
+}
+
+/* Documentation */
+
 .sbdocs.sbdocs-preview {
   background: var(--color-neutral-0) !important;
   transition: 200ms background-color ease-in-out;
-}
-body.dark .sbdocs.sbdocs-preview {
-  background: var(--color-neutral-9) !important;
 }
 
 .sbdocs-h2 {
@@ -20,6 +23,13 @@ body.dark .sbdocs.sbdocs-preview {
 
 .docblock-source {
   background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.sbdocs-blockquote {
+  background-color: rgba(5, 5, 5, 0.25) !important;
+  border-left: 3px solid #65bbf4 !important;
+  margin: 1.5rem 0 !important;
+  padding: 1rem 1.25rem !important;
 }
 
 .sbdocs-table {
