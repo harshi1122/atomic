@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { addParameters } from '@storybook/react'
 import { DocsPage, DocsContainer } from '@storybook/addon-docs'
 
-import { AtomicProvider } from '../dist'
+import { AtomicProvider, useSetColorMode } from '../dist'
 
 import { theme } from './manager'
 import './index.css'
@@ -10,12 +10,51 @@ import { BackToTop, ToC } from './toc'
 
 // --
 
-const withAtomic = (Fn, ctx) => {
+export const globalTypes = {
+  colorMode: {
+    name: 'Color Mode',
+    description: 'Toggle Atomic\'s color scheme.',
+    defaultValue: 'light',
+    toolbar: {
+      icon: 'mirror',
+      items: ['light', 'dark'],
+    },
+  },
+  debugRecoil: {
+    name: 'Debug Recoil',
+    description: 'Enable Atomic\'s built-in debugger for Recoil.',
+    defaultValue: 'disable',
+    toolbar: {
+      icon: 'structure',
+      items: ['enable', 'disable'],
+    }
+  },
+}
+
+// --
+
+const withAtomic = (Fn, { globals: { debugRecoil } }) => {
   return (
-    <AtomicProvider recoil={ctx.globals.debugRecoil === 'enable' && { captureChanges: true }}>
+    <AtomicProvider recoil={debugRecoil === 'enable' && { captureChanges: true }}>
       <Fn />
     </AtomicProvider>
   )
+}
+
+const withColorMode = (Fn, { globals: { colorMode } }) => {
+  const setColorMode = useSetColorMode()
+  useEffect(() => setColorMode(colorMode), [colorMode])
+  return <Fn />
+}
+
+export const decorators = [withColorMode, withAtomic]
+
+// --
+
+export const argTypes = {
+  children: {
+    control: false
+  },
 }
 
 // --
@@ -73,39 +112,15 @@ const viewports = {
   },
 }
 
-// --
-
-export const globalTypes = {
-  debugRecoil: {
-    name: 'Debug Recoil',
-    description: 'Enable Atomic\'s built-in debugger for Recoil.',
-    defaultValue: 'disable',
-    toolbar: {
-      icon: 'structure',
-      items: ['enable', 'disable'],
-    }
-  }
-}
-
-export const argTypes = {
-  children: {
-    control: false
-  },
-}
-
-export const decorators = [withAtomic]
-
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   backgrounds: { disable: true },
   layout: "padded",
-  themes: [
-    { name: 'light', class: '', color: '#E5E5EB' },
-    { name: 'dark', class: 'dark', color: '#1F212E' },
-  ],
-  options: {
-    storySort: { order },
-  },
+  options: { storySort: { order }, },
+  // themes: [
+  //   { name: 'light', class: '', color: '#E5E5EB' },
+  //   { name: 'dark', class: 'dark', color: '#1F212E' },
+  // ],
   // viewport: {
   //   viewports,
   // },
