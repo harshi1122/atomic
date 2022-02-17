@@ -58,7 +58,7 @@ export interface StylerStyles<
   bps?: PR<Breakpoint, Record<string, string>>
   /**
    * Custom CSS Properties which will have the value of the first provided index when the application
-   * is in the "bright" (light) color-mode, and the second when in the "dim" (dark) color mode.
+   * is in the `light` color-mode, and the second when in the `dark` color mode.
    *
    * @example
    * const styles: StylerStyles = {

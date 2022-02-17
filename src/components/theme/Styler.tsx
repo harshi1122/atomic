@@ -21,7 +21,7 @@ import type { PR } from '../../util'
 // The types which `parseSO` splits a `StylerObject` into.
 
 type BreakpointProperties = PR<Breakpoint, Record<string, string>>
-type ColorProperties = Record<'base' | 'dark', Record<string, string>>
+type ColorProperties = Record<'light' | 'dark', Record<string, string>>
 type AtomStyles = Record<StylerObjectKeys, StylerAtomState>
 
 // --
@@ -52,7 +52,7 @@ export interface StylerProps {
  */
 const parseSO = (o: StylerObject) => {
   const bps: BreakpointProperties = {}
-  const colors: ColorProperties = { base: {}, dark: {} }
+  const colors: ColorProperties = { light: {}, dark: {} }
   // @ts-expect-error Fields are populated in for-loop below
   const styles: AtomStyles = {}
 
@@ -69,10 +69,10 @@ const parseSO = (o: StylerObject) => {
       })
 
     // merge all colors into two `Record<string, string>` objects (provided via `colors`),
-    // one for "base" (bright) colors the other for "dark" (dim).
+    // one for "base" (light) colors the other for "dark".
     o[ok].colors &&
       Object.keys(o[ok].colors).forEach((c) => {
-        colors.base[c] = o[ok].colors[c][0]
+        colors.light[c] = o[ok].colors[c][0]
         colors.dark[c] = o[ok].colors[c][1]
       })
   })
@@ -112,7 +112,7 @@ export const Styler: FC<StylerProps> = ({ styler }) => {
 
   return (
     <>
-      <CSSProperties properties={colors.base} />
+      <CSSProperties properties={colors.light} />
       <CSSProperties properties={colors.dark} selector="body.dark" />
       {Object.keys(bps).map((bp) =>
         createGlobalStyles`
