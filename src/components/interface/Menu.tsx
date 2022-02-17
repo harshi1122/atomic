@@ -75,7 +75,7 @@ const MenuListPanel: FC<MenuListPanelProps> = ({
 }) => {
   const styles = useStyler('MenuListPanel', { side })
   return (
-    <motion.div
+    <motion.ul
       key="menu-list"
       className={clsx(css(styles), className)}
       variants={animations}
@@ -84,7 +84,7 @@ const MenuListPanel: FC<MenuListPanelProps> = ({
       initial="close"
     >
       {children}
-    </motion.div>
+    </motion.ul>
   )
 }
 
@@ -144,7 +144,7 @@ const MenuListSheet: FC<MenuListSheetProps> = ({
 
   // --
 
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLUListElement>(null)
   const { scrollYProgress: scrollY } = useElementScroll(ref)
 
   // --
@@ -225,7 +225,7 @@ const MenuListSheet: FC<MenuListSheetProps> = ({
   // --
 
   return (
-    <motion.div
+    <motion.ul
       key="menu-list"
       className={clsx(css(styles), className)}
       variants={animations}
@@ -249,7 +249,7 @@ const MenuListSheet: FC<MenuListSheetProps> = ({
       whileDrag={{ cursor: 'grabbing' }}
     >
       {children}
-    </motion.div>
+    </motion.ul>
   )
 }
 
@@ -258,10 +258,17 @@ const MenuListSheet: FC<MenuListSheetProps> = ({
 export type MenuListProps = CP<typeof HMenu.Items> &
   Partial<MenuListPanelVariants> & {
     /**
-     * @default HeadlessUI.Menu.Items
+     * **Only use this prop if you understand the requirements imposed by it.**
+     *
+     * @default require('@headlessui/react').Menu.Items
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    as?: any
+    as?: FC<{
+      children: (p: { open: boolean }) => JSX.Element
+      className: string
+      ref: MutableRefObject<HTMLDivElement>
+      static: boolean
+    }>
     children: ReactNode
     className?: string
     /**
