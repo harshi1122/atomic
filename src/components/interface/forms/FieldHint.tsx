@@ -1,12 +1,11 @@
-import type { FC } from 'react'
-import { Label } from '@redwoodjs/forms'
-import type { LabelProps } from '@redwoodjs/forms'
+import type { ComponentProps as CP, FC } from 'react'
+import { useFormState } from '@redwoodjs/forms'
 
 import { Text } from '../Text'
 import type { TextProps } from '../Text'
 import type { TypeLineHeight } from '../../../theme'
 
-export interface FieldHintProps extends LabelProps, Exclude<TextProps, 'as'> {
+export interface FieldHintProps extends Exclude<TextProps, 'as'>, CP<'span'> {
   /**
    * When set to `true`, this component will be hidden when its attached field has an error.
    *
@@ -22,30 +21,31 @@ export interface FieldHintProps extends LabelProps, Exclude<TextProps, 'as'> {
    * @default 1.715
    */
   lineHeight?: TypeLineHeight
+  /**
+   * The name of the field this Hint is associated with.
+   */
+  name: string
 }
 
 /**
- * A wrapper around the `FieldLabel` component; applies the `color.hint` color and "sm" `size`.
- *
- * By default, its intended this component and the `FieldError` be swapped out,
- * depending on if the attached field has an error. This behavior can be controlled via the `hideError` prop.
+ * A wrapper around the `Text` component; applies the `color.hint` color and "sm" `size`.
+ * The `hideError` prop can be used to hide this Hint whenever its associated field has an error.
  *
  * **Note:** This component has an explicit default value for `lineHeight`, set to minimize shifting when hiding the hint and showing an error.
  */
 export const FieldHint: FC<FieldHintProps> = ({
-  errorStyle,
   hideError,
+  name,
   ...p
 }: FieldHintProps) => {
-  return (
-    <Text errorStyle={{ ...errorStyle, display: hideError && 'none' }} {...p} />
-  )
+  const { errors } = useFormState({ name })
+  const hasError = hideError ? Object.keys(errors).length > 0 : false
+  return hasError ? null : <Text as="span" name={name} {...p} />
 }
 
 FieldHint.displayName = 'FieldHint'
 FieldHint.defaultProps = {
   ...Text.defaultProps,
-  as: Label,
   color: 'hint',
   hideError: false,
   lineHeight: '1.715',
