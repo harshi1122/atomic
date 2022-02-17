@@ -50,6 +50,8 @@ export const ${name}: FC<${name}Props> = (p) => {
   const styles = useStyler('${name}', { ...p })
   return <div className={css(styles)} {...p} />
 }
+
+${name}.displayName = '${name}'
 `
 
 await fs.writeFile(compDest, ComponentTemplate)
@@ -82,10 +84,10 @@ const stylesDest = p.resolve(stylesDestDir, stylesDestFile)
 // --
 
 const StylesTemplate = `import type { ${name}Props, ${name}Variants } from '../components/interface'
-import type { ComponentStyles } from '../context'
+import type { StylerStyles } from '../context'
 import { cssvar } from '../util'
 
-export const ${name}Styles: ComponentStyles<${name}Props, ${name}Variants> = {
+export const ${name}Styles: StylerStyles<${name}Props, ${name}Variants> = {
   bps: {},
   colors: {},
   base: {},
