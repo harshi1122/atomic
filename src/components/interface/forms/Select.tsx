@@ -124,6 +124,8 @@ export const SelectListPanelAnimations: MenuListAnimationVariants = {
 
 // --
 
+const _Options = (p) => <Listbox.Options as="div" {...p} />
+
 /**
  * A component to be wrapped around a list of Select items.
  *
@@ -135,7 +137,7 @@ const SelectList: FC<SelectListProps> = (p) => {
     <Menu.List
       panelAnimations={SelectListPanelAnimations}
       sheetAnimations={MenuListSheetAnimations}
-      as={Listbox.Options}
+      as={_Options}
       className={css(styles)}
       {...p}
     />
