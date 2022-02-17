@@ -46,9 +46,6 @@ export interface ButtonProps extends CP<'button'>, Partial<ButtonVariants> {
 
 /**
  * A stylized [Button](https://www.w3.org/TR/wai-aria-practices/#button) component, used to trigger actions and events.
- *
- * **Note:** Due to this components intended ambiguity, it has been implemented using the [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) API
- * - you may use the `ref` prop to access its element in the browser's DOM.
  */
 export const Button: FC<ButtonProps> = forwardRef(
   ({ color, radius, rounded, size, variant, ...p }: ButtonProps, ref) => {
