@@ -1,0 +1,30 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="State/Effects/Set Element Class" />
+
+# Set Element Class
+
+An [Atom Effect](https://recoiljs.org/docs/guides/atom-effects/) which will mutate the given
+[element's `classList`](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) depending on the value of the attached Atom.
+
+When the atom's value is set, the `newValue` is used to [`replace`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/replace)
+the `oldValue`. If the atom's value is [reset](https://recoiljs.org/docs/api-reference/core/useResetRecoilState), the `oldValue` is
+[`removed`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/remove) from the element's classes.
+
+### Example
+
+```ts
+import { SetElementClassEffect } from '@locktech/atomic'
+
+const MyAtom = atom({
+  key: 'myAtom',
+  default: undefined,
+  effects: [SetElementClassEffect(document.body)],
+})
+```
+
+### Parameters
+
+| Property     	| Required     	| Default     	| Description                                                                                                 	|
+|--------------	|--------------	|--------------	|--------------------------------------------------------------------------------------------------------------	|
+| `element`     | `true`       	| `undefined`  	| An [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) whose classes will be mutated.	|

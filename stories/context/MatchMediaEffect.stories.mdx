@@ -1,0 +1,33 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="State/Effects/Match Media" />
+
+# Match Media
+
+An [Atom Effect](https://recoiljs.org/docs/guides/atom-effects/) which will `setSelf` to `a` if the given
+[media-`query`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) _matches_ - `b` otherwise.
+
+> Note: This effect only applies when the Atom is _read_ for the first time.
+
+> Note: You should **not** include the leading `(` and preceding `)` in the media-query.
+
+### Example
+
+```ts
+import { atom } from 'recoil'
+import { MatchMediaEffect } from '@locktech/atomic'
+
+const MyAtom = atom({
+  key: 'myAtom',
+  default: undefined,
+  effects: [MatchMediaEffect('max-width: 600px', true, false)],
+})
+```
+
+### Parameters
+
+| Property     	| Required     	| Default     	| Description                                                                                                      	|
+|--------------	|--------------	|--------------	|------------------------------------------------------------------------------------------------------------------	|
+| `query`      	| `true`       	| `undefined`  	| The [media-query](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to match. 	|
+| `a`      	    | `true`       	| `undefined`  	| The value the Atom will be set to when the query matches.                                                        	|
+| `b`      	    | `true`       	| `undefined`  	| The value the Atom will be set to when the query does not match.                                                  |
