@@ -99,3 +99,41 @@ Large.args = {
     </>
   ),
 }
+
+const MenuItems = [
+  'sit',
+  'oatmeal',
+  'tell',
+  'touch',
+  'calendar',
+  'withdraw',
+  'things',
+  'tremble',
+  'nondescript',
+  'simplistic',
+  'baby',
+  'support',
+  'chemical',
+  'truthful',
+  'bead',
+  'knotty',
+  'succeed',
+  'helpful',
+  'lumpy',
+  'speed',
+]
+
+export const Scrolling: Story<SelectProps> = Template.bind({})
+Scrolling.args = {
+  ...Template.args,
+  children: (
+    <>
+      <Select.Button />
+      <Select.List>
+        {MenuItems.map((item) => (
+          <Select.Option key={item} value={item} />
+        ))}
+      </Select.List>
+    </>
+  ),
+}
