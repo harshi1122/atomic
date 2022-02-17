@@ -26,6 +26,7 @@ type TextElements =
   | 'p'
   | 's'
   | 'small'
+  | 'span'
   | 'strong'
   | 'sub'
   | 'sup'
