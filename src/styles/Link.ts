@@ -6,9 +6,9 @@ export const LinkStyles: StylerStyles<LinkProps, LinkVariants> = {
   bps: {},
   colors: {},
   base: (p) => ({
-    color: cssvar(`color.${p.color}.7`, p.color),
+    color: cssvar(`color.${p.color}.5`, p.color),
     '&:hover': {
-      color: cssvar(`color.${p.color}.8`, p.color),
+      color: cssvar(`color.${p.color}.7`, p.color),
     },
 
     'body.dark &': {
@@ -19,7 +19,7 @@ export const LinkStyles: StylerStyles<LinkProps, LinkVariants> = {
     },
 
     transitionDuration: '200ms',
-    transitionProperty: 'color, text-decoration',
+    transitionProperty: 'color',
     transitionTimingFunction: 'ease-out',
   }),
   variants: {
