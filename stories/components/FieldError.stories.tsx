@@ -19,16 +19,18 @@ export default {
   decorators: [
     (Fn) => (
       <Form>
-        <Flex gap={2}>
-          <Input
-            name="username"
-            placeholder="Username"
-            validation={{ required: true }}
-          />
-          <Fn />
-        </Flex>
-        <Flex align="flex-end">
-          <Button type="submit">Submit</Button>
+        <Flex gap={6}>
+          <Flex gap={2}>
+            <Input
+              name="username"
+              placeholder="Username"
+              validation={{ required: true }}
+            />
+            <Fn />
+          </Flex>
+          <Flex align="flex-end">
+            <Button type="submit">Submit</Button>
+          </Flex>
         </Flex>
       </Form>
     ),
