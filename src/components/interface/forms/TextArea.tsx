@@ -19,3 +19,6 @@ export const TextArea: FC<TextAreaProps> = ({ variant, ...p }) => {
 }
 
 TextArea.displayName = 'TextArea'
+TextArea.defaultProps = {
+  variant: 'fill',
+}
