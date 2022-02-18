@@ -51,7 +51,7 @@ export const Normalize: FC<NormalizeProps> = ({
 
       transition-duration: 200ms;
       transition-property: background-color;
-      transition-timing-function: ease-in-out;
+      transition-timing-function: ease-out;
 
       &.dark {
         background-color: ${cssvar('color.neutral.9')};
