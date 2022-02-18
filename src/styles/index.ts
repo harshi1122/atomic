@@ -29,7 +29,7 @@ import { DividerStyles } from './Divider'
 import { OverlayStyles } from './Overlay'
 import { ModalStyles } from './Modal'
 import { DialogStyles } from './Dialog'
-import { BreadcrumbStyles } from './Breadcrumb'
+import { BreadcrumbsStyles } from './Breadcrumbs'
 import { LinkStyles } from './Link'
 // import anchor
 
@@ -57,7 +57,7 @@ export const AtomicStyles = {
   Badge: BadgeStyles,
   Button: ButtonStyles,
   Dialog: DialogStyles,
-  Breadcrumb: BreadcrumbStyles,
+  Breadcrumbs: BreadcrumbsStyles,
   Link: LinkStyles,
   // export anchor
 }
