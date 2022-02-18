@@ -21,7 +21,7 @@ export const FieldLabelRequiredStyles: StylerStyles = {
   base: {
     color: cssvar('fieldLabel.required'),
     fontWeight: cssvar('type.weight.bold'),
-    paddingLeft: cssvar('space.1'),
+    paddingLeft: cssvar('space.0.5'),
 
     '&[title]': {
       textDecoration: 'none',
