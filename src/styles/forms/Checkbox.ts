@@ -29,7 +29,7 @@ export const CheckboxStyles: StylerStyles<CheckboxProps, CheckboxVariants> = {
     userSelect: 'none',
     transitionDuration: '200ms',
     transitionProperty: 'background-color, border-color, box-shadow',
-    transitionTimingFunction: 'ease-in-out',
+    transitionTimingFunction: 'ease-out',
     '&:focus': {
       borderColor: cssvar('checkbox.focus.borderColor'),
       boxShadow: `0 0 0 4px rgba(${cssvar('color.primary.4.rgb')}, 0.4)`,
@@ -51,7 +51,7 @@ export const CheckboxStyles: StylerStyles<CheckboxProps, CheckboxVariants> = {
       width: '20px',
       transitionDuration: '200ms',
       transitionProperty: 'background-color, opacity',
-      transitionTimingFunction: 'ease-in-out',
+      transitionTimingFunction: 'ease-out',
     },
     '&:checked': {
       backgroundColor: cssvar('color.primary.5'),

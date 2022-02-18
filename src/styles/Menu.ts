@@ -31,7 +31,7 @@ const MenuListStyles: CSSObject = {
   overflowY: 'auto',
   transitionDuration: '200ms',
   transitionProperty: 'background-color, border-color',
-  transitionTimingFunction: 'ease-in-out',
+  transitionTimingFunction: 'ease-out',
   zIndex: '10',
   '& > *:not([hidden]) ~ *:not([hidden])': {
     marginTop: cssvar('space.1'),
@@ -117,7 +117,7 @@ export const MenuItemStyles: StylerStyles<MenuItemProps, MenuItemVariants> =
       width: '100%',
       transitionDuration: '200ms',
       transitionProperty: 'background-color, color',
-      transitionTimingFunction: 'ease-in-out',
+      transitionTimingFunction: 'ease-out',
       '&.active': {
         backgroundColor: cssvar('menuItem.active.backgroundColor'),
       },

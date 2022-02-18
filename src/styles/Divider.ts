@@ -16,7 +16,7 @@ export const DividerStyles: StylerStyles<DividerProps, DividerVariants> = {
     borderStyle: 'solid',
     transitionDuration: '200ms',
     transitionProperty: 'background-color, border-color',
-    transitionTimingFunction: 'ease-in-out',
+    transitionTimingFunction: 'ease-out',
   },
   variants: {
     variant: {

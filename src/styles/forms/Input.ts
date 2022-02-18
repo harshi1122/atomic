@@ -29,7 +29,7 @@ export const InputStyles: StylerStyles<InputProps, InputVariants> = {
     padding: `${cssvar('space.2')} ${cssvar('space.3')}`,
     transitionDuration: '200ms',
     transitionProperty: 'background-color, border-color, box-shadow, color',
-    transitionTimingFunction: 'ease-in-out',
+    transitionTimingFunction: 'ease-out',
     width: '100%',
     '&::placeholder': {
       color: cssvar('input.placeholder.text'),
@@ -73,7 +73,7 @@ export const InputStyles: StylerStyles<InputProps, InputVariants> = {
         cursor: 'pointer',
         transitionDuration: '200ms',
         transitionProperty: 'background-color, color',
-        transitionTimingFunction: 'ease-in-out',
+        transitionTimingFunction: 'ease-out',
       },
     },
     '&:disabled': {

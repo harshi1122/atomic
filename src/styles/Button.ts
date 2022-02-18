@@ -39,7 +39,7 @@ export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
     userSelect: 'none',
     transitionDuration: '200ms',
     transitionProperty: 'background-color, border-color, box-shadow, color',
-    transitionTimingFunction: 'ease-in-out',
+    transitionTimingFunction: 'ease-out',
     '& > :not([hidden]) ~ :not([hidden])': {
       marginLeft: cssvar('space.1.5'),
     },

@@ -16,7 +16,7 @@ export const CardStyles: StylerStyles<CardProps, CardVariants> = {
     filter: cssvar(`shadow.${p.shadow}`),
     transitionDuration: '200ms',
     transitionProperty: 'background-color, border-color',
-    transitionTimingFunction: 'ease-in-out',
+    transitionTimingFunction: 'ease-out',
   }),
   variants: {},
 }

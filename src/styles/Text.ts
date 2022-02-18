@@ -17,5 +17,8 @@ export const TextStyles: StylerStyles<TextProps, TextVariants> = {
     textOverflow: p.wrap ? 'initial' : 'ellipsis',
     whiteSpace: p.wrap ? 'normal' : 'nowrap',
     overflow: p.wrap ? 'initial' : 'hidden',
+    transitionDuration: '200ms',
+    transitionProperty: 'color',
+    transitionTimingFunction: 'ease-out',
   }),
 }
