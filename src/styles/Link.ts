@@ -6,9 +6,9 @@ export const LinkStyles: StylerStyles<LinkProps, LinkVariants> = {
   bps: {},
   colors: {},
   base: (p) => ({
-    color: cssvar(`color.${p.color}.5`, p.color),
+    color: cssvar(`color.${p.color}.6`, p.color),
     '&:hover': {
-      color: cssvar(`color.${p.color}.7`, p.color),
+      color: cssvar(`color.${p.color}.9`, p.color),
     },
 
     'body.dark &': {
