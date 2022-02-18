@@ -109,7 +109,7 @@ export type TextProps = Partial<TextVariants> & {
  * <Text as="h1" family="serif" weight="bold">Hello world</Text>
  */
 export const Text: FC<TextProps> = ({
-  as: Component,
+  as: Component = 'p',
   className,
   color,
   family,
@@ -136,7 +136,6 @@ export const Text: FC<TextProps> = ({
 
 Text.displayName = 'Text'
 Text.defaultProps = {
-  as: 'p',
   color: 'text',
   family: 'sans',
   letterSpacing: 'normal',
