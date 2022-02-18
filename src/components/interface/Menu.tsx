@@ -9,6 +9,7 @@ import type { PanInfo, Variant } from 'framer-motion'
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import type {
   ComponentPropsWithRef as CP,
+  ElementType,
   FC,
   MutableRefObject,
   ReactNode,
@@ -264,6 +265,8 @@ export type MenuListProps = CP<typeof HMenu.Items> &
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     as?: FC<{
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      as: ElementType<any>
       children: (p: { open: boolean }) => JSX.Element
       className: string
       ref: MutableRefObject<HTMLDivElement>
@@ -312,6 +315,7 @@ const MenuList: FC<MenuListProps> = ({
   return (
     <FragmentOrPortal>
       <As
+        as="div"
         className={clsx(
           !isSm &&
             css({
