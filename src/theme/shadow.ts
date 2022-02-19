@@ -1,3 +1,5 @@
+import merge from 'ts-deepmerge'
+
 import { cssProperties } from '../util'
 import type { AnyStringAnd, PR } from '../util'
 
@@ -21,5 +23,5 @@ export const AtomicShadow: ShadowRecord = {
 
 // --
 
-export const setShadowProperties = (sr: ShadowRecord = AtomicShadow) =>
-  cssProperties(sr, 'shadow')
+export const setShadowProperties = (sr: ShadowRecord = {}) =>
+  cssProperties(merge(AtomicShadow, sr), 'shadow')

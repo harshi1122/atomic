@@ -1,3 +1,5 @@
+import merge from 'ts-deepmerge'
+
 import { cssProperties } from '../util'
 import type { AnyStringAnd, PR } from '../util'
 
@@ -17,13 +19,15 @@ export type TypeWeight = AnyStringAnd<'thin' | 'light' | 'normal' | 'medium' | '
 
 // --
 
-export interface TypeRecord {
+interface _TypeRecord {
   family: PR<TypeFamily, string>
   letterSpacing: PR<TypeLetterSpace, string>
   lineHeight: PR<TypeLineHeight, string>
   size: PR<TypeSize, string>
   weight: PR<TypeWeight, string>
 }
+
+export type TypeRecord = Partial<_TypeRecord>
 
 export const AtomicType: TypeRecord = {
   family: {
@@ -70,7 +74,9 @@ export const AtomicType: TypeRecord = {
 
 // --
 
-export const setTypeProperties = (tr: TypeRecord = AtomicType) =>
-  Object.keys(tr)
-    .map((t) => cssProperties(tr[t], `type-${t}`))
+export const setTypeProperties = (tr: TypeRecord = {}) => {
+  const typography = merge(AtomicType, tr)
+  return Object.keys(typography)
+    .map((t) => cssProperties(typography[t], `type-${t}`))
     .join('\n')
+}

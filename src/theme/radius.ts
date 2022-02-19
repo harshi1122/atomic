@@ -1,3 +1,5 @@
+import merge from 'ts-deepmerge'
+
 import { cssProperties } from '../util'
 import type { AnyStringAnd, PR } from '../util'
 
@@ -21,5 +23,5 @@ export const AtomicRadius: RadiusRecord = {
 
 // --
 
-export const setRadiusProperties = (rr: RadiusRecord = AtomicRadius) =>
-  cssProperties(rr, 'radius')
+export const setRadiusProperties = (rr: RadiusRecord = {}) =>
+  cssProperties(merge(AtomicRadius, rr), 'radius')

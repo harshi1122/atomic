@@ -1,3 +1,5 @@
+import merge from 'ts-deepmerge'
+
 import { cssProperties } from '../util'
 import type { AnyStringAnd, PR } from '../util'
 
@@ -47,11 +49,13 @@ export const AtomicSpace: SpaceRecord = {
 
 // --
 
-export const setSpaceProperties = (sr: SpaceRecord = AtomicSpace) => {
+export const setSpaceProperties = (sr: SpaceRecord = {}) => {
+  const mSr = merge(AtomicSpace, sr)
+
   // provides negative variants for all given spaces, skipping values of `0`
   const nSr = {}
-  Object.keys(sr).forEach(
-    (s) => parseInt(s) !== 0 && (nSr[`-${s}`] = `-${sr[s]}`)
+  Object.keys(mSr).forEach(
+    (s) => parseInt(s) !== 0 && (nSr[`-${s}`] = `-${mSr[s]}`)
   )
-  return [cssProperties(sr, 'space'), cssProperties(nSr, 'space')].join('\n')
+  return [cssProperties(mSr, 'space'), cssProperties(nSr, 'space')].join('\n')
 }

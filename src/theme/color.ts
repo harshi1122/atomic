@@ -1,3 +1,5 @@
+import merge from 'ts-deepmerge'
+
 import { isColorBright, cssProperty, cssvar, hexToRgb } from '../util'
 import type { AnyStringAnd, PR } from '../util'
 
@@ -65,16 +67,17 @@ export const AtomicColors: ColorRecord = {
 
 //
 
-export const setColorProperties = (cr: ColorRecord = AtomicColors) =>
-  Object.keys(cr)
+export const setColorProperties = (cr: ColorRecord = {}) => {
+  const colors = merge(AtomicColors, cr)
+  return Object.keys(colors)
     .map((c) =>
-      Object.keys(cr[c])
+      Object.keys(colors[c])
         .map((s) => [
-          cssProperty(`color.${c}.${s}`, cr[c][s]),
-          cssProperty(`color.${c}.${s}.rgb`, hexToRgb(cr[c][s]).join(', ')),
+          cssProperty(`color.${c}.${s}`, colors[c][s]),
+          cssProperty(`color.${c}.${s}.rgb`, hexToRgb(colors[c][s]).join(', ')),
           cssProperty(
             `color.${c}.${s}.text`,
-            isColorBright(cr[c][s])
+            isColorBright(colors[c][s])
               ? cssvar('color.neutral.9')
               : cssvar('color.neutral.0')
           ),
@@ -83,3 +86,4 @@ export const setColorProperties = (cr: ColorRecord = AtomicColors) =>
         .join('\n')
     )
     .join('\n')
+}
