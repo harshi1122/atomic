@@ -66,7 +66,7 @@ export interface CSSProviderProps {
  *
  * @example
  * // You may access Atomic's default property-values - to combine with your own.
- * import { AtomicSpace, ... } from '@locktech/atomic'
+ * import { ... } from '@locktech/atomic'
  *
  * <CSSProvider
  *  color={{
@@ -79,7 +79,6 @@ export interface CSSProviderProps {
  *  }}
  *
  *  space={{
- *    ...AtomicSpace,
  *    reallyBig: '400rem', // --space-reallyBig: 400rem;
  *  }}
  * />

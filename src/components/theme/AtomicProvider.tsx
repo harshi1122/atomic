@@ -27,6 +27,8 @@ export interface AtomicProviderProps {
    *
    * This is the equivalent to theming in other component libraries.
    *
+   * **Note:** Custom properties will be merged with Atomic's.
+   *
    * @default undefined
    */
   properties?: CSSProviderProps
