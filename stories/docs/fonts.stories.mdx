@@ -1,0 +1,121 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs"
+
+<Meta title="Guides/Custom Fonts" />
+
+# Custom Fonts
+
+Often, it's desired (or required) that you use of a specific font-family to represent your application's typography.
+
+This document provides examples for integrating custom fonts with Atomic.
+In general, the process is the same as with RedwoodJS; with the added step of setting the [font-family theme property](?path=/story/customize-theming--page#typography-font).
+
+## Google Fonts
+
+[Google Fonts](https://fonts.google.com/) provides a large assortment of [free-to-use](https://fonts.google.com/attribution) fonts, which are easy to integrate with web projects.
+
+Let's see how we might add the [Noto Sans font collection](https://fonts.google.com/noto/specimen/Noto+Sans?noto.script=Latn) to our application.
+
+1. Embed the font in our webpage — loading it via the Google Fonts API.
+
+```html
+<!-- web/src/index.html -->
+
+<html>
+  <head>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    ...
+  </body>
+</html>
+```
+
+2. Configure Atomic's theme — ensuring Atomic's and our application's components uses our font.
+
+```tsx
+// web/src/App.tsx
+
+import { AtomicProvider } from '@locktech/atomic'
+
+const App = () => (
+  <AtomicProvider
+    properties={{
+      type: {
+        family: {
+          sans: "'Noto Sans', sans-serif",
+        },
+      },
+    }}
+  >
+    ...
+  </AtomicProvider
+)
+```
+
+## Bundled with your Application
+
+Sometimes you may need, or simply prefer, to ship your fonts _with_ your application —
+sending them to your users as [static files](https://redwoodjs.com/docs/assets-and-files#directly-adding-assets-using-the-public-folder).
+
+> Generally speaking, the steps below describe what is nessecary to setup [web fonts](https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_text/Web_fonts) in a RedwoodJS application.
+
+1. Add the font to your application's `web/public` directory; where is up to you.
+
+![Public folder with fonts added to it](https://user-images.githubusercontent.com/25166787/154778473-3b4f7ba3-5a64-408b-8568-21a4decd1961.png)
+
+2. Add the [`@font-face` ruleset](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face) to you application's CSS file, prompting your application to download these files.
+
+> You may also use _just_ this step to download an arbitrary font from a remote server.
+
+```css
+/* web/src/index.css */
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('../public/fonts/NotoSans-Regular.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: italic;
+  src: url('../public/fonts/NotoSans-Italic.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-weight: 700;
+  src: url('../public/fonts/NotoSans-Bold.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../public/fonts/NotoSans-BoldItalic.ttf') format("truetype");
+}
+```
+
+3. Configure Atomic's theme — ensuring Atomic and our application's components use our font.
+
+```tsx
+// web/src/App.tsx
+
+import { AtomicProvider } from '@locktech/atomic'
+
+const App = () => (
+  <AtomicProvider
+    properties={{
+      type: {
+        family: {
+          sans: "'Noto Sans', sans-serif",
+        },
+      },
+    }}
+  >
+    ...
+  </AtomicProvider
+)
+```
