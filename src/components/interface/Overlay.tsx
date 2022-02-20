@@ -84,7 +84,7 @@ export const Overlay: FC<OverlayProps> = forwardRef(
       opaque: 0.3,
       outline: false,
       radius: 'none',
-      // saturate: 100,
+      saturate: 100,
       shadow: 'none',
     })
 
