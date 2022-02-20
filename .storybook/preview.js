@@ -60,13 +60,13 @@ export const argTypes = {
 // --
 
 const order = [
-  'Atomic',
-  ['Introduction'],
+  'Introduction',
+  'Quick Start',
   'Customize',
   ['Theming', 'Styling'],
   'Guides',
   'State',
-  ['Introduction'],
+  ['Introduction', 'Recoil Debugger'],
   'Hooks',
   ['Introduction'],
   'Components',
