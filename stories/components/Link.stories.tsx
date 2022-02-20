@@ -20,7 +20,7 @@ export default {
   decorators: [
     (Fn) => (
       <Text>
-        Notice the <Fn /> I put in the middle of this sentance.
+        Notice the <Fn /> I put in the middle of this sentence.
       </Text>
     ),
   ],
