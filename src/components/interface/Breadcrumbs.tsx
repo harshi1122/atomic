@@ -45,14 +45,11 @@ const ChildFilter = (child: Child) => {
  * used to display a list of [`Links`](https://redwoodjs.com/docs/router#link-and-named-route-functions)
  * which point to the current page's parents, given in hierarchical order.
  *
- * **Note:** To work accross different devices, this component defaults to acting like a back button
- * when the end-user's device is small. See the `mobile` prop to toggle this behavior.
- *
  * @example
  * import { Breadcrumbs, Link, Text } from '@locktech/atomic'
  * import { routes } from '@redwoodjs/router'
  *
- * <Breadcrumbs>
+ * <Breadcrumbs seperator="/">
  *   <Link to={routes.home()}>Dashboard</Link>
  *   <Link to={routes.orders()}>Orders</Link>
  *   <Text>PO-158392.000</Text>
