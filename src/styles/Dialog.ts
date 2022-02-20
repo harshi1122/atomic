@@ -24,10 +24,16 @@ export const DialogStyles: StylerStyles<DialogProps, DialogVariants> = {
   variants: {
     side: {
       left: {
+        borderBottomRightRadius: cssvar('radius.lg'),
+        borderTopRightRadius: cssvar('radius.lg'),
+
         left: 0,
         transformOrigin: 'left center',
       },
       right: {
+        borderBottomLeftRadius: cssvar('radius.lg'),
+        borderTopLeftRadius: cssvar('radius.lg'),
+
         right: 0,
         transformOrigin: 'right center',
       },
