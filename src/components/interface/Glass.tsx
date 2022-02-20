@@ -63,7 +63,7 @@ export interface GlassProps extends CP<'div'>, Partial<GlassVariants> {
   /**
    * [(De)Saturate](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/saturate()) the elements which fall behind this Glass.
    *
-   * @default 175
+   * @default 100
    */
   saturate?: number
   /**
@@ -133,7 +133,7 @@ Glass.defaultProps = {
   opaque: 0.45,
   outline: true,
   radius: 'md',
-  saturate: 175,
+  saturate: 100,
   sepia: 0,
   shadow: 'sm',
   width: 'initial',
