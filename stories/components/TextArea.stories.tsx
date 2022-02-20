@@ -30,5 +30,5 @@ export const Default: Story<TextAreaProps> = Template.bind({})
 Default.args = {
   ...Template.args,
   name: 'textarea',
-  placeholder: 'And it went like..',
+  placeholder: 'Mandatory Haiku',
 }
