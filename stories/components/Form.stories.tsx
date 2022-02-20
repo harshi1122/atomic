@@ -94,39 +94,48 @@ Template.args = {
 export const Default: Story<FormProps> = Template.bind({})
 Default.args = Template.args
 
-export const Error: Story<FormProps> = (args) => (
-  <Flex gap={8}>
-    <FormError
-      error={{
-        graphQLErrors: [
-          // @ts-expect-error ain't nobody got time to declare all that
-          {
-            message: 'An error occured trying to create your account.',
-            extensions: {
-              properties: {
-                messages: {
-                  Username: ['- Contains one or more invalid characters.'],
-                  Password: ['- Must be greater than 6 characters long.'],
+export const Error: Story<FormProps> = (args) => {
+  const isMd = useTriggersBreakpoint('md')
+  return (
+    <Flex
+      gap={8}
+      {...(isMd ? { m: 'auto', p: [6, 0, 0, 0], width: '50%' } : {})}
+    >
+      <FormError
+        error={{
+          graphQLErrors: [
+            // @ts-expect-error ain't nobody got time to declare all that
+            {
+              message: 'An error occured trying to see "who goes there".',
+              extensions: {
+                properties: {
+                  messages: {
+                    Passwords: [
+                      '- Must be greater than 6 characters long.',
+                      '- Cannot contain known phrases or words.',
+                    ],
+                    'Secret File': ['- Cannot be un-encrypted.'],
+                  },
                 },
               },
             },
-          },
-        ],
-      }}
-    />
-    <Card outline shadow="sm">
-      <Flex gap={6} p={6}>
-        <Flex gap={2}>
-          <Text as="h1" size="2xl" weight="bold">
-            Who goes there?
-          </Text>
-          <Text color="hint" size="sm">
-            Enter your password and provided secret to continue.
-          </Text>
+          ],
+        }}
+      />
+      <Card outline shadow="sm">
+        <Flex gap={6} p={6}>
+          <Flex gap={2}>
+            <Text as="h1" size="2xl" weight="bold">
+              Who goes there?
+            </Text>
+            <Text color="hint" size="sm">
+              Enter your password and provided secret to continue.
+            </Text>
+          </Flex>
+          <Form {...args} />
         </Flex>
-        <Form {...args} />
-      </Flex>
-    </Card>
-  </Flex>
-)
+      </Card>
+    </Flex>
+  )
+}
 Error.args = Template.args
