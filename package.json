@@ -43,7 +43,6 @@
     "@storybook/react": "6.5.0-alpha.22",
     "@storybook/theming": "6.5.0-alpha.22",
     "@types/jest": "^27.4.0",
-    "@types/react-is": "^17.0.3",
     "babel-loader": "^8.2.3",
     "concurrently": "^7.0.0",
     "eslint-plugin-prettier": "^4.0.0",
