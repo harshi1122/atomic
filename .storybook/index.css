@@ -1,12 +1,12 @@
-body.dark .sbdocs.sbdocs-preview {
-  background: var(--color-neutral-9) !important;
-}
-
 /* Documentation */
 
 .sbdocs.sbdocs-preview {
   background: var(--color-neutral-0) !important;
   transition: 200ms background-color ease-in-out;
+}
+
+body.dark .sbdocs.sbdocs-preview {
+  background: var(--color-neutral-9) !important;
 }
 
 .sbdocs-h2 {
