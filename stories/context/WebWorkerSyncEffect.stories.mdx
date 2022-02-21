@@ -16,8 +16,8 @@ The state of this Atom is intended to be an object which facilitates communicati
 
 ```ts
 // my_atom.ts
-import { useEffect } from 'react'
-import { useSetRecoilState } from 'recoil'
+
+import { atom } from 'recoil'
 import { WebWorkerSyncEffect } from '@locktech/atomic'
 
 const MyAtom = atom({
@@ -29,6 +29,17 @@ const MyAtom = atom({
   ],
 })
 
+export default MyAtom
+
+// --
+
+// component.tsx
+
+import { useEffect } from 'react'
+import { useSetRecoilState } from 'recoil'
+
+import MyAtom from 'src/context/MyAtom'
+
 const Component = () => {
   const setAtom = useSetRecoilState(MyAtom)
 
@@ -36,6 +47,8 @@ const Component = () => {
 
   return ...
 }
+
+export default Component
 
 // --
 
