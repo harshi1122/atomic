@@ -6,11 +6,15 @@ export const LinkStyles: StylerStyles<LinkProps, LinkVariants> = {
   bps: {},
   colors: {},
   base: (p) => ({
+    borderColor: 'transparent',
+    borderRadius: cssvar('radius.sm'),
+    borderStyle: 'solid',
+    borderWidth: '1px',
+
     color: cssvar(`color.${p.color}.6`, p.color),
     '&:hover': {
       color: cssvar(`color.${p.color}.9`, p.color),
     },
-
     'body.dark &': {
       color: cssvar(`color.${p.color}.3`, p.color),
       '&:hover': {
@@ -18,8 +22,18 @@ export const LinkStyles: StylerStyles<LinkProps, LinkVariants> = {
       },
     },
 
+    padding: `0 ${cssvar('space.0.5')}`,
+
+    outline: 'none',
+    '&:focus': {
+      borderColor: cssvar(`color.${p.color}.5`),
+      boxShadow: `0px 0px 0px 3px rgba(${cssvar(
+        `color.${p.color}.4.rgb`
+      )}, 0.4)`,
+    },
+
     transitionDuration: '200ms',
-    transitionProperty: 'color',
+    transitionProperty: 'border-color, box-shadow, color',
     transitionTimingFunction: 'ease-out',
   }),
   variants: {
