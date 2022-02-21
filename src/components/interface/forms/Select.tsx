@@ -7,12 +7,8 @@ import { useController } from '@redwoodjs/forms'
 import type { RegisterOptions } from '@redwoodjs/forms'
 
 import type { InputVariants } from './Input'
-import {
-  Menu,
-  MenuListAnimationVariants,
-  MenuListPanelAnimations,
-  MenuListSheetAnimations,
-} from '../Menu'
+
+import { Menu } from '../Menu'
 import type { MenuItemVariants } from '../Menu'
 
 import { useStyler } from '../../../context'
@@ -26,6 +22,8 @@ const SelectContext = createContext<SelectContextValue>(undefined)
 export const useSelectContext = () => useContext(SelectContext)
 
 // ==
+// Button
+//
 
 const SelectButtonIcon = () => (
   <svg
@@ -106,23 +104,12 @@ SelectButton.defaultProps = {
 }
 
 // ==
+// List
+//
 
 export interface SelectListProps {
   children: ReactNode
 }
-
-// --
-
-export const SelectListPanelAnimations: MenuListAnimationVariants = {
-  close: {
-    ...MenuListPanelAnimations.close,
-    scaleX: '100%',
-    scaleY: '96%',
-  },
-  open: MenuListPanelAnimations.open,
-}
-
-// --
 
 /**
  * A component to be wrapped around a list of Select items.
@@ -131,20 +118,14 @@ export const SelectListPanelAnimations: MenuListAnimationVariants = {
  */
 const SelectList: FC<SelectListProps> = (p) => {
   const styles = useStyler('SelectList')
-  return (
-    <Menu.List
-      panelAnimations={SelectListPanelAnimations}
-      sheetAnimations={MenuListSheetAnimations}
-      as={Listbox.Options}
-      className={css(styles)}
-      {...p}
-    />
-  )
+  return <Menu.List as={Listbox.Options} className={css(styles)} {...p} />
 }
 
 SelectList.displayName = 'Select.List'
 
 // ==
+// Option
+//
 
 export type SelectOptionProps = CP<typeof Listbox.Option> &
   Partial<MenuItemVariants>
@@ -190,6 +171,8 @@ SelectOption.defaultProps = {
 }
 
 // ==
+// Root
+//
 
 export type SelectProps = Omit<CP<typeof Listbox>, 'onChange' | 'value'> & {
   children: ReactNode

@@ -23,6 +23,8 @@ import { css } from '../../css'
 import { useTriggersBreakpoint } from '../../hooks'
 
 // ==
+// List
+//
 
 export type MenuListAnimationVariants = Record<'close' | 'open', Variant>
 
@@ -34,6 +36,7 @@ type MenuListComponentProps = {
 }
 
 // --
+// Panel
 
 export type MenuListPanelVariants = {
   /**
@@ -50,8 +53,6 @@ type MenuListPanelProps = Partial<MenuListPanelVariants> &
 export const MenuListPanelAnimations: MenuListAnimationVariants = {
   close: {
     opacity: 0,
-    scaleX: '96%',
-    scaleY: '94%',
     transition: {
       duration: 0.25,
       ease: 'backOut',
@@ -59,8 +60,6 @@ export const MenuListPanelAnimations: MenuListAnimationVariants = {
   },
   open: {
     opacity: 1,
-    scaleX: '100%',
-    scaleY: '100%',
     transition: {
       duration: 0.25,
       ease: 'anticipate',
@@ -90,6 +89,7 @@ const MenuListPanel: FC<MenuListPanelProps> = ({
 }
 
 // --
+// Sheet
 
 type MenuListSheetProps = MenuListComponentProps
 
@@ -255,6 +255,7 @@ const MenuListSheet: FC<MenuListSheetProps> = ({
 }
 
 // --
+// List-Root
 
 export type MenuListProps = CP<typeof HMenu.Items> &
   Partial<MenuListPanelVariants> & {
@@ -359,6 +360,8 @@ MenuList.defaultProps = {
 }
 
 // ==
+// Item
+//
 
 export type MenuItemVariants = {
   /**
@@ -394,6 +397,8 @@ MenuItem.defaultProps = {
 }
 
 // ==
+// Root
+//
 
 export type MenuVariants = {}
 
