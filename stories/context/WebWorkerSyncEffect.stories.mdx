@@ -2,7 +2,7 @@ import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
 <Meta title="State/Effects/Web Worker Sync" />
 
-# Web Worker Sync
+## Dedicated Worker Sync
 
 An [Atom Effect](https://recoiljs.org/docs/guides/atom-effects/) which syncs the state of an Atom to a
 [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) and vice versa.
@@ -11,6 +11,8 @@ The state of this Atom is intended to be an object which facilitates bidirection
 
 * Whenever your app [recieves messages from the Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#sending_messages_to_and_from_a_shared_worker), the Atom's state is updated to match the recieved data.
 * Whenever your app updates the Atom's state: the new value is [sent to the Worker](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage) as an event.
+
+> Note: To be specific, this effect is intended for a [dedicated worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#dedicated_workers).
 
 ### Example
 
@@ -65,3 +67,71 @@ onmessage = (e) => {
 | Property     	| Required     	| Default     	| Description                                                                                                                                                                                                      	|
 |--------------	|--------------	|--------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
 | `worker`      | `true`       	| `undefined`  	| The path to a script to execute as the Worker, or an [instance of `Worker`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#spawning_a_dedicated_worker) to add the event to.	|
+
+## Shared Worker Sync
+
+> See "Dedicated Worker Sync" above for a description.
+
+> Note: To be specific, this effect is intended for a [shared worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#shared_workers).
+> This effect **does** [`.start()` the port-connection](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#spawning_a_shared_worker)
+> before binding an event listener to it - regardless of if you explicitly or implicitly instantiate the worker.
+
+### Example
+
+```tsx
+
+// my_atom.ts
+
+import { atom } from 'recoil'
+import { SharedWorkerSyncEffect } from '@locktech/atomic'
+
+const MyAtom = atom({
+  key: 'myAtom',
+  default: undefined,
+  effects: [
+    SharedWorkerSyncEffect('./worker.js'), // or
+    SharedWorkerSyncEffect(new SharedWorker('./worker.js')),
+  ],
+})
+
+export default MyAtom
+
+// --
+
+// component.tsx
+
+import { useEffect } from 'react'
+import { useSetRecoilState } from 'recoil'
+
+import MyAtom from 'src/context/MyAtom'
+
+const Component = () => {
+  const setAtom = useSetRecoilState(MyAtom)
+  useEffect(() => setAtom('foo'), [setAtom])
+  return ...
+}
+
+export default Component
+
+// --
+
+// worker.js
+
+onconnect = (e) => {
+  let port = e.ports[0]
+
+  onmessage = (e) => {
+    console.log(e.data) // "foo"
+
+    port.postMessage(...)
+
+    // ...
+  }
+}
+```
+
+### Parameters
+
+| Property     	| Required     	| Default     	| Description                                                                                                                                                          	|
+|--------------	|--------------	|--------------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| `worker`      | `true`       	| `undefined`  	| The path to a script to execute as the Worker, or an [instance of `SharedWorker`](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker) to add the event to.	|
