@@ -7,7 +7,7 @@ import { Meta, Story, Canvas } from "@storybook/addon-docs";
 An [Atom Effect](https://recoiljs.org/docs/guides/atom-effects/) which syncs the state of an Atom to a
 [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) and vice versa.
 
-The state of this Atom is intended to be an object which facilitates communication to and from the Worker.
+The state of this Atom is intended to be an object which facilitates bidirectional communication to and from the Worker.
 
 * Whenever your app [recieves messages from the Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#sending_messages_to_and_from_a_shared_worker), the Atom's state is updated to match the recieved data.
 * Whenever your app updates the Atom's state: the new value is [sent to the Worker](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage) as an event.
