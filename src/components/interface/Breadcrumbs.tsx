@@ -20,6 +20,18 @@ export interface BreadcrumbsProps
    * @default '/'
    */
   seperator?: ReactNode
+  /**
+   * Display the `seperator` before the first Breadcrumb item.
+   *
+   * @default false
+   */
+  seperateLeading?: boolean
+  /**
+   * Display the `seperator` after the last Breadcrumb item.
+   *
+   * @default false
+   */
+  seperateTrailing?: boolean
 }
 
 /**
@@ -40,22 +52,28 @@ export interface BreadcrumbsProps
 export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   children,
   seperator,
+  seperateLeading,
+  seperateTrailing,
   ...p
 }) => {
   const styles = useStyler('Breadcrumbs')
 
   const childArray = Children.toArray(children)
 
+  const Seperator = () =>
+    !seperator ? null : (
+      <Text aria-hidden="true" as="span" color="hint">
+        {seperator}
+      </Text>
+    )
+
   return (
     <nav aria-label="Breadcrumbs" className={css(styles)} {...p}>
       {childArray.map((child, idx) => (
         <Fragment key={idx}>
+          {idx === 0 && seperateLeading && <Seperator />}
           {child}
-          {seperator && idx !== childArray.length - 1 && (
-            <Text aria-hidden="true" as="span" color="hint">
-              {seperator}
-            </Text>
-          )}
+          {(idx !== childArray.length - 1 || seperateTrailing) && <Seperator />}
         </Fragment>
       ))}
     </nav>
@@ -65,4 +83,6 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
 Breadcrumbs.displayName = 'Breadcrumbs'
 Breadcrumbs.defaultProps = {
   seperator: '/',
+  seperateLeading: false,
+  seperateTrailing: false,
 }
