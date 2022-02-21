@@ -4,7 +4,7 @@ import {
   LocalStorageEffect,
   MatchMediaEffect,
   SetElementClassEffect,
-} from '../util'
+} from './effects'
 
 // --
 
