@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="State/Effects/Web Worker Sync" />
+
+# Web Worker Sync
+
+An [Atom Effect](https://recoiljs.org/docs/guides/atom-effects/) which syncs the state of an Atom to a
+[Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) and vice versa.
+
+The state of this Atom is intended to be an object which facilitates communication to and from the Worker.
+
+* Whenever your app [recieves messages from the Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#sending_messages_to_and_from_a_shared_worker), the Atom's state is updated to match the recieved data.
+* Whenever your app updates the Atom's state: the new value is [sent to the Worker](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage) as an event.
+
+### Example
+
+```ts
+// my_atom.ts
+import { useEffect } from 'react'
+import { useSetRecoilState } from 'recoil'
+import { WebWorkerSyncEffect } from '@locktech/atomic'
+
+const MyAtom = atom({
+  key: 'myAtom',
+  default: undefined,
+  effects: [
+    WebWorkerSyncEffect('./worker.js'), // or
+    WebWorkerSyncEffect(new Worker('./worker.js')),
+  ],
+})
+
+const Component = () => {
+  const setAtom = useSetRecoilState(MyAtom)
+
+  useEffect(() => setAtom('foo'), [setAtom])
+
+  return ...
+}
+
+// --
+
+// worker.js
+
+onmessage = (e) => {
+  console.log(e.data) // "foo"
+  // ...
+}
+```
+
+### Parameters
+
+| Property     	| Required     	| Default     	| Description                                                                                                                                                                                                      	|
+|--------------	|--------------	|--------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| `worker`      | `true`       	| `undefined`  	| The path to a script to execute as the Worker, or an [instance of `Worker`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#spawning_a_dedicated_worker) to add the event to.	|
