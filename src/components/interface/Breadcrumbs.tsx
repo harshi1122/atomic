@@ -1,7 +1,5 @@
 import { Children, Fragment } from 'react'
 import type { ComponentPropsWithRef as CP, FC, ReactNode } from 'react'
-import type { ReactChild, ReactFragment, ReactPortal } from 'react'
-import { isElement, isFragment, isPortal } from 'react-is'
 
 import { Text } from './Text'
 
@@ -23,22 +21,6 @@ export interface BreadcrumbsProps
    */
   seperator?: ReactNode
 }
-
-// ==
-
-type Child = ReactChild | ReactFragment | ReactPortal
-const ChildFilter = (child: Child) => {
-  if (isFragment(child) || isPortal(child)) {
-    console.debug(
-      'The "<Breadcrumbs>" component cannot accept a Fragment or Portal as its children. Consider using an array instead.'
-    )
-    return false
-  }
-
-  return isElement(child)
-}
-
-// ==
 
 /**
  * A [Breadcrumb](https://www.w3.org/TR/wai-aria-practices/#breadcrumb) component,
@@ -62,14 +44,14 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
 }) => {
   const styles = useStyler('Breadcrumbs')
 
-  const realChildren = Children.toArray(children).filter(ChildFilter)
+  const childArray = Children.toArray(children)
 
   return (
     <nav aria-label="Breadcrumbs" className={css(styles)} {...p}>
-      {realChildren.map((child, idx) => (
+      {childArray.map((child, idx) => (
         <Fragment key={idx}>
           {child}
-          {seperator && idx !== realChildren.length - 1 && (
+          {seperator && idx !== childArray.length - 1 && (
             <Text aria-hidden="true" as="span" color="hint">
               {seperator}
             </Text>
