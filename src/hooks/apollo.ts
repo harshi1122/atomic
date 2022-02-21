@@ -26,16 +26,16 @@ export const useToastedMutation = <D = object, V = object>(
   mutation: DocumentNode,
   toastOpts: ToastOptions<D> = {
     error: (err: Error) => err.message || 'Something went wrong.',
-    loading: 'Processing mutation.',
-    success: 'Mutation completed successfully.',
+    loading: 'One moment while that is processed.',
+    success: 'Your request has been completed.',
   },
   mutationOpts: MutationHookOptions<D, V> = {}
 ): MutationTuple<D, V> => {
-  const [_mutate, res] = useMutation<D, V>(mutation, mutationOpts)
+  const [m, res] = useMutation<D, V>(mutation, mutationOpts)
 
   const mutate = useCallback(
-    (variables: V) => toast.promise(_mutate({ variables }), toastOpts),
-    [_mutate, toastOpts]
+    (variables: V) => toast.promise(m({ variables }), toastOpts),
+    [m, toastOpts]
   )
 
   return [mutate, res]
