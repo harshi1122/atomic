@@ -52,7 +52,7 @@ export const DialogLeftAnimations: DialogAnimationVariants = {
   open: ContentAnimations.open,
   close: {
     ...ContentAnimations.close,
-    translateX: '-25px',
+    translateX: '-35px',
   },
 }
 
@@ -60,7 +60,7 @@ export const DialogRightAnimations: DialogAnimationVariants = {
   open: ContentAnimations.open,
   close: {
     ...ContentAnimations.close,
-    translateX: '25px',
+    translateX: '35px',
   },
 }
 
