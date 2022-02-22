@@ -20,31 +20,10 @@ export default {
 const Template: Story<BadgeProps> = (args) => <Badge {...args} />
 Template.args = Badge.defaultProps
 
-export const Primary: Story<BadgeProps> = Template.bind({})
-Primary.args = {
+export const Default: Story<BadgeProps> = Template.bind({})
+Default.args = {
   ...Template.args,
   children: 'Badge',
-  color: 'primary',
-}
-
-export const Fill: Story<BadgeProps> = Template.bind({})
-Fill.args = {
-  ...Template.args,
-  children: 'Badge',
-}
-
-export const Outline: Story<BadgeProps> = Template.bind({})
-Outline.args = {
-  ...Template.args,
-  children: 'Badge',
-  variant: 'outline',
-}
-
-export const Ghost: Story<BadgeProps> = Template.bind({})
-Ghost.args = {
-  ...Template.args,
-  children: 'Badge',
-  variant: 'ghost',
 }
 
 export const Icon: Story<BadgeProps> = Template.bind({})
@@ -64,5 +43,36 @@ Icon.args = {
       <span>Badge</span>
     </>
   ),
+  variant: 'ghost',
+}
+
+export const Primary: Story<BadgeProps> = Template.bind({})
+Primary.storyName = 'Primary (Color)'
+Primary.args = {
+  ...Template.args,
+  children: 'Badge',
+  color: 'primary',
+}
+
+export const Fill: Story<BadgeProps> = Template.bind({})
+Fill.storyName = 'Fill (Variant)'
+Fill.args = {
+  ...Template.args,
+  children: 'Badge',
+}
+
+export const Outline: Story<BadgeProps> = Template.bind({})
+Outline.storyName = 'Outline (Variant)'
+Outline.args = {
+  ...Template.args,
+  children: 'Badge',
+  variant: 'outline',
+}
+
+export const Ghost: Story<BadgeProps> = Template.bind({})
+Ghost.storyName = 'Ghost (Variant)'
+Ghost.args = {
+  ...Template.args,
+  children: 'Badge',
   variant: 'ghost',
 }
