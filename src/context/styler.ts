@@ -1,3 +1,4 @@
+import merge from 'ts-deepmerge'
 import { useMemo } from 'react'
 import { atomFamily, useRecoilValue } from 'recoil'
 
@@ -168,7 +169,7 @@ export const useStyler = (key: StylerObjectKeys, p: any = {}): CSSObject => {
       const vp = variants[v][variantProp]
       const variantStyle = typeof vp === 'function' ? vp(p) : vp
 
-      _res = { ..._res, ...variantStyle }
+      _res = merge(_res, variantStyle)
     })
 
     return _res
