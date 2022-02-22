@@ -27,22 +27,28 @@ export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
     borderRadius: cssvar(`radius.${p.rounded ? 'full' : p.radius}`),
     borderStyle: 'solid',
     borderWidth: '1px',
+
     fontWeight: cssvar('type.weight.semibold'),
     letterSpacing: cssvar('type.letterSpacing.wide'),
     lineHeight: cssvar('type.lineHeight.normal'),
+
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+
     cursor: 'pointer',
     outline: 'none',
     userSelect: 'none',
+
     transitionDuration: '200ms',
     transitionProperty: 'background-color, border-color, box-shadow, color',
     transitionTimingFunction: 'ease-out',
+
     '& > :not([hidden]) ~ :not([hidden])': {
       marginLeft: cssvar('space.1.5'),
     },
+
     '&:hover': {
       backgroundColor: cssvar(`color.${p.color}.6`),
       color: cssvar(`color.${p.color}.6.text`),
