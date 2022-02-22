@@ -7,6 +7,12 @@ import type { Color, Radius } from '../../theme'
 
 export type ButtonVariants = {
   /**
+   * Adjust the shape of the Button corners, helping to define its emotion.
+   *
+   * @default 'rounded'
+   */
+  edges: 'circular' | 'rounded' | 'squared'
+  /**
    * Adjust the amount of space between the Button's content and edges.
    *
    * @default 'md'
@@ -37,23 +43,24 @@ export interface ButtonProps extends CP<'button'>, Partial<ButtonVariants> {
   radius?: Radius
   ref?: ForwardedRef<HTMLButtonElement>
   /**
-   * Apply equal spacing on all sides and a "full" `border-radius`.
+   * Apply equal spacing on all sides of the Button.
    *
    * @default false
    */
-  rounded?: boolean
+  square?: boolean
 }
 
 /**
  * A stylized [Button](https://www.w3.org/TR/wai-aria-practices/#button) component, used to trigger actions and events.
  */
 export const Button: FC<ButtonProps> = forwardRef(
-  ({ color, radius, rounded, size, variant, ...p }: ButtonProps, ref) => {
+  ({ color, edges, radius, size, square, variant, ...p }: ButtonProps, ref) => {
     const styles = useStyler('Button', {
       color,
+      edges,
       radius,
-      rounded,
       size,
+      square,
       variant,
     })
     return <button className={css(styles)} ref={ref} {...p} />
@@ -64,8 +71,9 @@ Button.displayName = 'Button'
 Button.defaultProps = {
   color: 'neutral',
   disabled: false,
+  edges: 'rounded',
   radius: 'md',
-  rounded: false,
   size: 'md',
+  square: false,
   variant: 'fill',
 }

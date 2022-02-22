@@ -11,7 +11,10 @@ export default {
   argTypes: {
     color,
     radius,
-    rounded: { control: 'boolean' },
+    edges: {
+      control: 'select',
+      options: ['circular', 'rounded', 'squared'],
+    },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
@@ -26,37 +29,24 @@ export default {
 const Template: Story<ButtonProps> = (args) => <Button {...args} />
 Template.args = Button.defaultProps
 
-export const Primary: Story<ButtonProps> = Template.bind({})
-Primary.args = {
-  ...Template.args,
-  children: 'Button',
-  color: 'primary',
-}
-
-export const Fill: Story<ButtonProps> = Template.bind({})
-Fill.args = {
+export const Default: Story<ButtonProps> = Template.bind({})
+Default.args = {
   ...Template.args,
   children: 'Button',
 }
 
-export const Outline: Story<ButtonProps> = Template.bind({})
-Outline.args = {
+export const Disabled: Story<ButtonProps> = Template.bind({})
+Disabled.args = {
   ...Template.args,
   children: 'Button',
-  variant: 'outline',
+  disabled: true,
 }
 
-export const Ghost: Story<ButtonProps> = Template.bind({})
-Ghost.args = {
+export const Square: Story<ButtonProps> = Template.bind({})
+Square.args = {
   ...Template.args,
-  children: 'Button',
-  variant: 'ghost',
-}
-
-export const Rounded: Story<ButtonProps> = Template.bind({})
-Rounded.args = {
-  ...Template.args,
-  rounded: true,
+  edges: 'circular',
+  square: true,
   children: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -70,14 +60,63 @@ Rounded.args = {
   ),
 }
 
-export const Disabled: Story<ButtonProps> = Template.bind({})
-Disabled.args = {
+export const Primary: Story<ButtonProps> = Template.bind({})
+Primary.storyName = 'Primary (Color)'
+Primary.args = {
   ...Template.args,
   children: 'Button',
-  disabled: true,
+  color: 'primary',
+}
+
+export const Circular: Story<ButtonProps> = Template.bind({})
+Circular.storyName = 'Circular (Edges)'
+Circular.args = {
+  ...Template.args,
+  children: 'Button',
+  edges: 'circular',
+}
+
+export const Rounded: Story<ButtonProps> = Template.bind({})
+Rounded.storyName = 'Rounded (Edges)'
+Rounded.args = {
+  ...Template.args,
+  children: 'Button',
+  edges: 'rounded',
+}
+
+export const Squared: Story<ButtonProps> = Template.bind({})
+Squared.storyName = 'Squared (Edges)'
+Squared.args = {
+  ...Template.args,
+  children: 'Button',
+  edges: 'squared',
+}
+
+export const Fill: Story<ButtonProps> = Template.bind({})
+Fill.storyName = 'Fill (Variant)'
+Fill.args = {
+  ...Template.args,
+  children: 'Button',
+}
+
+export const Outline: Story<ButtonProps> = Template.bind({})
+Outline.storyName = 'Outline (Variant)'
+Outline.args = {
+  ...Template.args,
+  children: 'Button',
+  variant: 'outline',
+}
+
+export const Ghost: Story<ButtonProps> = Template.bind({})
+Ghost.storyName = 'Ghost (Variant)'
+Ghost.args = {
+  ...Template.args,
+  children: 'Button',
+  variant: 'ghost',
 }
 
 export const Small: Story<ButtonProps> = Template.bind({})
+Small.storyName = 'Small (Size)'
 Small.args = {
   ...Template.args,
   children: 'Button',
@@ -85,6 +124,7 @@ Small.args = {
 }
 
 export const Medium: Story<ButtonProps> = Template.bind({})
+Medium.storyName = 'Medium (Size)'
 Medium.args = {
   ...Template.args,
   children: 'Button',
@@ -92,6 +132,7 @@ Medium.args = {
 }
 
 export const Large: Story<ButtonProps> = Template.bind({})
+Large.storyName = 'Large (Size)'
 Large.args = {
   ...Template.args,
   children: 'Button',

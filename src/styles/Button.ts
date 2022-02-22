@@ -15,6 +15,9 @@ const ghostyButton = (p: ButtonProps) => ({
   },
 })
 
+const padButton = (p: ButtonProps, x: string, y: string) =>
+  `${x} ${p.square ? x : y}`
+
 export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
   /* eslint-disable prettier/prettier */
   colors: {
@@ -24,7 +27,6 @@ export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
   /* eslint-enable prettier/prettier */
   base: (p) => ({
     borderColor: cssvar(`color.${p.color}.5`),
-    borderRadius: cssvar(`radius.${p.rounded ? 'full' : p.radius}`),
     borderStyle: 'solid',
     borderWidth: '1px',
 
@@ -71,24 +73,29 @@ export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
     },
   }),
   variants: {
+    edges: {
+      circular: {
+        borderRadius: cssvar('radius.full'),
+      },
+      rounded: {
+        borderRadius: cssvar('radius.md'),
+      },
+      squared: {
+        borderRadius: cssvar('radius.none'),
+      },
+    },
     size: {
       sm: (p) => ({
         fontSize: cssvar('type.size.sm'),
         letterSpacing: cssvar('type.letterSpacing.wider'),
-        padding: `${cssvar('space.1')} ${cssvar(
-          `space.${p.rounded ? '1' : '2'}`
-        )}`,
+        padding: padButton(p, cssvar('space.1'), cssvar('space.2')),
       }),
       md: (p) => ({
-        padding: `${cssvar('space.1.5')} ${cssvar(
-          `space.${p.rounded ? '1.5' : '2.5'}`
-        )}`,
+        padding: padButton(p, cssvar('space.1.5'), cssvar('space.2.5')),
       }),
       lg: (p) => ({
         fontSize: cssvar('type.size.md'),
-        padding: `${cssvar('space.2')} ${cssvar(
-          `space.${p.rounded ? '2' : '3.5'}`
-        )}`,
+        padding: padButton(p, cssvar('space.2'), cssvar('space.3.5')),
       }),
     },
     variant: {
