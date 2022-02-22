@@ -69,7 +69,7 @@ await fs.ensureFile(compIndex)
 await fs.appendFile(compIndex, `export * from './${name}'\n`)
 
 console.log(
-  c.white(`Exported ${c.blueBright(name)} from "${c.magentaBright(compIndex)}"`)
+  c.white(`Exported ${c.blueBright(name)} from interface components.`)
 )
 
 // | ------------ |
