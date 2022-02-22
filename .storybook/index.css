@@ -43,9 +43,9 @@ body.dark .sbdocs.sbdocs-preview {
 }
 
 .sbdocs-table thead {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(5, 5, 5, 0.25) !important;
 }
 
 .sbdocs-table tr:nth-of-type(2), .sbdocs-table tr:nth-of-type(2n) {
-  background-color: rgba(0, 0, 0, 0.1) !important;
+  background-color: transparent !important;
 }
