@@ -34,6 +34,7 @@ const ContentAnimations: DialogAnimationVariants = {
     transition: {
       duration: 0.3,
       ease: 'backOut',
+      mass: 5,
     },
   },
   open: {
@@ -42,6 +43,7 @@ const ContentAnimations: DialogAnimationVariants = {
     transition: {
       duration: 0.3,
       ease: 'anticipate',
+      mass: 5,
     },
   },
 }
@@ -50,7 +52,7 @@ export const DialogLeftAnimations: DialogAnimationVariants = {
   open: ContentAnimations.open,
   close: {
     ...ContentAnimations.close,
-    translateX: '-50px',
+    translateX: '-25px',
   },
 }
 
@@ -58,7 +60,7 @@ export const DialogRightAnimations: DialogAnimationVariants = {
   open: ContentAnimations.open,
   close: {
     ...ContentAnimations.close,
-    translateX: '50px',
+    translateX: '25px',
   },
 }
 
