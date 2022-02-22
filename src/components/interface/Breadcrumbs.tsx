@@ -39,6 +39,8 @@ export interface BreadcrumbsProps
  * used to display a list of [`Links`](https://redwoodjs.com/docs/router#link-and-named-route-functions)
  * which point to the current page's parents, given in hierarchical order.
  *
+ * **Note:** Consider setting the `aria-current="page"` attribute on the component used to represent your Breadcrumb's current page.
+ *
  * @example
  * import { Breadcrumbs, Link, Text } from '@locktech/atomic'
  * import { routes } from '@redwoodjs/router'
