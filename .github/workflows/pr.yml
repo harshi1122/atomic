@@ -2,7 +2,7 @@
 # https://github.com/LockTech/sequoia/issues/2
 # https://github.com/LockTech/sequoia/issues/3
 
-name: PR Quality Assurance
+name: Quality Assurance
 
 on:
   pull_request:
