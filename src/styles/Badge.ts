@@ -12,7 +12,6 @@ const coloredFont = (c: Color) => ({
 
 export const BadgeStyles: StylerStyles<BadgeProps, BadgeVariants> = {
   base: {
-    borderRadius: cssvar('radius.sm'),
     borderStyle: 'solid',
     borderWidth: '1px',
     fontSize: cssvar('type.size.sm'),
@@ -30,6 +29,17 @@ export const BadgeStyles: StylerStyles<BadgeProps, BadgeVariants> = {
     },
   },
   variants: {
+    edges: {
+      circular: {
+        borderRadius: cssvar('radius.full'),
+      },
+      rounded: {
+        borderRadius: cssvar('radius.sm'),
+      },
+      squared: {
+        borderRadius: cssvar('radius.none'),
+      },
+    },
     variant: {
       fill: (p) => ({
         backgroundColor: cssvar(`color.${p.color}.5`),

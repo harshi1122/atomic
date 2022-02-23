@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react'
 
-import { color, radius } from '../index'
+import { color, componentSize, edges, radius, variant } from '../index'
 
 import { Form, Submit } from '../../dist'
 import type { SubmitProps } from '../../dist'
@@ -8,19 +8,7 @@ import type { SubmitProps } from '../../dist'
 export default {
   title: 'Components/Forms/Submit',
   component: Submit,
-  argTypes: {
-    color,
-    radius,
-    rounded: { control: 'boolean' },
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-    },
-    variant: {
-      control: 'select',
-      options: ['fill', 'ghost', 'outline'],
-    },
-  },
+  argTypes: { color, edges, radius, size: componentSize, variant },
   decorators: [
     (Fn) => (
       <Form>

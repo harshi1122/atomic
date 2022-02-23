@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react'
 
-// import { color } from '../index'
+import { inputVariants } from '../index'
 
 import { Form, Select } from '../../dist'
 import type { SelectProps } from '../../dist'
@@ -8,15 +8,7 @@ import type { SelectProps } from '../../dist'
 export default {
   title: 'Components/Forms/Select',
   component: Select,
-  argTypes: {
-    defaultValue: { control: 'text' },
-    disabled: { control: 'boolean' },
-    name: { control: 'text' },
-    variant: {
-      control: 'select',
-      options: ['fill', 'outline'],
-    },
-  },
+  argTypes: { variant: inputVariants },
   decorators: [
     (Fn) => (
       <Form>

@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react'
 
-// import { color } from '../index'
+import { inputVariants } from '../index'
 
 import { Form, TextArea } from '../../dist'
 import type { TextAreaProps } from '../../dist'
@@ -8,6 +8,7 @@ import type { TextAreaProps } from '../../dist'
 export default {
   title: 'Components/Forms/Text Area',
   component: TextArea,
+  argTypes: { variant: inputVariants },
   decorators: [
     (Fn) => (
       <Form>
@@ -15,12 +16,6 @@ export default {
       </Form>
     ),
   ],
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['fill', 'outline'],
-    },
-  },
 } as Meta
 
 const Template: Story<TextAreaProps> = (args) => <TextArea {...args} />

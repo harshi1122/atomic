@@ -1,7 +1,7 @@
 import { Form } from '@redwoodjs/forms'
 import type { Meta, Story } from '@storybook/react'
 
-// import { color } from '../index'
+import { inputVariants } from '../index'
 
 import { Input } from '../../dist'
 import type { InputProps } from '../../dist'
@@ -9,6 +9,7 @@ import type { InputProps } from '../../dist'
 export default {
   title: 'Components/Forms/Input',
   component: Input,
+  argTypes: { variant: inputVariants },
   decorators: [
     (Fn) => (
       <Form>
@@ -16,12 +17,6 @@ export default {
       </Form>
     ),
   ],
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['fill', 'outline'],
-    },
-  },
 } as Meta
 
 const Template: Story<InputProps> = (args) => <Input {...args} />

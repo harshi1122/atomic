@@ -7,7 +7,7 @@ import type { Color, Radius } from '../../theme'
 
 export type ButtonVariants = {
   /**
-   * Adjust the shape of the Button corners, helping to define its emotion.
+   * Adjust the shape of the Button's corners.
    *
    * @default 'rounded'
    */

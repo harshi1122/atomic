@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react'
 
-import { color } from '../index'
+import { color, edges, variant } from '../index'
 
 import { Badge } from '../../dist'
 import type { BadgeProps } from '../../dist'
@@ -8,13 +8,7 @@ import type { BadgeProps } from '../../dist'
 export default {
   title: 'Components/Badge',
   component: Badge,
-  argTypes: {
-    color,
-    variant: {
-      control: 'select',
-      options: ['fill', 'ghost', 'outline'],
-    },
-  },
+  argTypes: { color, edges, variant },
 } as Meta
 
 const Template: Story<BadgeProps> = (args) => <Badge {...args} />
@@ -52,6 +46,29 @@ Primary.args = {
   ...Template.args,
   children: 'Badge',
   color: 'primary',
+}
+
+export const Circular: Story<BadgeProps> = Template.bind({})
+Circular.storyName = 'Circular (Edges)'
+Circular.args = {
+  ...Template.args,
+  children: 'Badge',
+  edges: 'circular',
+}
+
+export const Rounded: Story<BadgeProps> = Template.bind({})
+Rounded.storyName = 'Rounded (Edges)'
+Rounded.args = {
+  ...Template.args,
+  children: 'Badge',
+}
+
+export const Squared: Story<BadgeProps> = Template.bind({})
+Squared.storyName = 'Squared (Edges)'
+Squared.args = {
+  ...Template.args,
+  children: 'Badge',
+  edges: 'squared',
 }
 
 export const Fill: Story<BadgeProps> = Template.bind({})

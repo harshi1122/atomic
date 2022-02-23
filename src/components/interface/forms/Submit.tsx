@@ -1,32 +1,19 @@
-import type { ComponentPropsWithRef as CP, FC } from 'react'
-import { Submit as SubmitButton } from '@redwoodjs/forms'
+import type { FC } from 'react'
 
 import { Button } from '../Button'
-import type { ButtonProps, ButtonVariants } from '../Button'
+import type { ButtonProps } from '../Button'
 
-import { useStyler } from '../../../context'
-import { css } from '../../../css'
-
-export interface SubmitProps
-  extends Omit<CP<typeof SubmitButton>, 'color'>,
-    Pick<ButtonProps, 'color' | 'radius' | 'rounded'>,
-    Partial<ButtonVariants> {}
+export interface SubmitProps extends ButtonProps {}
 
 /**
- * Wraps RedwoodJS' [`Submit`](https://redwoodjs.com/docs/forms#overview) component,
- * applying Atomic's `Button` styles and providing its API.
+ * Atomic's `<Button>` component with its `type` set to `'submit'`.
  */
-export const Submit: FC<SubmitProps> = ({
-  color,
-  radius,
-  rounded,
-  size,
-  variant,
-  ...p
-}) => {
-  const styles = useStyler('Button', { color, radius, rounded, size, variant })
-  return <SubmitButton className={css(styles)} {...p} />
+export const Submit: FC<SubmitProps> = (p) => {
+  return <Button {...p} />
 }
 
 Submit.displayName = 'Submit'
-Submit.defaultProps = Button.defaultProps
+Submit.defaultProps = {
+  ...Button.defaultProps,
+  type: 'submit',
+}

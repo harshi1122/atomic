@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react'
 
-import { color, radius } from '../index'
+import { color, componentSize, edges, radius, variant } from '../index'
 
 import { Button } from '../../dist'
 import type { ButtonProps } from '../../dist'
@@ -8,22 +8,7 @@ import type { ButtonProps } from '../../dist'
 export default {
   title: 'Components/Button',
   component: Button,
-  argTypes: {
-    color,
-    radius,
-    edges: {
-      control: 'select',
-      options: ['circular', 'rounded', 'squared'],
-    },
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-    },
-    variant: {
-      control: 'select',
-      options: ['fill', 'ghost', 'outline'],
-    },
-  },
+  argTypes: { color, radius, edges, size: componentSize, variant },
 } as Meta
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />

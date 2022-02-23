@@ -1,8 +1,20 @@
-// Atomic
+export const blur = {
+  control: {
+    type: 'range',
+    min: 0,
+    max: 50,
+    step: 1,
+  },
+}
 
 export const color = {
   control: 'select',
   options: ['danger', 'neutral', 'primary', 'success'],
+}
+
+export const edges = {
+  control: 'select',
+  options: ['circular', 'ghost', 'outline'],
 }
 
 export const family = {
@@ -37,6 +49,11 @@ export const shade = {
 export const shadow = {
   control: 'select',
   options: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
+}
+
+export const componentSize = {
+  control: 'select',
+  options: ['sm', 'md', 'lg'],
 }
 
 export const transform = {
@@ -136,15 +153,9 @@ export const weight = {
 
 export const wrap = { control: 'boolean' }
 
-// General
-
-export const blur = {
-  control: {
-    type: 'range',
-    min: 0,
-    max: 50,
-    step: 1,
-  },
+export const variant = {
+  control: 'select',
+  options: ['fill', 'ghost', 'outline'],
 }
 
 export const hue = {
@@ -185,4 +196,9 @@ export const sepia = {
     max: 100,
     step: 1,
   },
+}
+
+export const inputVariants = {
+  control: 'select',
+  options: ['fill', 'outline'],
 }
