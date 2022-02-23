@@ -61,7 +61,7 @@ export const argTypes = {
 
 const order = [
   'Introduction',
-  'Quick Start',
+  'Installation',
   'Customize',
   ['Theming', 'Styling'],
   'Guides',
