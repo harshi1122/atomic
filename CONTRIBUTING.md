@@ -32,10 +32,10 @@ Build/watch the library.
 yarn build(:watch)
 ```
 
-Start the Storybook development server.
+Start/build the Storybook development server.
 
 ```
-yarn sb
+yarn sb(:build)
 ```
 
 ### Adding a new interface component
