@@ -4,34 +4,33 @@ import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
 # Installation
 
-Atomic is purpose-built for the [RedwoodJS framework](https://redwoodjs.com), so this document will cover installation in terms of it.
+Atomic is delivered as an [npm package](https://www.npmjs.com/package/@locktech/atomic) which pulls in all third-party packages.
 
 ### Adding Atomic's npm package
 
-Let's start by installing Atomic to the *Web*-side of your application.
+> The command below is meant to be ran from the root of your RedwoodJS application, and adds the package to the *web*-side.
 
 ```bash
 yarn workspace web add @locktech/atomic
 ```
 
-> Atomic includes quite a few [third-party packages](?path=/story/guides-3rd-party-packages--page), which are installed and available for use in your application.
-
 ### Atomic-Provider
 
-Once installed, Atomic's provider can be wrapped around your application's `<Routes />`.
+Once installed, Atomic's root provider should be added to your `App`, wrapped around your application's `<Routes />`.
 
-`AtomicProvider` wraps the following, re-exposing and initalizing their APIs:
+This component takes care of setting up Atomic and any third-party packages which require initalization.
 
-* `<RecoilRoot>` — [Setup Recoil](https://recoiljs.org/docs/introduction/getting-started#recoilroot) — making values stored in [Atom's](https://recoiljs.org/docs/basic-tutorial/atoms) available throughout your app.
-* `<Normalize>` — Applies Atomic's CSS resets — setting up the foundation for Atomic's custom styles.
-* `<CSSProvider>` — Configure [custom CSS properties](?path=/docs/customize-theming--page), used to theme components.
-* `<Styler>` — Customize the [CSS properties and their values](?path=/docs/customize-styling--page) which define the low-level visual styling of components.
-
-> Importing this component will also trigger [goober's setup](https://goober.js.org/api/setup), initalizing the library for use with React — zero configuration required.
+* **goober** — To remain tiny, goober requires [a setup step](https://goober.js.org/api/setup), configuring it for the React library.
+* **Recoil** — The provider [sets up Recoil](https://recoiljs.org/docs/introduction/getting-started#recoilroot) — making values stored in [Atom's](https://recoiljs.org/docs/basic-tutorial/atoms) available throughout your app.
+* **Normalize** — Applies Atomic's CSS resets — syncing the default style of the web-page with your application's styling.
+* **Theming** — Configure [global values](?path=/story/customize-theming-introduction--page), provided and used by Atomic to enforce a consistent design.
+* **Style** — Customize [low-level styles](?path=/story/customize-styling-introduction--page), used to control the visual apperance of Atomic's components.
 
 > Atomic's provider **should** be added as a child of `RedwoodApolloProvider`.
 
 ```tsx
+// App.js|tsx
+
 import { AtomicProvider } from '@locktech/atomic'
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web'
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
@@ -46,7 +45,7 @@ const App = () => (
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
       <RedwoodApolloProvider>
         {/* Add and customize Atomic's provider */}
-        <AtomicProvider normalize={...} properties={...} styler={...}>
+        <AtomicProvider ...>
           <Routes />
         </AtomicProvider>
       </RedwoodApolloProvider>
@@ -56,10 +55,3 @@ const App = () => (
 
 export default App
 ```
-
-### Customization
-
-Atomic supports customization using two distinct APIs. One of these APIs relies upon the other, and both have full support for custom values.
-
-* [Theming](?path=/story/customize-theming--page) — Provides an assortment of CSS property values to be used by your application's styling to ensure a consistent experience.
-* [Styling](?path=/story/customize-styling--page) — An extensible API for defining low-level styles using a CSS-in-JS pattern.
