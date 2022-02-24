@@ -66,29 +66,25 @@ export const AtomicTheme: Theme = {
 // --
 
 /**
- * Deeply-merge Atomic's default `Theme` with an partial complete `t`.
- * This function tries to replicate if you were able to directly add to, removing from, or replace Atomic's default properties.
+ * Deeply merge a fully-defined theme, `a`, with a partially complete one, `b`.
  *
  * Some things to consider:
  *
- * * Default values can be overwritten by providing your own value for a given property.
- * * Atomic's defaults can be removed by providing `undefined` for a given property.
- * * You can add any custom property and value alongside Atomic's.
+ * * Values can be over-written by providing the same property on `b` as already exists on `a`.
+ * * Properties defined on `a` can be removed by providing `undefined` for its value on `b`.
  *
  * @example
- * import { mergeTheme } from '@locktech/atomic'
- * import type { Theme } from '@locktech/atomic'
+ * import { mergeThemes } from '@locktech/atomic'
  *
- * const CustomTheme: Theme = mergeTheme({
- *   color: {
- *     danger: { ... }, // Override Atomic's "danger"
- *     orange: { ... }, /// Add a custom "orange" color
- *   },
- *   type: {
- *     family: {
- *       serif: undefined, // Remove Atomic's "serif" `font-family`
- *     }
- *   },
- * })
+ * const MyThemeA = { ... }
+ * const MyThemeB = mergeThemes(MyThemeA, { ... })
  */
-export const mergeTheme = (t: Partial<Theme>): Theme => merge(AtomicTheme, t)
+export const mergeThemes = (a: Theme, b: Partial<Theme>): Theme => merge(a, b)
+
+/**
+ * Wrapper around `mergeTheme` which automatically provides `AtomicTheme`, Atomic's default theme, as the _fully-defined_ theme.
+ *
+ * This function tries to replicate if you were able to directly add to, removing from, or replace Atomic's default properties.
+ */
+export const mergeAtomicTheme = (t: Partial<Theme>) =>
+  mergeThemes(AtomicTheme, t)
