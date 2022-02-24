@@ -3,7 +3,7 @@ import { useFormState } from '@redwoodjs/forms'
 
 import { Text } from '../Text'
 import type { TextProps } from '../Text'
-import type { TypeLineHeight } from '../../../theme'
+import type { TypographyLineHeight } from '../../../theme'
 
 export interface FieldHintProps extends Exclude<TextProps, 'as'>, CP<'span'> {
   /**
@@ -20,7 +20,7 @@ export interface FieldHintProps extends Exclude<TextProps, 'as'>, CP<'span'> {
    *
    * @default 1.715
    */
-  lineHeight?: TypeLineHeight
+  lineHeight?: TypographyLineHeight
   /**
    * The name of the field this Hint is associated with.
    */
