@@ -14,7 +14,7 @@ export const color = {
 
 export const edges = {
   control: 'select',
-  options: ['circular', 'ghost', 'outline'],
+  options: ['circular', 'rounded', 'squared'],
 }
 
 export const family = {
