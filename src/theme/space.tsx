@@ -57,11 +57,22 @@ const SpaceAtom = atom({
 
 // --
 
-export const SpaceProvider = (sr: SpaceRecord) => {
-  const _sr = sr
-  // For each given space, create a negative variant. Values which parse to `0` will be skipped.
-  Object.keys(sr).forEach((s) => parseInt(s) && (_sr[`-${s}`] = `-${sr[s]}`))
+const negateRecord = (sr: SpaceRecord) => {
+  const res: SpaceRecord = {}
 
+  for (const s in sr) {
+    res[s] = sr[s]
+
+    if (!parseInt(s)) continue
+
+    res[`-${s}`] = `-${sr[s]}`
+  }
+
+  return res
+}
+
+export const SpaceProvider = (sr: SpaceRecord) => {
+  const _sr = negateRecord(sr)
   useSetEffect(SpaceAtom, _sr)
   return <CSSProperties name="space" properties={_sr} />
 }
