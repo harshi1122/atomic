@@ -1,16 +1,17 @@
 import type { FC, ReactNode } from 'react'
 import { RecoilRoot } from 'recoil'
+import type { RecoilRootProps } from 'recoil'
 
 import { setup as setupGoober } from '../../css'
 
-import { RecoilDebugger } from '../debug'
-import type { RecoilDebuggerProps } from '../debug'
-import { CSSProvider } from './CSSProvider'
-import type { CSSProviderProps } from './CSSProvider'
 import { Normalize } from './Normalize'
 import type { NormalizeProps } from './Normalize'
-import { Styler } from './Styler'
+import { StyleProvider } from './StyleProvider'
+import { AtomicStyles } from '../../styles'
 import type { StylerObject } from '../../context'
+import { ThemeProvider } from './ThemeProvider'
+import { AtomicTheme } from '../../theme'
+import type { Theme } from '../../theme'
 
 setupGoober()
 
@@ -23,39 +24,29 @@ export interface AtomicProviderProps {
    */
   normalize?: NormalizeProps
   /**
-   * Customize Atomic's custom CSS properties. Leave blank to use the defaults.
+   * Configure the props which are passed through to the `RecoilRoot` component.
    *
-   * This is the equivalent to theming in other component libraries.
-   *
-   * **Note:** Custom properties will be merged with Atomic's.
-   *
-   * @default undefined
+   * @default {}
    */
-  properties?: CSSProviderProps
-  /**
-   * Configure debugging for [Recoil](https://recoiljs.org/), Atomic's provided state-management library.
-   *
-   * **Note:** You **can** provide an empty object to simply enable debugging.
-   *
-   * @default undefined
-   */
-  recoil?: RecoilDebuggerProps
+  recoil?: RecoilRootProps
   /**
    * Set the low-level visual apperance of Atomic's components by customizing values available through its CSS-in-JS API.
    *
-   * The object provided should contain a map of unique keys to `StylerObjects` — objects which provide CSS rules and custom properties.
+   * The object provided should contain a map of unique `keys` to `StylerObjects` — objects which provide CSS rules and custom properties.
    *
    * Each of these `StylerObjects` should provide the following:
    * * `bps` — [Custom CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) which will be applied based on the device's width.
    * * `colors` — Custom CSS properties which will be applied based on the user's [preferred color scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
    * * `base` — CSS rules which are always provided for the given `key`.
-   * * `variants` — CSS rules which will be conditionally provided, based on some dynamic value.
+   * * `variants` — CSS rules which will be conditionally provided, based on some dynamic, `string` value.
    *
    * Custom CSS properties will be applied to the browser, making their values available to any rules which make use of them.
+   * This lets the Styler API be useful for not only defining `base` and `variants` styles, but also for specifying conditional
+   * CSS properties which can be used throughout the application.
    *
    * CSS rules can be accessed using the `useStyler` hook. As expected: `base` styles will always be returned and `variant` styles will be added based on the presence of a dynamic value.
    *
-   * @default undefined
+   * @default AtomicStyles
    *
    * @example
    *
@@ -72,30 +63,35 @@ export interface AtomicProviderProps {
    * )
    */
   styler?: StylerObject
+  /**
+   * Customize Atomic's custom CSS properties, values used to enforce consistent styling between its components.
+   *
+   * @default AtomicTheme
+   */
+  theme?: Theme
 }
 
 /**
- * Easily provide everything required to begin using Atomic:
+ * Setup everything required to begin using Atomic:
  *
  * * [`setup` goober](https://goober.js.org/api/setup)
  * * Instantiates [`RecoilRoot`](https://recoiljs.org/docs/introduction/getting-started#recoilroot)
- * * Apply CSS resets (via `<Normalize />`)
- * * Setup Atomic's custom CSS properties (via `<CSSProvider />`)
- * * Customize Atomic's component styles (via `<Styler />`)
+ * * Apply Atomic's CSS resets.
+ * * Setup Atomic's custom CSS properties (theme).
+ * * Customize Atomic's component styles.
  */
 export const AtomicProvider: FC<AtomicProviderProps> = ({
   children,
   normalize,
-  properties,
   recoil,
   styler,
+  theme,
 }: AtomicProviderProps) => {
   return (
-    <RecoilRoot>
-      {typeof recoil === 'object' ? <RecoilDebugger {...recoil} /> : null}
+    <RecoilRoot {...recoil}>
       <Normalize {...normalize} />
-      <CSSProvider {...properties} />
-      <Styler styler={styler} />
+      <ThemeProvider {...theme} />
+      <StyleProvider {...styler} />
       {children}
     </RecoilRoot>
   )
@@ -104,4 +100,7 @@ export const AtomicProvider: FC<AtomicProviderProps> = ({
 AtomicProvider.displayName = 'AtomicProvider'
 AtomicProvider.defaultProps = {
   normalize: { fontFamily: 'sans' },
+  recoil: {},
+  styler: AtomicStyles,
+  theme: AtomicTheme,
 }

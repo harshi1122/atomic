@@ -1,14 +1,15 @@
-import merge from 'ts-deepmerge'
+import { atom, useRecoilValue } from 'recoil'
 
-import { cssProperties } from '../util'
+import { CSSProperties } from '../components/css'
+import { useSetEffect } from '../hooks'
 import type { AnyStringAnd, PR } from '../util'
 
 // eslint-disable-next-line prettier/prettier
 export type Space = AnyStringAnd<0 | 0.5 | 1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 14 | 16 | 20 | 24 | 28 | 32 | 36 | 40 | 44 | 48 | 52 | 56 | 60 | 64 | 72 | 80 | 96>
 
-// --
-
 export type SpaceRecord = PR<Space, string>
+
+// --
 
 export const AtomicSpace: SpaceRecord = {
   0: '0',
@@ -49,13 +50,22 @@ export const AtomicSpace: SpaceRecord = {
 
 // --
 
-export const setSpaceProperties = (sr: SpaceRecord = {}) => {
-  const mSr = merge(AtomicSpace, sr)
+const SpaceAtom = atom({
+  key: 'atomic.theme.space',
+  default: AtomicSpace,
+})
 
-  // provides negative variants for all given spaces, skipping values of `0`
-  const nSr = {}
-  Object.keys(mSr).forEach(
-    (s) => parseInt(s) !== 0 && (nSr[`-${s}`] = `-${mSr[s]}`)
-  )
-  return [cssProperties(mSr, 'space'), cssProperties(nSr, 'space')].join('\n')
+// --
+
+export const SpaceProvider = (sr: SpaceRecord) => {
+  const _sr = sr
+  // For each given space, create a negative variant. Values which parse to `0` will be skipped.
+  Object.keys(sr).forEach((s) => parseInt(s) && (_sr[`-${s}`] = `-${sr[s]}`))
+
+  useSetEffect(SpaceAtom, _sr)
+  return <CSSProperties name="space" properties={_sr} />
 }
+
+// --
+
+export const useSpace = () => useRecoilValue(SpaceAtom)

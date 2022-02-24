@@ -10,8 +10,8 @@ import type {
 } from '../../context'
 import { CSSProperties } from '../css'
 import { createGlobalStyles } from '../../css'
-import { useBreakpoints } from '../../hooks'
 import { AtomicStyles } from '../../styles'
+import { useBreakpoint } from '../../theme'
 import type { Breakpoint } from '../../theme'
 import { cssProperties } from '../../util'
 import type { PR } from '../../util'
@@ -25,27 +25,6 @@ type ColorProperties = Record<'light' | 'dark', Record<string, string>>
 type AtomStyles = Record<StylerObjectKeys, StylerAtomState>
 
 // --
-
-export interface StylerProps {
-  /**
-   * Override Atomic's default `StylerObject`.
-   *
-   * **Note:** This override is all-or-nothing - you **will** need to merge Atomic's defaults with your customizations if your goal is to only add new styles.
-   *
-   * @example
-   * // The example below demonstrates merging Atomic's defaults with some customizations.
-   * import { AtomicProvider, AtomicStyles } from '@locktech/atomic'
-   *
-   * const App = () => (
-   *   <AtomicProvider styler={{ ...AtomicStyles, Button: { ... } }}>
-   *     ...
-   *   </AtomicProvider>
-   * )
-   */
-  styler?: StylerObject
-}
-
-// ==
 
 /**
  * Parses a `StylerObject`, splitting its `base` and `variant` styles from custom CSS properties.
@@ -82,12 +61,7 @@ const parseSO = (o: StylerObject) => {
 
 // --
 
-/**
- * > See the `styler` prop on the `<AtomicProvider>` component for a user-friendly introduction to the Styler API.
- *
- * > This API is inspired by Chakra-UI, my 💕 to them for the head-start.
- */
-export const Styler: FC<StylerProps> = ({ styler }) => {
+export const StyleProvider: FC<StylerObject> = (styler) => {
   /**
    * Sets the value of many [atoms](https://recoiljs.org/docs/api-reference/core/atom) belonging to the `StylerAtomFamily`.
    * The atoms have identifiers, which are the keys of `styles`; and a value, which is the value held at `styles[key]`.
@@ -108,7 +82,7 @@ export const Styler: FC<StylerProps> = ({ styler }) => {
     [setStylerStyles, styles]
   )
 
-  const bpState = useBreakpoints()
+  const bpState = useBreakpoint()
 
   return (
     <>
@@ -127,7 +101,5 @@ export const Styler: FC<StylerProps> = ({ styler }) => {
   )
 }
 
-Styler.displayName = 'Styler'
-Styler.defaultProps = {
-  styler: AtomicStyles,
-}
+StyleProvider.displayName = 'StyleProvider'
+StyleProvider.defaultProps = AtomicStyles

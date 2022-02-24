@@ -1,14 +1,15 @@
-import merge from 'ts-deepmerge'
+import { atom, useRecoilValue } from 'recoil'
 
-import { cssProperties } from '../util'
+import { CSSProperties } from '../components/css'
+import { useSetEffect } from '../hooks'
 import type { AnyStringAnd, PR } from '../util'
 
 // eslint-disable-next-line prettier/prettier
 export type Shadow = AnyStringAnd<'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'inner'>
 
-// --
-
 export type ShadowRecord = PR<Shadow, string>
+
+// --
 
 export const AtomicShadow: ShadowRecord = {
   none: 'drop-shadow(0 0 #0000)',
@@ -23,5 +24,18 @@ export const AtomicShadow: ShadowRecord = {
 
 // --
 
-export const setShadowProperties = (sr: ShadowRecord = {}) =>
-  cssProperties(merge(AtomicShadow, sr), 'shadow')
+const ShadowAtom = atom({
+  key: 'atomic.theme.shadow',
+  default: AtomicShadow,
+})
+
+// --
+
+export const ShadowProvider = (sr: ShadowRecord) => {
+  useSetEffect(ShadowAtom, sr)
+  return <CSSProperties name="shadow" properties={sr} />
+}
+
+// --
+
+export const useShadow = () => useRecoilValue(ShadowAtom)

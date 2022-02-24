@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 
-import { BreakpointAtom } from '../theme'
+import { useBreakpoint } from '../theme/breakpoint'
 import type { Breakpoint } from '../theme'
-
-// --
-
-export const useBreakpoints = () => useRecoilValue(BreakpointAtom)
 
 // --
 
@@ -35,7 +30,7 @@ export const useTriggersBreakpoint = (
   bp: Breakpoint,
   variant: 'max' | 'min' = 'min'
 ): boolean => {
-  const bpWidth = useBreakpoints()[bp] || bp
+  const bpWidth = useBreakpoint()[bp] || bp
 
   const matches = variant === 'max' ? matchMax : matchMin
   const [triggered, setTriggered] = useState(matches(bpWidth))
