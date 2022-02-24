@@ -64,7 +64,20 @@ sending them to your users as [static files](https://redwoodjs.com/docs/assets-a
 
 1. Add the font to your application's `web/public` directory; where is up to you.
 
-![Public folder with fonts added to it](https://user-images.githubusercontent.com/25166787/154778473-3b4f7ba3-5a64-408b-8568-21a4decd1961.png)
+```
+📁 ...
+  📁 api
+  📂 web
+    📂 public
+      📂 fonts
+        📄 NotoSans-Bold.ttf
+        📄 NotoSans-BoldItalic.ttf
+        📄 NotoSans-Italic.ttf
+        📄 NotoSans-Regular.ttf
+      📄 favicon.png
+      📄 ...
+    📁 src
+```
 
 2. Add the [`@font-face` ruleset](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face) to you application's CSS file, prompting your application to download these files.
 
