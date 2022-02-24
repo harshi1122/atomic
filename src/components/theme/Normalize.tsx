@@ -6,7 +6,7 @@ import { cssvar } from '../../util'
 
 export interface NormalizeProps {
   /**
-   * Set the `font-family` of the `<body>`.
+   * Sets the `font-family` of the `<body>` element; including effectively your entire application.
    *
    * @default 'sans'
    */
