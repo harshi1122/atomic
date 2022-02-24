@@ -63,7 +63,7 @@ const order = [
   'Introduction',
   'Installation',
   'Customize',
-  ['Theming', 'Styling'],
+  ['Theming', ['Introduction'], 'Styling', ['Introduction']],
   'Guides',
   'State',
   ['Introduction', 'Recoil Debugger'],
