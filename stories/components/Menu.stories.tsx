@@ -33,7 +33,7 @@ const MenuItems = [
 
 const Template: Story<MenuProps> = (args) => (
   <Menu {...args}>
-    <Menu.Button as={Button} rounded variant="ghost">
+    <Menu.Button as={Button} edges="circular" square variant="ghost">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"

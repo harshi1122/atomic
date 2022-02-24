@@ -59,27 +59,27 @@ External.args = {
   to: 'https://redwoodjs.com/docs/introduction',
 }
 
-export const UnderlineAlways: Story<LinkProps> = Template.bind({})
-UnderlineAlways.storyName = 'Underline (Always)'
-UnderlineAlways.args = {
+export const Always: Story<LinkProps> = Template.bind({})
+Always.storyName = 'Always (Underline)'
+Always.args = {
   ...Template.args,
   children: 'Home Page',
   to: '/home',
   underline: 'always',
 }
 
-export const UnderlineHover: Story<LinkProps> = Template.bind({})
-UnderlineHover.storyName = 'Underline (Hover)'
-UnderlineHover.args = {
+export const Hover: Story<LinkProps> = Template.bind({})
+Hover.storyName = 'Hover (Underline)'
+Hover.args = {
   ...Template.args,
   children: 'Home Page',
   to: '/home',
   underline: 'hover',
 }
 
-export const UnderlineNone: Story<LinkProps> = Template.bind({})
-UnderlineNone.storyName = 'Underline (None)'
-UnderlineNone.args = {
+export const None: Story<LinkProps> = Template.bind({})
+None.storyName = 'None (Underline)'
+None.args = {
   ...Template.args,
   children: 'Home Page',
   to: '/home',
