@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
-import { RecoilState } from 'recoil'
+import type { RecoilState } from 'recoil'
 
 /**
  * A hook which will [set](https://recoiljs.org/docs/api-reference/core/useSetRecoilState)
  * the state of an [atom](https://recoiljs.org/docs/api-reference/core/atom)
- * on the first render, and whenever the value of `state` changes.
+ * on the first render, and whenever the value of `state` (shallowly) changes between renders.
  *
  * @example
  * import { atom } from 'recoil'
