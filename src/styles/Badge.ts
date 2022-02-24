@@ -1,14 +1,6 @@
 import type { BadgeProps, BadgeVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import type { Color } from '../theme'
 import { cssvar } from '../util'
-
-const coloredFont = (c: Color) => ({
-  color: cssvar(`color.${c}.8`),
-  '.dark &': {
-    color: cssvar(`color.${c}.1`),
-  },
-})
 
 export const BadgeStyles: StylerStyles<BadgeProps, BadgeVariants> = {
   base: {
@@ -42,19 +34,25 @@ export const BadgeStyles: StylerStyles<BadgeProps, BadgeVariants> = {
     },
     variant: {
       fill: (p) => ({
-        backgroundColor: cssvar(`color.${p.color}.5`),
-        borderColor: cssvar(`color.${p.color}.5`),
+        backgroundColor: cssvar(`color.${p.color}.5.hex`),
+        borderColor: cssvar(`color.${p.color}.5.hex`),
         color: cssvar(`color.${p.color}.5.text`),
       }),
       ghost: (p) => ({
         backgroundColor: `rgba(${cssvar(`color.${p.color}.5.rgb`)}, 0.5)`,
         borderColor: 'transparent',
-        ...coloredFont(p.color),
+        color: cssvar(`color.${p.color}.8.hex`),
+        '.dark &': {
+          color: cssvar(`color.${p.color}.1.hex`),
+        },
       }),
       outline: (p) => ({
         backgroundColor: 'transparent',
-        borderColor: cssvar(`color.${p.color}.5`),
-        ...coloredFont(p.color),
+        borderColor: cssvar(`color.${p.color}.5.hex`),
+        color: cssvar(`color.${p.color}.8.hex`),
+        '.dark &': {
+          color: cssvar(`color.${p.color}.1.hex`),
+        },
       }),
     },
   },

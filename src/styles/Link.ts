@@ -11,14 +11,14 @@ export const LinkStyles: StylerStyles<LinkProps, LinkVariants> = {
     borderStyle: 'solid',
     borderWidth: '1px',
 
-    color: cssvar(`color.${p.color}.6`, p.color),
+    color: cssvar(`color.${p.color}.6.hex`, p.color),
     '&:hover': {
-      color: cssvar(`color.${p.color}.9`, p.color),
+      color: cssvar(`color.${p.color}.9.hex`, p.color),
     },
     'body.dark &': {
-      color: cssvar(`color.${p.color}.3`, p.color),
+      color: cssvar(`color.${p.color}.3.hex`, p.color),
       '&:hover': {
-        color: cssvar(`color.${p.color}.2`, p.color),
+        color: cssvar(`color.${p.color}.2.hex`, p.color),
       },
     },
 
@@ -26,7 +26,7 @@ export const LinkStyles: StylerStyles<LinkProps, LinkVariants> = {
 
     outline: 'none',
     '&:focus': {
-      borderColor: cssvar(`color.${p.color}.5`),
+      borderColor: cssvar(`color.${p.color}.5.hex`),
       boxShadow: `0px 0px 0px 3px rgba(${cssvar(
         `color.${p.color}.4.rgb`
       )}, 0.4)`,

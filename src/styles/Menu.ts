@@ -41,7 +41,7 @@ const MenuListStyles: CSSObject = {
 export const MenuListPanelStyles: StylerStyles = {
   colors: {
     /* eslint-disable prettier/prettier */
-    'menu.divider.backgroundColor': [cssvar('color.neutral.0'), cssvar('divider.backgroundColor')],
+    'menu.divider.backgroundColor': [cssvar('color.neutral.0.hex'), cssvar('divider.backgroundColor')],
     /* eslint-enable prettier/prettier */
   },
   base: {
@@ -92,66 +92,65 @@ export const MenuListSheetStyles: StylerStyles = {
   },
 }
 
-export const MenuItemStyles: StylerStyles<MenuItemProps, MenuItemVariants> =
-  {
-    /* eslint-disable prettier/prettier */
+export const MenuItemStyles: StylerStyles<MenuItemProps, MenuItemVariants> = {
+  /* eslint-disable prettier/prettier */
     colors: {
-      'menuItem.active.backgroundColor': [cssvar('color.neutral.1'), cssvar('color.neutral.7')],
-      'menuItem.disabled.text': [cssvar('color.neutral.3'), cssvar('color.neutral.4')],
+      'menuItem.active.backgroundColor': [cssvar('color.neutral.1.hex'), cssvar('color.neutral.7.hex')],
+      'menuItem.disabled.text': [cssvar('color.neutral.3.hex'), cssvar('color.neutral.4.hex')],
     },
     /* eslint-enable prettier/prettier */
-    base: {
-      backgroundColor: 'transparent',
-      border: 'none',
-      borderRadius: cssvar('radius.sm'),
-      color: cssvar('color.text'),
-      // letterSpacing: cssvar('typography.letterSpacing.wide'),
-      textAlign: 'left',
-      cursor: 'pointer',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      outline: 'none',
-      userSelect: 'none',
-      width: '100%',
-      transitionDuration: '200ms',
-      transitionProperty: 'background-color, color',
-      transitionTimingFunction: 'ease-out',
-      '&.active': {
-        backgroundColor: cssvar('menuItem.active.backgroundColor'),
+  base: {
+    backgroundColor: 'transparent',
+    border: 'none',
+    borderRadius: cssvar('radius.sm'),
+    color: cssvar('color.text'),
+    // letterSpacing: cssvar('typography.letterSpacing.wide'),
+    textAlign: 'left',
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    outline: 'none',
+    userSelect: 'none',
+    width: '100%',
+    transitionDuration: '200ms',
+    transitionProperty: 'background-color, color',
+    transitionTimingFunction: 'ease-out',
+    '&.active': {
+      backgroundColor: cssvar('menuItem.active.backgroundColor'),
+    },
+    '&.selected': {
+      backgroundColor: cssvar('color.primary.5.hex'),
+      color: cssvar('color.primary.5.text'),
+    },
+    '&:disabled, &.disabled': {
+      color: cssvar('menuItem.disabled.text'),
+      cursor: 'not-allowed',
+    },
+  },
+  variants: {
+    size: {
+      sm: {
+        fontSize: cssvar('typography.size.sm'),
+        letterSpacing: cssvar('typography.letterSpacing.wide'),
+        padding: `${cssvar('space.1')} ${cssvar('space.2')}`,
+        '& > *:not([hidden]) ~ *:not([hidden])': {
+          marginLeft: cssvar('space.2.5'),
+        },
       },
-      '&.selected': {
-        backgroundColor: cssvar('color.primary.5'),
-        color: cssvar('color.primary.5.text'),
+      md: {
+        padding: `${cssvar('space.1.5')} ${cssvar('space.2.5')}`,
+        '& > *:not([hidden]) ~ *:not([hidden])': {
+          marginLeft: cssvar('space.2.5'),
+        },
       },
-      '&:disabled, &.disabled': {
-        color: cssvar('menuItem.disabled.text'),
-        cursor: 'not-allowed',
+      lg: {
+        padding: `${cssvar('space.2')} ${cssvar('space.3')}`,
+        '& > *:not([hidden]) ~ *:not([hidden])': {
+          marginLeft: cssvar('space.3'),
+        },
       },
     },
-    variants: {
-      size: {
-        sm: {
-          fontSize: cssvar('typography.size.sm'),
-          letterSpacing: cssvar('typography.letterSpacing.wide'),
-          padding: `${cssvar('space.1')} ${cssvar('space.2')}`,
-          '& > *:not([hidden]) ~ *:not([hidden])': {
-            marginLeft: cssvar('space.2.5'),
-          },
-        },
-        md: {
-          padding: `${cssvar('space.1.5')} ${cssvar('space.2.5')}`,
-          '& > *:not([hidden]) ~ *:not([hidden])': {
-            marginLeft: cssvar('space.2.5'),
-          },
-        },
-        lg: {
-          padding: `${cssvar('space.2')} ${cssvar('space.3')}`,
-          '& > *:not([hidden]) ~ *:not([hidden])': {
-            marginLeft: cssvar('space.3'),
-          },
-        },
-      },
-    },
-  }
+  },
+}

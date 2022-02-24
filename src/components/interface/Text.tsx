@@ -7,11 +7,11 @@ import { css } from '../../css'
 import type {
   Color,
   ColorShade,
-  TypeFamily,
-  TypeLetterSpace,
-  TypeLineHeight,
-  TypeSize,
-  TypeWeight,
+  TypographyFamily,
+  TypographyLetterSpace,
+  TypographyLineHeight,
+  TypographySize,
+  TypographyWeight,
 } from '../../theme'
 
 type TextElements =
@@ -60,25 +60,25 @@ export type TextProps = Partial<TextVariants> & {
    *
    * @default 'sans'
    */
-  family?: TypeFamily
+  family?: TypographyFamily
   /**
    * The `letter-spacing` to use for this Text.
    *
    * @default 'normal'
    */
-  letterSpacing?: TypeLetterSpace
+  letterSpacing?: TypographyLetterSpace
   /**
    * The `line-height` to use for this Text.
    *
    * @default 'normal'
    */
-  lineHeight?: TypeLineHeight
+  lineHeight?: TypographyLineHeight
   /**
    * The `font-size` to use for this Text.
    *
    * @default 'normal'
    */
-  size?: TypeSize
+  size?: TypographySize
   /**
    * A `text-transform` to apply to this Text.
    *
@@ -90,7 +90,7 @@ export type TextProps = Partial<TextVariants> & {
    *
    * @default 'normal'
    */
-  weight?: TypeWeight
+  weight?: TypographyWeight
   /**
    * Specifiy whether or not text should wrap to a newline or be cut-off with an ellipsis.
    *

@@ -8,9 +8,9 @@ import { cssvar } from '../../util'
 export const CheckboxStyles: StylerStyles<CheckboxProps, CheckboxVariants> = {
   /* eslint-disable prettier/prettier */
     colors: {
-      'checkbox.backgroundColor': [cssvar('color.neutral.1'), cssvar('color.neutral.7')],
-      'checkbox.borderColor': [cssvar('color.neutral.2'), cssvar('color.neutral.6')],
-      'checkbox.focus.borderColor': [cssvar('color.primary.4'), cssvar('color.primary.5')],
+      'checkbox.backgroundColor': [cssvar('color.neutral.1.hex'), cssvar('color.neutral.7.hex')],
+      'checkbox.borderColor': [cssvar('color.neutral.2.hex'), cssvar('color.neutral.6.hex')],
+      'checkbox.focus.borderColor': [cssvar('color.primary.4.hex'), cssvar('color.primary.5.hex')],
     },
     /* eslint-enable prettier/prettier */
   base: {
@@ -54,8 +54,8 @@ export const CheckboxStyles: StylerStyles<CheckboxProps, CheckboxVariants> = {
       transitionTimingFunction: 'ease-out',
     },
     '&:checked': {
-      backgroundColor: cssvar('color.primary.5'),
-      borderColor: cssvar('color.primary.5'),
+      backgroundColor: cssvar('color.primary.5.hex'),
+      borderColor: cssvar('color.primary.5.hex'),
       '&::before': {
         opacity: 1,
       },

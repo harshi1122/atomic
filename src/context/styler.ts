@@ -64,7 +64,7 @@ export interface StylerStyles<
    * @example
    * const styles: StylerStyles = {
    *   colors: {
-   *     'component.backgroundColor': [cssvar('color.neutral.1'), cssvar('color.neutral.9')],
+   *     'component.backgroundColor': [cssvar('color.neutral.1.hex'), cssvar('color.neutral.9.hex')],
    *   }
    * }
    */

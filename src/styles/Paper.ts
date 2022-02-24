@@ -4,7 +4,7 @@ import { cssvar } from '../util'
 
 export const PaperStyles: StylerStyles<PaperProps, PaperVariants> = {
   base: (p) => ({
-    backgroundColor: cssvar(`color.${p.color}`, p.color),
+    backgroundColor: cssvar(`color.${p.color}.hex`, p.color),
     backgroundImage: p.image && `url('${p.image}')`,
     backgroundSize: 'cover',
 
@@ -12,7 +12,7 @@ export const PaperStyles: StylerStyles<PaperProps, PaperVariants> = {
     borderStyle: 'solid',
     borderWidth: '1px',
     borderColor: p.outline
-      ? cssvar(`color.${p.color}`, p.color)
+      ? cssvar(`color.${p.color}.hex`, p.color)
       : 'transparent',
 
     opacity: p.opaque,

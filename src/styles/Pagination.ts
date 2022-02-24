@@ -46,11 +46,11 @@ export const PaginationButtonStyles: StylerStyles<
 > = {
   colors: {
     /* eslint-disable prettier/prettier */
-    'pagination.button.backgroundColor.hover': [cssvar('color.neutral.1'), cssvar('color.neutral.7')],
-    'pagination.button.backgroundColor.active': [cssvar('color.neutral.2'), cssvar('color.neutral.6')],
+    'pagination.button.backgroundColor.hover': [cssvar('color.neutral.1.hex'), cssvar('color.neutral.7.hex')],
+    'pagination.button.backgroundColor.active': [cssvar('color.neutral.2.hex'), cssvar('color.neutral.6.hex')],
     /* eslint-enable prettier/prettier */
   },
-  base: {
+  base: (p) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -67,10 +67,12 @@ export const PaginationButtonStyles: StylerStyles<
     transitionTimingFunction: 'ease-in-out',
 
     '&:focus': {
-      borderColor: cssvar('color.primary.5'),
-      boxShadow: `0px 0px 0px 3px rgba(${cssvar('color.primary.4.rgb')}, 0.4)`,
+      borderColor: cssvar(`color.${p.color}.5.hex`),
+      boxShadow: `0px 0px 0px 3px rgba(${cssvar(
+        `color.${p.color}.4.rgb`
+      )}, 0.4)`,
     },
-  },
+  }),
   variants: {
     edges: {
       circular: {
@@ -119,7 +121,7 @@ export const PaginationButtonStyles: StylerStyles<
         },
 
         '&.selected': {
-          backgroundColor: cssvar(`color.${p.color}.5`),
+          backgroundColor: cssvar(`color.${p.color}.5.hex`),
           color: cssvar(`color.${p.color}.5.text`),
         },
       }),
@@ -140,7 +142,7 @@ export const PaginationButtonStyles: StylerStyles<
         },
 
         '&.selected': {
-          backgroundColor: cssvar(`color.${p.color}.5`),
+          backgroundColor: cssvar(`color.${p.color}.5.hex`),
           color: cssvar(`color.${p.color}.5.text`),
         },
       }),

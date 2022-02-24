@@ -11,7 +11,7 @@ export const FieldErrorStyles: StylerStyles<
 > = {
   /* eslint-disable prettier/prettier */
   colors: {
-    'color.fieldError.text': [cssvar('color.danger.8'), cssvar('color.danger.2')],
+    'color.fieldError.text': [cssvar('color.danger.8.hex'), cssvar('color.danger.2.hex')],
   },
   /* eslint-enable prettier/prettier */
   base: {

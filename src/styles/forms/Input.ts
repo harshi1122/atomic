@@ -5,17 +5,17 @@ import { cssvar } from '../../util'
 export const InputStyles: StylerStyles<InputProps, InputVariants> = {
   colors: {
     /* eslint-disable prettier/prettier */
-    'input.backgroundColor': [cssvar('color.neutral.0'), cssvar('color.neutral.7')],
-    'input.borderColor': [cssvar('color.neutral.2'), cssvar('color.neutral.6')],
-    'input.focus.borderColor': [cssvar('color.primary.4'), cssvar('color.primary.5')],
+    'input.backgroundColor': [cssvar('color.neutral.0.hex'), cssvar('color.neutral.7.hex')],
+    'input.borderColor': [cssvar('color.neutral.2.hex'), cssvar('color.neutral.6.hex')],
+    'input.focus.borderColor': [cssvar('color.primary.4.hex'), cssvar('color.primary.5.hex')],
     //
-    'input.placeholder.text': [cssvar('color.neutral.7'), cssvar('color.neutral.4')],
+    'input.placeholder.text': [cssvar('color.neutral.7.hex'), cssvar('color.neutral.4.hex')],
     //
-    'input.file.backgroundColor': [cssvar('color.neutral.0'), cssvar('color.neutral.7')],
-    'input.file.text': [cssvar('color.neutral.9'), cssvar('color.neutral.0')],
+    'input.file.backgroundColor': [cssvar('color.neutral.0.hex'), cssvar('color.neutral.7.hex')],
+    'input.file.text': [cssvar('color.neutral.9.hex'), cssvar('color.neutral.0.hex')],
     //
-    'input.disabled.borderColor': [cssvar('color.neutral.1'), cssvar('color.neutral.6')],
-    'input.disabled.text': [cssvar('color.neutral.3'), cssvar('color.neutral.5')],
+    'input.disabled.borderColor': [cssvar('color.neutral.1.hex'), cssvar('color.neutral.6.hex')],
+    'input.disabled.text': [cssvar('color.neutral.3.hex'), cssvar('color.neutral.5.hex')],
     /* eslint-enable prettier/prettier */
   },
   base: {
@@ -39,16 +39,16 @@ export const InputStyles: StylerStyles<InputProps, InputVariants> = {
       boxShadow: `0px 0px 0px 4px rgba(${cssvar('color.primary.4.rgb')}, 0.4)`,
     },
     '&.danger': {
-      borderColor: cssvar('color.danger.5'),
+      borderColor: cssvar('color.danger.5.hex'),
       '&:focus': {
-        borderColor: cssvar('color.danger.5'),
+        borderColor: cssvar('color.danger.5.hex'),
         boxShadow: `0px 0px 0px 4px rgba(${cssvar('color.danger.4.rgb')}, 0.4)`,
       },
     },
     '&.success': {
-      borderColor: cssvar('color.success.5'),
+      borderColor: cssvar('color.success.5.hex'),
       '&:focus': {
-        borderColor: cssvar('color.success.5'),
+        borderColor: cssvar('color.success.5.hex'),
         boxShadow: `0px 0px 0px 4px rgba(${cssvar(
           'color.success.4.rgb'
         )}, 0.4)`,

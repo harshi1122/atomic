@@ -5,7 +5,7 @@ import { cssvar } from '../util'
 export const DividerStyles: StylerStyles<DividerProps, DividerVariants> = {
   colors: {
     /* eslint-disable prettier/prettier */
-    'divider.backgroundColor': [cssvar('color.neutral.1'), cssvar('color.neutral.7')],
+    'divider.backgroundColor': [cssvar('color.neutral.1.hex'), cssvar('color.neutral.7.hex')],
     /* eslint-enable prettier/prettier */
   },
   base: {

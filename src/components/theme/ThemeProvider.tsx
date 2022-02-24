@@ -1,7 +1,9 @@
 import type { FC } from 'react'
 
+import { createGlobalStyles } from '../../css'
 import { AtomicTheme } from '../../theme'
 import type { Theme } from '../../theme'
+import { cssProperty, cssvar } from '../../util'
 
 import {
   BreakpointProvider,
@@ -10,13 +12,18 @@ import {
   ShadowProvider,
   SpaceProvider,
   TypographyProvider,
-  //
-  // useSetBreakpoints,
-  // setRadiusProperties,
-  // setShadowProperties,
-  // setSpaceProperties,
-  // setTypeProperties,
 } from '../../theme'
+
+const ColorModeProvider = createGlobalStyles`
+   :root {
+     ${cssProperty('color.text', cssvar('color.neutral.9.hex'))}
+     ${cssProperty('color.hint', cssvar('color.neutral.6.hex'))}
+     & body.dark {
+       ${cssProperty('color.text', cssvar('color.neutral.0.hex'))}
+       ${cssProperty('color.hint', cssvar('color.neutral.3.hex'))}
+     }
+   }
+ `
 
 export const ThemeProvider: FC<Theme> = (p) => (
   <>
@@ -26,26 +33,10 @@ export const ThemeProvider: FC<Theme> = (p) => (
     <ShadowProvider {...p.shadow} />
     <SpaceProvider {...p.space} />
     <TypographyProvider {...p.typography} />
+    {/*  */}
+    <ColorModeProvider />
   </>
 )
-
-// return createGlobalStyles`
-//   :root {
-//     ${setColorProperties(p.color)}
-//     ${setRadiusProperties(p.radius)}
-//     ${setShadowProperties(p.shadow)}
-//     ${setSpaceProperties(p.space)}
-//     ${setTypeProperties(p.type)}
-
-//     ${cssProperty('color.text', cssvar('color.neutral.9'))}
-//     ${cssProperty('color.hint', cssvar('color.neutral.6'))}
-
-//     & body.dark {
-//       ${cssProperty('color.text', cssvar('color.neutral.0'))}
-//       ${cssProperty('color.hint', cssvar('color.neutral.3'))}
-//     }
-//   }
-// `()
 
 ThemeProvider.displayName = 'ThemeProvider'
 ThemeProvider.defaultProps = AtomicTheme

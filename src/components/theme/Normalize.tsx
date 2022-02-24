@@ -43,8 +43,8 @@ export const Normalize: FC<NormalizeProps> = ({
     }
 
     body {
-      background-color: ${cssvar('color.neutral.0')};
-      color: ${cssvar('color.body.text')};
+      background-color: ${cssvar('color.neutral.0.hex')};
+      color: ${cssvar('color.text')};
       font-family: ${cssvar(`typography.family.${fontFamily}`)};
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
@@ -54,7 +54,7 @@ export const Normalize: FC<NormalizeProps> = ({
       transition-timing-function: ease-out;
 
       &.dark {
-        background-color: ${cssvar('color.neutral.9')};
+        background-color: ${cssvar('color.neutral.9.hex')};
       }
     }
 

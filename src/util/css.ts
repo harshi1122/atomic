@@ -47,10 +47,10 @@ export const cssProperties = (
  * const var = cssvar('color-primary-1') // var(--color-primary-1)
  *
  * // dot-notation can also be used to reference values
- * const varAlt = cssvar('color.primary.1') // var(--color-primary-1)
+ * const varAlt = cssvar('color.primary.1.hex') // var(--color-primary-1-hex)
  *
  * // Provide `var` a default value which is another instance of `var`.
- * const varNested = cssvar('color.primary.10', cssvar('color.primary.1'))
+ * const varNested = cssvar('color.primary.10.hex', cssvar('color.primary.1.hex'))
  */
 export const cssvar = <R = string>(k: string, d?: string): R =>
   `var(--${normalKey(k)}${d ? `, ${d}` : ''})` as unknown as R
