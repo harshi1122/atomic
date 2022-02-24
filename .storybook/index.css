@@ -1,12 +1,12 @@
 /* Documentation */
 
 .sbdocs.sbdocs-preview {
-  background: var(--color-neutral-0) !important;
+  background: var(--color-neutral-0-hex) !important;
   transition: 200ms background-color ease-in-out;
 }
 
 body.dark .sbdocs.sbdocs-preview {
-  background: var(--color-neutral-9) !important;
+  background: var(--color-neutral-9-hex) !important;
 }
 
 .sbdocs-h2 {
@@ -23,16 +23,19 @@ body.dark .sbdocs.sbdocs-preview {
 
 .docblock-source {
   background-color: rgba(0, 0, 0, 0.3) !important;
+  border-top: none !important;
+  filter: var(--shadow-lg);
 }
 
 .prismjs {
   background-color: rgba(0, 0, 0, 0.3) !important;
-  border-top: 1px solid var(--color-neutral-6) !important;
+  border-top: 1px solid var(--color-neutral-6-hex) !important;
 }
 
 .sbdocs-blockquote {
   background-color: rgba(5, 5, 5, 0.25) !important;
   border-left: 3px solid #65bbf4 !important;
+  filter: var(--shadow-lg);
   margin: 1.5rem 0 !important;
   padding: 1rem 1.25rem !important;
 }
