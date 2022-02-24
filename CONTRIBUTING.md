@@ -18,19 +18,23 @@ The `src/` directory follows a relatively simple structure, driven by need rathe
 
 ### Development Server
 
-Builds the library, watching for changes, and starts the Storybook development server, hot-reloading it when the library is built.
+Builds the library, watching for changes, and starts the Storybook development server, hot-reloading it when the library is rebuilt.
 
-> You may want to `yarn build` the library before starting the development server, to mitigate race-conditions between the builder and Storybook.
+> If it's your first time starting the development server, you may want to `yarn build` the library before starting the development server to mitigate race-conditions between the builder and Storybook.
 
 ```
 yarn dev
 ```
+
+### Build
 
 Build/watch the library.
 
 ```
 yarn build(:watch)
 ```
+
+### Storybook
 
 Start/build the Storybook development server.
 
