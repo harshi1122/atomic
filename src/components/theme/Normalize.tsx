@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import { createGlobalStyles } from '../../css'
-import type { TypeFamily } from '../../theme'
+import type { TypographyFamily } from '../../theme'
 import { cssvar } from '../../util'
 
 export interface NormalizeProps {
@@ -10,7 +10,7 @@ export interface NormalizeProps {
    *
    * @default 'sans'
    */
-  fontFamily?: TypeFamily
+  fontFamily?: TypographyFamily
 }
 
 /**
@@ -45,7 +45,7 @@ export const Normalize: FC<NormalizeProps> = ({
     body {
       background-color: ${cssvar('color.neutral.0')};
       color: ${cssvar('color.body.text')};
-      font-family: ${cssvar(`type.family.${fontFamily}`)};
+      font-family: ${cssvar(`typography.family.${fontFamily}`)};
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
 

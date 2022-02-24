@@ -30,9 +30,9 @@ export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
     borderStyle: 'solid',
     borderWidth: '1px',
 
-    fontWeight: cssvar('type.weight.semibold'),
-    letterSpacing: cssvar('type.letterSpacing.wide'),
-    lineHeight: cssvar('type.lineHeight.normal'),
+    fontWeight: cssvar('typography.weight.semibold'),
+    letterSpacing: cssvar('typography.letterSpacing.wide'),
+    lineHeight: cssvar('typography.lineHeight.normal'),
 
     display: 'flex',
     flexDirection: 'row',
@@ -86,15 +86,15 @@ export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
     },
     size: {
       sm: (p) => ({
-        fontSize: cssvar('type.size.sm'),
-        letterSpacing: cssvar('type.letterSpacing.wider'),
+        fontSize: cssvar('typography.size.sm'),
+        letterSpacing: cssvar('typography.letterSpacing.wider'),
         padding: padButton(p, cssvar('space.1'), cssvar('space.2')),
       }),
       md: (p) => ({
         padding: padButton(p, cssvar('space.1.5'), cssvar('space.2.5')),
       }),
       lg: (p) => ({
-        fontSize: cssvar('type.size.md'),
+        fontSize: cssvar('typography.size.md'),
         padding: padButton(p, cssvar('space.2'), cssvar('space.3.5')),
       }),
     },

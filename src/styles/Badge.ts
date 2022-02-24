@@ -14,9 +14,9 @@ export const BadgeStyles: StylerStyles<BadgeProps, BadgeVariants> = {
   base: {
     borderStyle: 'solid',
     borderWidth: '1px',
-    fontSize: cssvar('type.size.sm'),
-    fontWeight: cssvar('type.weight.medium'),
-    letterSpacing: cssvar('type.letterSpacing.wide'),
+    fontSize: cssvar('typography.size.sm'),
+    fontWeight: cssvar('typography.weight.medium'),
+    letterSpacing: cssvar('typography.letterSpacing.wide'),
     display: 'inline-flex',
     flexDirection: 'row',
     alignItems: 'center',

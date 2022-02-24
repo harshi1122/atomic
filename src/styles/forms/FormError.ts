@@ -28,7 +28,7 @@ export const FormErrorStyles: StylerStyles<
     },
     '& > .title': {
       color: cssvar('formError.text'),
-      fontWeight: cssvar('type.weight.semibold'),
+      fontWeight: cssvar('typography.weight.semibold'),
 
       '&::before': {
         backgroundColor: cssvar('formError.text'),

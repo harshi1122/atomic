@@ -56,7 +56,7 @@ export const InputStyles: StylerStyles<InputProps, InputVariants> = {
     },
     '&[type="file"]': {
       cursor: 'pointer',
-      lineHeight: cssvar('type.lineHeight.snug'),
+      lineHeight: cssvar('typography.lineHeight.snug'),
       '&#file-upload-button,&::-webkit-file-upload-button': {
         backgroundColor: cssvar('input.file.backgroundColor'),
         color: cssvar('input.file.text'),
@@ -65,7 +65,7 @@ export const InputStyles: StylerStyles<InputProps, InputVariants> = {
         borderStyle: 'inherit',
         borderWidth: 0,
         borderInlineEndWidth: '1px',
-        lineHeight: cssvar('type.lineHeight.normal'),
+        lineHeight: cssvar('typography.lineHeight.normal'),
         margin: `${cssvar('space.-2')} ${cssvar('space.-3')}`,
         marginInlineEnd: cssvar('space.3'),
         padding: `${cssvar('space.2')} ${cssvar('space.3')}`,

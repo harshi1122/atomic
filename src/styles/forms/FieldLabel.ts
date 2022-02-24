@@ -9,7 +9,7 @@ export const FieldLabelStyles: StylerStyles = {
     display: 'block',
     '&.danger': {
       color: cssvar('fieldLabel.error'),
-      fontWeight: cssvar('type.weight.semibold'),
+      fontWeight: cssvar('typography.weight.semibold'),
     },
   },
 }
@@ -20,7 +20,7 @@ export const FieldLabelRequiredStyles: StylerStyles = {
   },
   base: {
     color: cssvar('fieldLabel.required'),
-    fontWeight: cssvar('type.weight.bold'),
+    fontWeight: cssvar('typography.weight.bold'),
     paddingLeft: cssvar('space.0.5'),
 
     '&[title]': {

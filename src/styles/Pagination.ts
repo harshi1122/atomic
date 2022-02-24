@@ -85,7 +85,7 @@ export const PaginationButtonStyles: StylerStyles<
     },
     size: {
       sm: {
-        fontSize: cssvar('type.size.sm'),
+        fontSize: cssvar('typography.size.sm'),
         height: '26px',
         width: '26px',
       },

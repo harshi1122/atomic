@@ -105,7 +105,7 @@ export const MenuItemStyles: StylerStyles<MenuItemProps, MenuItemVariants> =
       border: 'none',
       borderRadius: cssvar('radius.sm'),
       color: cssvar('color.text'),
-      // letterSpacing: cssvar('type.letterSpacing.wide'),
+      // letterSpacing: cssvar('typography.letterSpacing.wide'),
       textAlign: 'left',
       cursor: 'pointer',
       display: 'flex',
@@ -133,8 +133,8 @@ export const MenuItemStyles: StylerStyles<MenuItemProps, MenuItemVariants> =
     variants: {
       size: {
         sm: {
-          fontSize: cssvar('type.size.sm'),
-          letterSpacing: cssvar('type.letterSpacing.wide'),
+          fontSize: cssvar('typography.size.sm'),
+          letterSpacing: cssvar('typography.letterSpacing.wide'),
           padding: `${cssvar('space.1')} ${cssvar('space.2')}`,
           '& > *:not([hidden]) ~ *:not([hidden])': {
             marginLeft: cssvar('space.2.5'),

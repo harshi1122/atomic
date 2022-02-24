@@ -5,14 +5,14 @@ import { cssvar } from '../util'
 export const TextStyles: StylerStyles<TextProps, TextVariants> = {
   base: (p) => ({
     color: cssvar(`color.${p.color}`, p.color),
-    fontFamily: cssvar(`type.family.${p.family}`, p.family),
-    fontSize: cssvar(`type.size.${p.size}`, p.size),
-    fontWeight: cssvar(`type.weight.${p.weight}`, p.weight),
+    fontFamily: cssvar(`typography.family.${p.family}`, p.family),
+    fontSize: cssvar(`typography.size.${p.size}`, p.size),
+    fontWeight: cssvar(`typography.weight.${p.weight}`, p.weight),
     letterSpacing: cssvar(
-      `type.letterSpacing.${p.letterSpacing}`,
+      `typography.letterSpacing.${p.letterSpacing}`,
       p.letterSpacing
     ),
-    lineHeight: cssvar(`type.lineHeight.${p.lineHeight}`, p.lineHeight),
+    lineHeight: cssvar(`typography.lineHeight.${p.lineHeight}`, p.lineHeight),
     textTransform: p.transform,
     textOverflow: p.wrap ? 'initial' : 'ellipsis',
     whiteSpace: p.wrap ? 'normal' : 'nowrap',
