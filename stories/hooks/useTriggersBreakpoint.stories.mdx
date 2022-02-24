@@ -1,41 +1,8 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
-<Meta title="Hooks/useBreakpoint" />
+<Meta title="Hooks/useTriggersBreakpoint" />
 
-## useBreakpoints
-
-A hook which will return the configured `BreakpointRecord`, containing a key-value map of Atomic or your application's breakpoints.
-
-### Example
-
-```tsx
-// App.tsx
-import { AtomicProivder } from '@locktech/atomic'
-
-export const App = () => (
-  <AtomicProvider
-    properties={{
-      xs: '...', // An "application" or custom breakpoint
-      sm: '...',
-    }}
-  >
-    {/* ... */}
-  </AtomicProvider>
-)
-
-// Component.tsx
-import { useBreakpoints } from '@locktech/atomic'
-
-export const Component = () => {
-  const bps = useBreakpoints()
-
-  console.log(bps) // { xs: '...', sm: '...', ... }
-
-  return ...
-}
-```
-
-## useTriggersBreakpoint
+# useTriggersBreakpoint
 
 A hook which returns a boolean when the corresponding [width media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/width) would be applied.
 This media feature is typically used to create responsive designs, to adapt styles to a multitude of devices: mobile, desktop, embedded, ...
