@@ -1,54 +1,72 @@
 /* Documentation */
 
+/* theme story & docs background */
 .sbdocs.sbdocs-preview {
   background: var(--color-neutral-0-hex) !important;
   transition: 200ms background-color ease-in-out;
 }
-
 body.dark .sbdocs.sbdocs-preview {
   background: var(--color-neutral-9-hex) !important;
 }
 
+/* Typography */
 .sbdocs-h2 {
   margin-top: 3rem !important;
 }
 .sbdocs-h3 {
   margin-top: 2.5rem !important;
 }
-
 .sbdocs-li, .sbdocs-p {
   font-size: 0.95rem !important;
   line-height: 1.8 !important;
 }
 
-.docblock-source {
-  background-color: rgba(0, 0, 0, 0.3) !important;
-  border-top: none !important;
-  filter: var(--shadow-lg);
-}
-
-.prismjs {
-  background-color: rgba(0, 0, 0, 0.3) !important;
-  border-top: 1px solid var(--color-neutral-6-hex) !important;
-}
-
-.sbdocs-blockquote {
-  background-color: rgba(5, 5, 5, 0.25) !important;
-  border-left: 3px solid #65bbf4 !important;
-  filter: var(--shadow-lg);
-  margin: 1.5rem 0 !important;
-  padding: 1rem 1.25rem !important;
-}
-
+/* Tables */
 .sbdocs-table {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.1) !important;
 }
-
 .sbdocs-table thead {
   background-color: rgba(5, 5, 5, 0.25) !important;
 }
-
 .sbdocs-table tr:nth-of-type(2), .sbdocs-table tr:nth-of-type(2n) {
   background-color: transparent !important;
+}
+
+/* Blockquote */
+.sbdocs-blockquote {
+  background-color: rgba(5, 5, 5, 0.3) !important;
+  border-left: 3px solid #65bbf4 !important;
+  border-radius: 0.125rem;
+  margin: 1.5rem 0 !important;
+  padding: 1rem 1.25rem !important;
+}
+
+/* source blocks */
+.docblock-file {
+  color: rgb(190, 190, 190);
+  font-family: monospace;
+  /*  */
+  background-color: rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #65bbf4bd;
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  margin: 0;
+  padding: 0.7rem 1rem;
+}
+.docblock-source {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+  border-top: none !important;
+  border-radius: 0.375rem !important;
+  box-shadow: none !important;
+  margin: 25px 0 40px;
+}
+.prismjs {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 0.375rem !important;
+  padding: 20px !important;
+}
+.sbdocs-preview .docs-story:not(:last-child) {
+  border-bottom: 1px solid var(--color-neutral-6-hex) !important;
 }
