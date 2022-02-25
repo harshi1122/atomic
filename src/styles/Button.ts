@@ -1,6 +1,6 @@
 import type { ButtonProps, ButtonVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 // consolidates repeated styling for a "ghosty" looking button
 const ghostyButton = (p: ButtonProps) => ({

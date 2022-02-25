@@ -1,6 +1,6 @@
 import type { PaperProps, PaperVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 export const PaperStyles: StylerStyles<PaperProps, PaperVariants> = {
   base: (p) => ({

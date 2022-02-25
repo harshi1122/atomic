@@ -3,7 +3,7 @@ import type {
   CheckboxVariants,
 } from '../../components/interface'
 import type { StylerStyles } from '../../context'
-import { cssvar } from '../../util'
+import { cssvar } from '../../css'
 
 export const CheckboxStyles: StylerStyles<CheckboxProps, CheckboxVariants> = {
   /* eslint-disable prettier/prettier */

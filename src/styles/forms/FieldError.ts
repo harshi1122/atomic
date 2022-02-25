@@ -3,7 +3,7 @@ import type {
   FieldErrorVariants,
 } from '../../components/interface'
 import type { StylerStyles } from '../../context'
-import { cssvar } from '../../util'
+import { cssvar } from '../../css'
 
 export const FieldErrorStyles: StylerStyles<
   FieldErrorProps,

@@ -6,7 +6,7 @@ import type {
 } from '../components/interface'
 import type { StylerStyles } from '../context'
 import type { CSSObject } from '../css'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 export const MenuStyles: StylerStyles<MenuProps, MenuVariants> = {
   bps: {

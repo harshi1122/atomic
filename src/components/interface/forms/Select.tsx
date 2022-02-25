@@ -12,8 +12,7 @@ import { Menu } from '../Menu'
 import type { MenuItemVariants } from '../Menu'
 
 import { useStyler } from '../../../context'
-import { css } from '../../../css'
-import { cssvar } from '../../../util'
+import { css, cssvar } from '../../../css'
 
 // ==
 

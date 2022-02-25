@@ -1,6 +1,6 @@
 import type { DialogProps, DialogVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 export const DialogStyles: StylerStyles<DialogProps, DialogVariants> = {
   bps: {

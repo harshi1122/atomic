@@ -1,5 +1,5 @@
 import type { StylerStyles } from '../../context'
-import { cssvar } from '../../util'
+import { cssvar } from '../../css'
 
 export const FieldLabelStyles: StylerStyles = {
   /* eslint-disable prettier/prettier */

@@ -1,6 +1,6 @@
 import type { TextProps, TextVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 export const TextStyles: StylerStyles<TextProps, TextVariants> = {
   base: (p) => ({

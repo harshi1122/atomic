@@ -1,6 +1,6 @@
 import type { DividerProps, DividerVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 export const DividerStyles: StylerStyles<DividerProps, DividerVariants> = {
   colors: {

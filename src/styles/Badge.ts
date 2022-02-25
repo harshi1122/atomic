@@ -1,6 +1,6 @@
 import type { BadgeProps, BadgeVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 export const BadgeStyles: StylerStyles<BadgeProps, BadgeVariants> = {
   base: {

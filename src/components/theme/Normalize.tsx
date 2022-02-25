@@ -1,8 +1,7 @@
 import type { FC } from 'react'
 
-import { createGlobalStyles } from '../../css'
+import { createGlobalStyles, cssvar } from '../../css'
 import type { TypographyFamily } from '../../theme'
-import { cssvar } from '../../util'
 
 export interface NormalizeProps {
   /**

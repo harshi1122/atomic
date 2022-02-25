@@ -1,8 +1,9 @@
 import { atom, useRecoilValue } from 'recoil'
 
 import { CSSProperties } from '../components/css'
+import { cssvar } from '../css'
 import { useSetEffect } from '../hooks'
-import { isColorBright, cssvar, hexToRgb } from '../util'
+import { isColorBright, hexToRgb } from '../util'
 import type { AnyStringAnd, PR } from '../util'
 
 // --

@@ -3,7 +3,7 @@ import type {
   BreadcrumbsVariants,
 } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 export const BreadcrumbsStyles: StylerStyles<
   BreadcrumbsProps,

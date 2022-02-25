@@ -1,6 +1,6 @@
 import type { GlassProps, GlassVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 export const GlassStyles: StylerStyles<GlassProps, GlassVariants> = {
   colors: {},

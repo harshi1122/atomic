@@ -5,7 +5,7 @@ import type {
 } from '../components/interface/Pagination'
 
 import type { StylerStyles } from '../context'
-import { cssvar } from '../util'
+import { cssvar } from '../css'
 
 export const PaginationListStyles: StylerStyles<
   PaginationProps,

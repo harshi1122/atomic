@@ -1,9 +1,8 @@
 import type { FC } from 'react'
 
-import { createGlobalStyles } from '../../css'
+import { createGlobalStyles, cssProperty, cssvar } from '../../css'
 import { AtomicTheme } from '../../theme'
 import type { Theme } from '../../theme'
-import { cssProperty, cssvar } from '../../util'
 
 import {
   BreakpointProvider,
