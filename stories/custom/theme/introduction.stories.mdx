@@ -1,5 +1,138 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
+import { Source } from '../../index';
+
 <Meta title="Customize/Theming/Introduction" />
 
 # Theming Atomic
+
+Atomic provides two interfaces for customizing its components, styles, and provided properties.
+
+This document covers the more generic, all-encompassing of the two: Theming.
+
+## Customizing the Theme
+
+The actually make customizations to the theme's properties, you must provide a value for the `theme` prop, added to the `AtomicProvider` component which wraps your application.
+
+> **Note:** Customizing Atomic's theme is all-or-nothing: providing a value for the `theme` prop _completely_ overrides Atomic's.
+
+<Source file="web/src/App.js" language="jsx">
+{`import { AtomicProvider } from '@locktech/atomic'\n
+const App = () => {
+  return (
+    <AtomicProvider
+      theme={{
+        color: { ... },
+        space: { ... },
+        ...
+      }}
+    >
+      ...
+    </AtomicProvider>
+  )
+}`}
+</Source>
+
+## Extending Atomic's Theme
+
+The theme used by this documentation, and the one used after installing Atomic, can be merged with your application's using a convenience function, appropriately named `mergeAtomicTheme`.
+
+<Source file="web/src/App.js" language="jsx">
+{`import { AtomicProvider, mergeAtomicTheme } from '@locktech/atomic'\n
+const App = () => {
+  return (
+    <AtomicProvider theme={mergeAtomicTheme({
+      color: { ... },
+      space: { ... },
+      ...
+    })}>
+      ...
+    </AtomicProvider>
+  )
+}`}
+</Source>
+
+If you'd like to merge two themes you've created, or perhaps merge a third with one already merged with Atomic's, you may use the `mergeThemes` function.
+
+<Source file="web/src/theme.js" language="js">
+{`import { mergeAtomicTheme, mergeTheme } from '@locktech/atomic'\n
+const ThemeA = mergeAtomicTheme({ ... })
+const ThemeB = mergeThemes(ThemeA, { ... })
+const ThemeC = ...`}
+</Source>
+
+## Code Organization
+
+Depending on how _much_ you need to customize Atomic, you may benefit from relocating your theme to a seperate file or set of files.
+
+### Seperate File
+
+Atomic's recommended approach is to start with a file, `theme.(js|ts)`, located alongside your application's `App.(js|tsx)`.
+
+<!-- This idea is from Chakra-UI. I think it's too clever not to attribute. (where I got it) -->
+```
+📁 ...
+  📁 api
+  📂 web
+    📁 public
+    📂 src
+      📁 components
+      📁 ...
+      📄 App.js
+      📄 ...
+      📄 theme.js
+```
+
+<Source file="web/src/theme.js" language="jsx">
+{`import { mergeAtomicTheme } from '@locktech/atomic'\n
+export const MyTheme = mergeAtomicTheme({ ... })`}
+</Source>
+
+<Source file="web/src/App.js" language="jsx">
+{`import { MyTheme } from 'src/theme'\n
+const App = () => {
+  return (
+    <AtomicProvider theme={MyTheme}>
+      ...
+    </AtomicProvider>
+  )
+}`}
+</Source>
+
+### Seperate Set of Files
+
+If this `theme.js` file, too, becomes unruly — a `web/src/theme/` directory can be created, and your theme split amongst many files.
+
+```
+📁 ...
+  📁 api
+  📂 web
+    📁 public
+    📂 src
+      📁 components
+      📁 ...
+      📂 theme
+        📄 color.js
+        📄 space.js
+        📄 ...
+        📄 MyTheme.js
+      📄 App.js
+      📄 ...
+```
+
+<Source file="web/src/theme/MyTheme.js" language="js">
+{`import { mergeAtomicTheme } from '@locktech/atomic'\n
+import { color } from 'src/theme/color'\n
+export const MyTheme = mergeAtomicTheme({ color, ... })`}
+</Source>
+
+<Source file="web/src/App.js" language="jsx">
+{`import { MyTheme } from 'src/theme/MyTheme'\n
+const App = () => {
+  return (
+    <AtomicProvider theme={MyTheme}>
+      ...
+    </AtomicProvider>
+  )
+}`}
+</Source>
