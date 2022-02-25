@@ -1,7 +1,6 @@
 import type { FC } from 'react'
 
-import { createGlobalStyles } from '../../css'
-import { cssProperties } from '../../util'
+import { createGlobalStyles, cssProperties } from '../../css'
 
 export interface CSSPropertiesProp {
   /**
