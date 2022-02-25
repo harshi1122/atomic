@@ -1,9 +1,6 @@
 // Can be exported if needed by external packages.
 // Its only function is to DRY-ly normalize a property's name.
-// ".replaceAll(/[A-Z]/g, '-$&').toLowerCase()" is pending closure of Goober #423
-// https://github.com/cristianbote/goober/issues/423
-const normalKey = (k: string): string =>
-  k.replaceAll('.', '-').replaceAll(/[A-Z]/g, '-$&').toLowerCase()
+const normalKey = (k: string): string => k.replaceAll('.', '-')
 
 /**
  * Converts strings `p` and `v` into a [custom CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/--*).

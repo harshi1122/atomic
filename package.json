@@ -64,7 +64,7 @@
     "clsx": "^1.1.1",
     "csstype": "^3.0.10",
     "framer-motion": "^6.2.4",
-    "goober": "^2.1.7",
+    "goober": "^2.1.8",
     "recoil": "^0.6.1",
     "ts-deepmerge": "^2.0.1"
   },
