@@ -1,5 +1,7 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
+import { Source } from '../index';
+
 <Meta title="State/Introduction" />
 
 # Introduction
@@ -12,3 +14,34 @@ Out-of-the-box, Atomic supports two methods of representing global state in your
 > Most simple use-cases should use the `Context API`. It's built into React, provides a simple interface, and is used by Atomic in places Recoil would prove overkill.
 
 This set of documents provides descriptions, examples, and APIs for functions and boilerplate provided by Atomic, centered around both the Context API and Recoil's.
+
+## Code Organization
+
+Redwood carries with it strong opinionations regarding your application's directory structure.
+
+To fit well with it, Atomic's recommendation is that you store global state in a directory aptly named `context`, at the root of the web-side's `src/` directory. You should use this directory to store both your application's contexts and atoms.
+
+```
+📁 ...
+  📁 api
+  📂 web
+    📁 public
+    📂 src
+      📁 components
+      📂 context
+        📄 MyContext.js
+        📄 MyAtom.js
+      📁 ...
+```
+
+> See the [create context](https://reactjs.org/docs/context.html#reactcreatecontext) and [atom](https://recoiljs.org/docs/api-reference/core/atom) APIs for detailed usage information.
+
+<Source file="web/src/context/MyContext.js" language="js">
+{`import { createContext } from 'react'\n
+export const MyContext = createContext({ ... })`}
+</Source>
+
+<Source file="web/src/context/MyAtom.js" language="js">
+{`import { atom } from 'recoil'\n
+export const MyAtom = atom({ ... })`}
+</Source>
