@@ -16,7 +16,7 @@
 
 Atomic is a front-end library for building configurable, opinionated, and accessible user interfaces — purpose-built for [RedwoodJS applications](https://github.com/redwoodjs/redwood).
 
-It provides your application additional libraries, each of which meets a specific goal centered around creating pleasing-to-use and accessible user-interfaces. It also includes React [components](https://reactjs.org/docs/components-and-props.html), [hooks](https://reactjs.org/docs/hooks-intro.html), and general JavaScript APIs which eliminate boilerplate and serve as a starting point or end-result for your application.
+It provides your application additional libraries, each meeting a specific goal centered around creating pleasing-to-use, accessible, and feature-rich user-interfaces. It also includes React [components](https://reactjs.org/docs/components-and-props.html), [hooks](https://reactjs.org/docs/hooks-intro.html), and general JavaScript APIs built with and around these libraries; they eliminate boilerplate, and serve as a starting point or end-result for your application.
 
 Atomic takes inspiration from solutions such as: [Bootstrap](https://getbootstrap.com/), [Chakra UI](https://chakra-ui.com/), [Material Design](http://material.io/), and [TailwindCSS](https://tailwindcss.com/). But, because it's specifically built to compliment the RedwoodJS framework, out-scopes its inspiration: providing ready-made decisions to form a complete stack with which web-based UIs can be built.
 
@@ -53,12 +53,12 @@ and the [subatomic particles](https://en.wikipedia.org/wiki/Subatomic_particle) 
 
 Like its forebearer's, Atomic supports the idea of [emergence](https://en.wikipedia.org/wiki/Emergence) due to a _structured combintation_ of _parts_:
 
-- With the _parts_ being: RedwoodJS and its opinionations, the third-party libraries provided here, and implementations provided by Atomic.
-- And _structured combiniations_ arising from you, dear reader, combining these parts in different ways to quickly build and prototype ideas.
+- With the _parts_ being: RedwoodJS and its opinionations, Atomic's third-party libraries, and implementations from Atomic.
+- And _structured combiniations_ arising from you, dear reader, combining these parts in different ways to build and prototype ideas.
 
 ## Contributing
 
-Contributions are welcomed; be they any shape, size, or form.
+Contributions are welcomed; be they any size, shape, or form.
 
 - Bug reports are best made as [GitHub Issues](https://github.com/LockTech/atomic/issues).
 - Please see the [contributing guide](https://github.com/LockTech/atomic/blob/main/CONTRIBUTING.md) for an explanation of the source-code and setup instructions.
