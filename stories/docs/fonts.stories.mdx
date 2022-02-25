@@ -1,4 +1,6 @@
-import { Meta, Story, Canvas } from "@storybook/addon-docs"
+import { Meta } from "@storybook/addon-docs";
+
+import { Source } from '../index';
 
 <Meta title="Guides/Custom Fonts" />
 
@@ -17,10 +19,8 @@ Let's see how we might add the [Noto Sans font collection](https://fonts.google.
 
 1. Embed the font in our webpage — loading it via the Google Fonts API.
 
-```html
-<!-- web/src/index.html -->
-
-<html>
+<Source file="web/src/index.html" language="html">
+{`<html>
   <head>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,16 +30,13 @@ Let's see how we might add the [Noto Sans font collection](https://fonts.google.
   <body>
     ...
   </body>
-</html>
-```
+</html>`}
+</Source>
 
 2. Configure Atomic's theme — ensuring Atomic and our application's components use our font.
 
-```tsx
-// web/src/App.tsx
-
-import { AtomicProvider } from '@locktech/atomic'
-
+<Source file="web/src/App.js" language="jsx">
+{`import { AtomicProvider } from '@locktech/atomic'\n
 const App = () => (
   <AtomicProvider
     properties={{
@@ -52,8 +49,8 @@ const App = () => (
   >
     ...
   </AtomicProvider
-)
-```
+)`}
+</Source>
 
 ## Bundled with your Application
 
@@ -83,41 +80,34 @@ sending them to your users as [static files](https://redwoodjs.com/docs/assets-a
 
 > You may also use _just_ this step to download an arbitrary font from a remote server.
 
-```css
-/* web/src/index.css */
 
-@font-face {
+<Source file="web/src/index.css" language="css">
+{`@font-face {
   font-family: 'Noto Sans';
   src: url('../public/fonts/NotoSans-Regular.ttf') format("truetype");
-}
-
+}\n
 @font-face {
   font-family: 'Noto Sans';
   font-style: italic;
   src: url('../public/fonts/NotoSans-Italic.ttf') format("truetype");
-}
-
+}\n
 @font-face {
   font-family: 'Noto Sans';
   font-weight: 700;
   src: url('../public/fonts/NotoSans-Bold.ttf') format("truetype");
-}
-
+}\n
 @font-face {
   font-family: 'Noto Sans';
   font-style: italic;
   font-weight: 700;
   src: url('../public/fonts/NotoSans-BoldItalic.ttf') format("truetype");
-}
-```
+}`}
+</Source>
 
 3. Configure Atomic's theme — ensuring Atomic and our application's components use our font.
 
-```tsx
-// web/src/App.tsx
-
-import { AtomicProvider } from '@locktech/atomic'
-
+<Source file="web/src/App.js" language="jsx">
+{`import { AtomicProvider } from '@locktech/atomic'\n
 const App = () => (
   <AtomicProvider
     properties={{
@@ -130,5 +120,5 @@ const App = () => (
   >
     ...
   </AtomicProvider
-)
-```
+)`}
+</Source>

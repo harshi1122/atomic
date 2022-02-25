@@ -1,5 +1,7 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
+import { Source } from '../index';
+
 <Meta title="Installation" />
 
 # Installation
@@ -28,18 +30,13 @@ This component takes care of setting up Atomic and any third-party packages whic
 
 > Atomic's provider **should** be added as a child of `RedwoodApolloProvider`.
 
-```tsx
-// App.js|tsx
-
-import { AtomicProvider } from '@locktech/atomic'
+<Source file="web/src/App.js" language="jsx">
+{`import { AtomicProvider } from '@locktech/atomic'
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web'
-import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
-
+import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'\n
 import FatalErrorPage from 'src/pages/FatalErrorPage'
-import Routes from 'src/Routes'
-
-import './index.css'
-
+import Routes from 'src/Routes'\n
+import './index.css'\n
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
@@ -51,7 +48,5 @@ const App = () => (
       </RedwoodApolloProvider>
     </RedwoodProvider>
   </FatalErrorBoundary>
-)
-
-export default App
-```
+)`}
+</Source>
