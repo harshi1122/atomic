@@ -6,7 +6,7 @@ import { Source } from '../../index';
 
 # Theming Atomic
 
-Atomic provides two interfaces for customizing its components, styles, and provided properties.
+Atomic provides two interfaces for customizing its components, styles, and custom CSS properties.
 
 This document covers the more generic, all-encompassing of the two: Theming.
 
@@ -41,11 +41,15 @@ The theme used by this documentation, and the one used after installing Atomic, 
 {`import { AtomicProvider, mergeAtomicTheme } from '@locktech/atomic'\n
 const App = () => {
   return (
-    <AtomicProvider theme={mergeAtomicTheme({
-      color: { ... },
-      space: { ... },
-      ...
-    })}>
+    <AtomicProvider
+      theme={
+        mergeAtomicTheme({
+          color: { ... },
+          space: { ... },
+          ...
+        })
+      }
+    >
       ...
     </AtomicProvider>
   )
@@ -69,7 +73,7 @@ Depending on how _much_ you need to customize Atomic, you may benefit from reloc
 
 Atomic's recommended approach is to start with a file, `theme.(js|ts)`, located alongside your application's `App.(js|tsx)`.
 
-<!-- This idea is from Chakra-UI. I think it's too clever not to attribute. (where I got it) -->
+<!-- This idea is from Chakra-UI. I think it's too clever not to attribute (where I got it). -->
 ```
 📁 ...
   📁 api
@@ -134,5 +138,19 @@ const App = () => {
       ...
     </AtomicProvider>
   )
+}`}
+</Source>
+
+## Custom CSS Properties
+
+Many of the theme-property's values will be added to the browser as [custom CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*).
+
+These can be accessed from within your application's styling. Information on what values are generated and the _names_ you may use to access these values are provided in each property's respective document.
+
+<Source file="web/src/index.css" language="css">
+{`.my-page-or-something {
+  background-color: var(--color-neutral-1-hex);
+  padding: var(--space-3);
+  filter: var(--shadow-md);
 }`}
 </Source>
