@@ -9,11 +9,10 @@ import type {
   StylerObjectKeys,
 } from '../../context'
 import { CSSProperties } from '../css'
-import { createGlobalStyles } from '../../css'
+import { createGlobalStyles, cssProperties } from '../../css'
 import { AtomicStyles } from '../../styles'
 import { useBreakpoint } from '../../theme'
 import type { Breakpoint } from '../../theme'
-import { cssProperties } from '../../util'
 import type { PR } from '../../util'
 
 // ==
