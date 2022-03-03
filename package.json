@@ -2,6 +2,8 @@
   "name": "@locktech/atomic",
   "version": "0.0.1",
   "license": "MIT",
+  "homepage": "https://locktech.github.io/atomic",
+  "repository": { "url": "https://github.com/LockTech/atomic" },
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "exports": {
