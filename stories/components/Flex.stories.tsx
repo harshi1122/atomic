@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react'
 
-import { spacing } from '../index'
+import { gap } from '../index'
 
 import { Flex, Paper, Text } from '../../dist'
 import type { FlexProps, PaperProps, TextProps } from '../../dist'
@@ -9,7 +9,7 @@ export default {
   title: 'Components/Flex',
   component: Flex,
   argTypes: {
-    gap: spacing,
+    gap,
     order: { control: 'number' },
     m: { control: 'array' },
     p: { control: 'array' },

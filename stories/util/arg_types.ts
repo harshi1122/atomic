@@ -73,7 +73,7 @@ export const typeSize = {
   options: ['xs', 'sm', 'normal', 'lg', 'xl', '2xl', '3xl', '4xl'],
 }
 
-export const spacing = {
+export const gap = {
   control: 'select',
   options: [
     '-0.5',
