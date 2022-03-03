@@ -1,0 +1,45 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="Hooks/usePagination" />
+
+# usePagination
+
+A building block for constructing a navigable list of _pages_. Like the pages in a book, these _pages_ are given in sequential order: starting at `1` and extending to some arbitrary `count`.
+
+This hook will return an object containing the `list`, the `selected` item, and a function to `setSelected`.
+
+> This is the hook which powers [Atomic's Pagination component](?path=/docs/components-pagination--default).
+
+> This hook takes inspiration, [and some code](https://github.com/mui/material-ui/blob/e51c590a7775252574f2f64ffc61a2d73cbc0de0/packages/mui-material/src/usePagination/usePagination.js#L43), from [MUI's concept of Pagination](https://mui.com/components/pagination/).
+
+### Example
+
+```ts
+import { usePagination } from '@locktech/atomic'
+
+const { list, selected } = usePagination({ count: 10 })
+// list => [1,2,3,4,5,'...',10], selected => 1
+
+const { list, selected } = usePagination({ count: 10, padBoundary: 0, padSibling: 0 })
+// list => [1,2,'...'], selected => 1
+
+const { list, selected } = usePagination({ count: 10, initial: 4, pad: false })
+// list => [1,2,3,4,5,6,7,8,9,10], selected => 4
+
+const { list, selected, setSelected } = usePagination({ count: 10 })
+// ...
+setSelected(4)
+```
+
+### Parameters
+
+> This hook accepts a _single_ parameter, which should be an object providing the following properties.
+
+| Property     	| Required     	| Default     	| Description                                                                          |
+|--------------	|--------------	|--------------	|------------------------------------------------------------------------------------  |
+| `count`       | `true`      	| `undefined`  	| The total number of pages which will be displayed.                                   |
+| `initial`     | `false`      	| `1`         	| The initial, `selected` page.                                                        |
+| `onChange`    | `false`      	| `undefined`   | A callback, triggered whenever the `selected` page is updated.                       |
+| `pad`         | `false`      	| `true`        | Whether or not items which are not `selected` should be "padded" by ellipses (...).  |
+| `padBoundary` | `false`      	| `1`           | The number of pages which will pad the start and end of the pagination.              |
+| `padSibling`  | `false`      	| `1`           | The number of page which will pad the selected Button.                               |
