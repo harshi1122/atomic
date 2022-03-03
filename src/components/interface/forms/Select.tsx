@@ -24,28 +24,12 @@ export const useSelectContext = () => useContext(SelectContext)
 // Button
 //
 
-const SelectButtonIcon = () => (
-  <svg
-    fill="currentColor"
-    height="18"
-    width="18"
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      clipRule="evenodd"
-      d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-      fillRule="evenodd"
-    />
-  </svg>
-)
-
 interface SelectButtonProps extends Partial<InputVariants> {
   children?: ((ctx: SelectContextValue) => ReactNode) | ReactNode
   /**
    * A decorative icon which is placed at the end of the Button, indicating the input differs from others.
    */
-  icon?: FC
+  icon?: ReactNode
   /**
    * Text to display when nothing has been selected.
    *
@@ -67,7 +51,7 @@ interface SelectButtonProps extends Partial<InputVariants> {
  */
 const SelectButton: FC<SelectButtonProps> = ({
   children,
-  icon: Icon,
+  icon,
   placeholder,
   variant,
 }) => {
@@ -90,14 +74,28 @@ const SelectButton: FC<SelectButtonProps> = ({
       {typeof children === 'function'
         ? children({ error, value })
         : children || value || placeholder || 'Select'}
-      <Icon />
+      {icon}
     </Listbox.Button>
   )
 }
 
 SelectButton.displayName = 'Select.Button'
 SelectButton.defaultProps = {
-  icon: SelectButtonIcon,
+  icon: (
+    <svg
+      fill="currentColor"
+      height="18"
+      width="18"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clipRule="evenodd"
+        d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+        fillRule="evenodd"
+      />
+    </svg>
+  ),
   placeholder: undefined,
   variant: 'fill',
 }
