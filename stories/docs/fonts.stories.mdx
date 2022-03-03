@@ -39,7 +39,8 @@ Let's see how we might add the [Noto Sans font collection](https://fonts.google.
 {`import { AtomicProvider } from '@locktech/atomic'\n
 const App = () => (
   <AtomicProvider
-    properties={{
+    theme={{
+      ...
       type: {
         family: {
           sans: "'Noto Sans', sans-serif",
@@ -110,7 +111,8 @@ sending them to your users as [static files](https://redwoodjs.com/docs/assets-a
 {`import { AtomicProvider } from '@locktech/atomic'\n
 const App = () => (
   <AtomicProvider
-    properties={{
+    theme={{
+      ...
       type: {
         family: {
           sans: "'Noto Sans', sans-serif",
