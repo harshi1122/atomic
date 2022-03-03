@@ -4,65 +4,39 @@ import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
 # Styling
 
-This document covers a few methods of styling your RedwoodJS application, providing you examples for integrating Atomic's functionality with each.
+This document covers a few methods of styling your RedwoodJS application.
 
 This document is *not* designed to cover each and every way in which you can style your application.
-Instead, it focuses on methods which are inline with Atomic's philosophies — using tools and technologies available to you via it.
+Instead, it focuses on methods which are inline with Atomic's philosophies — using tools and technologies available to you via it and RedwoodJS.
 
 ## Vanilla CSS
 
-In most cases, it may be best to provide styling for your application using the `index.css` file.
+In most cases, it may be best to provide styling for your application using the provided `index.css` file.
 
-Redwood supports bundling `*.css` files with your JavaScript, so you can scope styles to your cells, components, and pages to keep styles next to their implementations —
+Redwood also supports bundling `*.css` files with your JavaScript, so you can scope styles to your cells, components, and pages to keep styles next to their implementations —
 should you find your `index.css` file becoming unruly.
-
-### Using Theme Values
-
-Because Atomic stores its [theme](?path=/story/customize-theming--page) as [custom CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*),
-it's incredibly straightforward to access those values from within CSS.
-As you might expect, any [application-specific properties](http://localhost:6006/?path=/story/customize-theming--page#custom-values) you provide `AtomicProvider` will be available as custom properties.
-
-```css
-.my-class {
-  background-color: var(--color-primary-8);
-  color: var(--color-secondary-2);
-}
-```
-
-To see a list of the available custom properties, use your [browser's dev-tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools)
-to [inspect](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools#the_inspector_dom_explorer_and_css_editor) the `<html>` element.
-
-Custom properties will be listed in the [CSS edtior](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools#exploring_the_css_editor).
-
-> Some properties will only be shown when certain conditions are met — such as when breakpoints are triggered.
-
-```css
-:root {
-  ...
-  --color-success-9: #064E3B;
-  --color-success-9-rgb: 6, 78, 59;
-  --color-success-9-text: var(--color-neutral-0);
-  --radius-none: none;
-  --radius-xs: 0.125rem;
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  ...
-}
-```
 
 ## CSS-in-JS
 
-CSS-in-JS is a: [styling technique where JavaScript is used to style components](https://en.wikipedia.org/wiki/CSS-in-JS).
+_[CSS-in-JS is a styling technique where JavaScript is used to style components](https://en.wikipedia.org/wiki/CSS-in-JS)._
 
-It's used heavily by Atomic's components, and powers its [Styler](?path=/story/customize-styling--page) API.
-Atomic uses [goober](https://goober.js.org/) — a [tiny](https://goober.rocks/the-great-shave-off) CSS-in-JS library — to do so efficiently, at the lowest possible cost to your application's bundle-size.
+Atomic uses [goober](https://goober.js.org/) — [a tiny CSS-in-JS library](https://goober.rocks/the-great-shave-off) — to provide _it_ with the aforementioned functionality. This functionality is available to your application too, should you choose to use the technique.
 
-If you're a fan of — or are simply curious about — this pattern and would like to use it in your application, Atomic re-exports the key parts of goober's API.
+Below are the major parts of the goober library which Atomic re-exports for your convinence.
 
 * [css](https://goober.js.org/api/css)
 * [styled](https://goober.js.org/api/styled)
 * [createGlobalStyles](https://goober.js.org/api/createGlobalStyles)
 
-Like any 3rd party library, you may still access goober's full API through its npm package.
-
 > Atomic will take care of [setting up goober](https://goober.js.org/api/setup) for use in React.
+
+> If you use goober in your application and the [VSCode IDE](https://code.visualstudio.com/), consider installing the [styled-components extension](https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components) for an improved DX.
+
+## TailwindCSS
+
+It should be both straightforward and seemless to use TailwindCSS _alongside_ Atomic. Pain-points may occur when trying to pass classes to some of Atomic's components. Setting up Tailwind in an application which uses Atomic is the same process as setting it up in one which doesn't.
+
+Atomic's [dark mode](?path=/story/guides-color-mode--page&globals=colorMode:dark) functions identically to [Tailwind's](https://tailwindcss.com/docs/dark-mode).
+You should be able to use Atomic to control your application's color mode, and have Tailwind's classes apply based on the selected value.
+
+Tailwind also uses custom CSS properties to store its configured values. Fortunately, these values are prefixed and shouldn't clash with any of Atomic's defaults.
