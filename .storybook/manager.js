@@ -30,7 +30,7 @@ export const theme = create({
 
   // Branding
   brandTitle: "Atomic",
-  brandUrl: "https://github.com/locktech/atomic",
+  brandUrl: "https://github.com/LockTech/atomic",
   brandImage:
     "https://user-images.githubusercontent.com/25166787/152892355-3f7e1b9a-8a4e-407d-b446-d54069ffdfe0.svg",
 });
