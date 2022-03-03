@@ -1,6 +1,6 @@
 import type { ButtonProps, ButtonVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../css'
+import { cssFocus, cssvar } from '../css'
 
 // consolidates repeated styling for a "ghosty" looking button
 const ghostyButton = (p: ButtonProps) => ({
@@ -43,7 +43,7 @@ export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
     outline: 'none',
     userSelect: 'none',
 
-    transitionDuration: '200ms',
+    transitionDuration: '300ms',
     transitionProperty: 'background-color, border-color, box-shadow, color',
     transitionTimingFunction: 'ease-out',
 
@@ -61,9 +61,7 @@ export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
     },
     '&:focus': {
       borderColor: cssvar(`color.${p.color}.5.hex`),
-      boxShadow: `0px 0px 0px 4px rgba(${cssvar(
-        `color.${p.color}.4.rgb`
-      )}, 0.4)`,
+      boxShadow: cssFocus(`color.${p.color}.4.rgb`),
     },
     '&:disabled': {
       backgroundColor: cssvar('button.disabled.backgroundColor'),

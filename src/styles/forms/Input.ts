@@ -1,6 +1,6 @@
 import type { InputProps, InputVariants } from '../../components/interface'
 import type { StylerStyles } from '../../context'
-import { cssvar } from '../../css'
+import { cssFocus, cssvar } from '../../css'
 
 export const InputStyles: StylerStyles<InputProps, InputVariants> = {
   colors: {
@@ -36,22 +36,20 @@ export const InputStyles: StylerStyles<InputProps, InputVariants> = {
     },
     '&:focus': {
       borderColor: cssvar('input.focus.borderColor'),
-      boxShadow: `0px 0px 0px 4px rgba(${cssvar('color.primary.4.rgb')}, 0.4)`,
+      boxShadow: cssFocus('color.primary.4.rgb'),
     },
     '&.danger': {
       borderColor: cssvar('color.danger.5.hex'),
       '&:focus': {
         borderColor: cssvar('color.danger.5.hex'),
-        boxShadow: `0px 0px 0px 4px rgba(${cssvar('color.danger.4.rgb')}, 0.4)`,
+        boxShadow: cssFocus('color.danger.4.rgb'),
       },
     },
     '&.success': {
       borderColor: cssvar('color.success.5.hex'),
       '&:focus': {
         borderColor: cssvar('color.success.5.hex'),
-        boxShadow: `0px 0px 0px 4px rgba(${cssvar(
-          'color.success.4.rgb'
-        )}, 0.4)`,
+        boxShadow: cssFocus('color.success.4.rgb'),
       },
     },
     '&[type="file"]': {

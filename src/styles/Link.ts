@@ -1,6 +1,6 @@
 import type { LinkProps, LinkVariants } from '../components/interface'
 import type { StylerStyles } from '../context'
-import { cssvar } from '../css'
+import { cssFocus, cssvar } from '../css'
 
 export const LinkStyles: StylerStyles<LinkProps, LinkVariants> = {
   bps: {},
@@ -27,9 +27,7 @@ export const LinkStyles: StylerStyles<LinkProps, LinkVariants> = {
     outline: 'none',
     '&:focus': {
       borderColor: cssvar(`color.${p.color}.5.hex`),
-      boxShadow: `0px 0px 0px 3px rgba(${cssvar(
-        `color.${p.color}.4.rgb`
-      )}, 0.4)`,
+      boxShadow: cssFocus(`color.${p.color}.4.rgb`, 3),
     },
 
     transitionDuration: '200ms',
