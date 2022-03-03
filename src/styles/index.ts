@@ -31,7 +31,11 @@ import { ModalStyles } from './Modal'
 import { DialogStyles } from './Dialog'
 import { BreadcrumbsStyles } from './Breadcrumbs'
 import { LinkStyles } from './Link'
-import { PaginationButtonStyles, PaginationListStyles } from './Pagination'
+import {
+  PaginationButtonStyles,
+  PaginationContainerStyles,
+  PaginationListStyles,
+} from './Pagination'
 // import anchor
 
 export const AtomicStyles = {
@@ -61,6 +65,7 @@ export const AtomicStyles = {
   Breadcrumbs: BreadcrumbsStyles,
   Link: LinkStyles,
   PaginationButton: PaginationButtonStyles,
+  PaginationContainer: PaginationContainerStyles,
   PaginationList: PaginationListStyles,
   // export anchor
 }

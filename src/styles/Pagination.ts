@@ -5,35 +5,64 @@ import type {
 } from '../components/interface/Pagination'
 
 import type { StylerStyles } from '../context'
-import { cssvar } from '../css'
+import { cssFocus, cssvar } from '../css'
 
-export const PaginationListStyles: StylerStyles<
-  PaginationProps,
-  PaginationListVariants
-> = {
+export const PaginationContainerStyles: StylerStyles<PaginationProps> = {
   base: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
 
-    paddingLeft: 0,
-    listStyle: 'none',
+    width: 'fit-content',
+  },
+}
+
+export const PaginationListStyles: StylerStyles<
+  PaginationProps,
+  PaginationListVariants
+> = {
+  base: (p) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
 
     '& > li': {
-      display: 'inherit',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+
+      color: cssvar('color.hint'),
+      lineHeight: cssvar('typography.lineHeight.none'),
+
+      transitionDuration: '200ms',
+      transitionProperty: 'color',
+      transitionTimingFunction: 'ease-in-out',
     },
-  },
+
+    '& > :not([hidden]) ~ :not([hidden])': {
+      marginLeft: cssvar(`space.${p.gap}`),
+    },
+  }),
   variants: {
-    variant: {
-      block: {},
-      ghost: {
-        '& > :not([hidden]) ~ :not([hidden])': {
-          marginLeft: cssvar('space.2.5'),
+    size: {
+      sm: {
+        '& > li': {
+          fontSize: cssvar('typography.size.sm'),
+
+          height: '28px',
+          width: '28px',
         },
       },
-      outline: {
-        '& > :not([hidden]) ~ :not([hidden])': {
-          marginLeft: cssvar('space.2.5'),
+      md: {
+        '& > li': {
+          height: '32px',
+          width: '32px',
+        },
+      },
+      lg: {
+        '& > li': {
+          height: '36px',
+          width: '36px',
         },
       },
     },
@@ -46,106 +75,87 @@ export const PaginationButtonStyles: StylerStyles<
 > = {
   colors: {
     /* eslint-disable prettier/prettier */
-    'pagination.button.backgroundColor.hover': [cssvar('color.neutral.1.hex'), cssvar('color.neutral.7.hex')],
-    'pagination.button.backgroundColor.active': [cssvar('color.neutral.2.hex'), cssvar('color.neutral.6.hex')],
+    'pageButton.backgroundColor.hover': [cssvar('color.neutral.1.hex'), cssvar('color.neutral.7.hex')],
+    'pageButton.borderColor.hover': [cssvar('color.neutral.3.hex'), cssvar('color.neutral.6.hex')],
+    'pageButton.color.hover': [cssvar('color.neutral.1.text'), cssvar('color.neutral.7.text')],
+    //
+    'pageButton.backgroundColor.active': [cssvar('color.neutral.2.hex'), cssvar('color.neutral.6.hex')],
+    'pageButton.borderColor.active': [cssvar('color.neutral.4.hex'), cssvar('color.neutral.5.hex')],
+    'pageButton.color.active': [cssvar('color.neutral.2.text'), cssvar('color.neutral.6.text')],
+    //
+    'pageButton.color.disabled': [cssvar('color.neutral.3.hex'), cssvar('color.neutral.6.hex')],
     /* eslint-enable prettier/prettier */
   },
-  base: (p) => ({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  base: ({ color }) => ({
+    backgroundColor: 'transparent',
 
-    padding: 0,
+    borderColor: 'transparent',
+    borderStyle: 'solid',
+    borderWidth: '1px',
+
+    color: cssvar('text.hint'),
 
     cursor: 'pointer',
     outline: 'none',
     userSelect: 'none',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
 
     transitionDuration: '200ms',
     transitionProperty:
       'background-color, border-color, box-shadow, color, font-weight',
     transitionTimingFunction: 'ease-in-out',
 
+    height: '100%',
+    width: '100%',
+
+    '&:hover': {
+      backgroundColor: cssvar('pageButton.backgroundColor.hover'),
+      borderColor: cssvar('pageButton.borderColor.hover'),
+      color: cssvar('pageButton.color.hover'),
+    },
+    '&:active': {
+      backgroundColor: cssvar('pageButton.backgroundColor.active'),
+      borderColor: cssvar('pageButton.borderColor.active'),
+      color: cssvar('pageButton.color.active'),
+    },
     '&:focus': {
-      borderColor: cssvar(`color.${p.color}.5.hex`),
-      boxShadow: `0px 0px 0px 3px rgba(${cssvar(
-        `color.${p.color}.4.rgb`
-      )}, 0.4)`,
+      borderColor: cssvar('color.neutral.4.hex'),
+      boxShadow: cssFocus('color.neutral.4.rgb', 3),
+    },
+
+    '&.selected': {
+      backgroundColor: cssvar(`color.${color}.5.hex`),
+      borderColor: cssvar(`color.${color}.6.hex`),
+      color: cssvar(`color.${color}.5.text`),
+      fontWeight: cssvar('typography.weight.semibold'),
+
+      '&:focus': {
+        boxShadow: cssFocus(`color.${color}.4.rgb`, 3),
+      },
+    },
+
+    '&:disabled': {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+      color: cssvar('pageButton.color.disabled'),
+
+      cursor: 'default',
     },
   }),
   variants: {
     edges: {
-      circular: {
-        borderRadius: cssvar('radius.full'),
-      },
-      rounded: {
-        borderRadius: cssvar('radius.sm'),
-      },
-      squared: {
-        borderRadius: cssvar('radius.none'),
-      },
-    },
-    size: {
-      sm: {
-        fontSize: cssvar('typography.size.sm'),
-        height: '26px',
-        width: '26px',
-      },
-      md: {
-        padding: cssvar('space.1'),
-        height: '30px',
-        width: '30px',
-      },
-      lg: {
-        padding: cssvar('space.1.5'),
-        height: '34px',
-        width: '34px',
-      },
+      circular: { borderRadius: cssvar('radius.full') },
+      rounded: { borderRadius: cssvar('radius.sm') },
+      squared: { borderRadius: cssvar('radius.none') },
     },
     variant: {
-      block: {},
-      ghost: (p) => ({
-        backgroundColor: 'transparent',
-        color: cssvar('color.hint'),
-
-        borderColor: 'transparent',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-
-        '&:hover': {
-          backgroundColor: cssvar('pagination.button.backgroundColor.hover'),
-        },
-        '&:active': {
-          backgroundColor: cssvar('pagination.button.backgroundColor.active'),
-          color: cssvar('color.text'),
-        },
-
-        '&.selected': {
-          backgroundColor: cssvar(`color.${p.color}.5.hex`),
-          color: cssvar(`color.${p.color}.5.text`),
-        },
-      }),
-      outline: (p) => ({
-        backgroundColor: 'transparent',
-        color: cssvar('color.hint'),
-
-        borderColor: cssvar('pagination.button.backgroundColor.hover'),
-        borderStyle: 'solid',
-        borderWidth: '1px',
-
-        '&:hover': {
-          backgroundColor: cssvar('pagination.button.backgroundColor.hover'),
-        },
-        '&:active': {
-          backgroundColor: cssvar('pagination.button.backgroundColor.active'),
-          color: cssvar('color.text'),
-        },
-
-        '&.selected': {
-          backgroundColor: cssvar(`color.${p.color}.5.hex`),
-          color: cssvar(`color.${p.color}.5.text`),
-        },
-      }),
+      ghost: {},
+      outline: {
+        borderColor: cssvar('pageButton.borderColor.hover'),
+      },
     },
   },
 }
