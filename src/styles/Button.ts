@@ -76,7 +76,7 @@ export const ButtonStyles: StylerStyles<ButtonProps, ButtonVariants> = {
         borderRadius: cssvar('radius.full'),
       },
       rounded: {
-        borderRadius: cssvar('radius.md'),
+        borderRadius: cssvar('radius.sm'),
       },
       squared: {
         borderRadius: cssvar('radius.none'),
