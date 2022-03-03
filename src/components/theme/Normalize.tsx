@@ -62,7 +62,6 @@ export const Normalize: FC<NormalizeProps> = ({
     video,
     canvas,
     svg {
-      display: block;
       max-width: 100%;
     }
 
@@ -86,6 +85,17 @@ export const Normalize: FC<NormalizeProps> = ({
     #redwood-app,
     #root {
       isolation: isolate;
+    }
+
+    button {
+      padding: 0;
+    }
+
+    ol, ul {
+      padding: 0;
+      margin: 0;
+
+      list-style: none;
     }
   `()
 }
