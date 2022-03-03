@@ -36,9 +36,9 @@
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/eslint-plugin": "^7.16.5",
-    "@redwoodjs/eslint-config": "0.45.0",
-    "@redwoodjs/structure": "0.45.0",
-    "@redwoodjs/testing": "0.45.0",
+    "@redwoodjs/eslint-config": "0.47.1",
+    "@redwoodjs/structure": "0.47.1",
+    "@redwoodjs/testing": "0.47.1",
     "@storybook/addon-actions": "6.5.0-alpha.22",
     "@storybook/addon-essentials": "6.5.0-alpha.22",
     "@storybook/addon-links": "6.5.0-alpha.22",
@@ -58,14 +58,14 @@
     "zx": "^4.3.0"
   },
   "dependencies": {
-    "@apollo/client": "3.5.8",
-    "@headlessui/react": "^1.4.3",
-    "@redwoodjs/forms": "0.45.0",
-    "@redwoodjs/router": "0.45.0",
-    "@redwoodjs/web": "0.45.0",
+    "@apollo/client": "3.5.10",
+    "@headlessui/react": "^1.5.0",
+    "@redwoodjs/forms": "0.47.1",
+    "@redwoodjs/router": "0.47.1",
+    "@redwoodjs/web": "0.47.1",
     "clsx": "^1.1.1",
     "csstype": "^3.0.10",
-    "framer-motion": "^6.2.4",
+    "framer-motion": "^6.2.8",
     "goober": "^2.1.8",
     "recoil": "^0.6.1",
     "ts-deepmerge": "^2.0.1"
