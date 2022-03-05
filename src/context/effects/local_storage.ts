@@ -27,7 +27,14 @@ export const LocalStorageEffect =
     switch (trigger) {
       case 'get': {
         const storageVal = localStorage.getItem(key)
-        storageVal !== null && setSelf(JSON.parse(storageVal))
+        if (storageVal === null) break
+
+        const val =
+          storageVal.charAt(0) === '{' || storageVal.charAt(0) === '['
+            ? JSON.parse(storageVal)
+            : storageVal
+        setSelf(val)
+
         break
       }
     }
