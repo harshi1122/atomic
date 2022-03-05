@@ -24,17 +24,16 @@ Atomic takes inspiration from solutions such as: [Bootstrap](https://getbootstra
 
 Like Redwood, Atomic makes decisions for you to expedite building a working, modern, and scalable application. These choices are used by Atomic to provide its functionality, and offered to you for use directly in your application where needed.
 
-- 🌲 &nbsp;Redwoodesque API<sup>1</sup>
+- 🌲 &nbsp;Redwoodesque API[^1]
 - 🥜 &nbsp;CSS-in-JS pattern through [goober](https://github.com/cristianbote/goober)
-- ⚛️ &nbsp;Simple, modern<sup>2</sup> state-management via [Recoil](https://github.com/facebookexperimental/Recoil)
+- ⚛️ &nbsp;Simple, modern[^2] state-management via [Recoil](https://github.com/facebookexperimental/Recoil)
 - 🌙 &nbsp;Support for styles used in [bright and dim](https://locktech.github.io/atomic/?path=/story/guides-color-mode--page) lighting
 - 💫 &nbsp;Animations and gestures by way of [Framer Motion](https://github.com/framer/motion)
 - 🐕‍🦺 &nbsp;[Accessible](https://www.w3.org/TR/wai-aria-practices/#aria_ex), re-usable building blocks from [HeadlessUI](https://github.com/tailwindlabs/headlessui)
 - 🥂 &nbsp;First-class support for [minor](https://locktech.github.io/atomic/?path=/story/customize-theming-introduction--page) and [major](https://locktech.github.io/atomic/?path=/story/customize-styling-introduction--page) customizations
 
-> 1 — whenever possible, Atomic provides a seemless experience between using it and the RedwoodJS framework.
-
-> 2 — "modern" is used to describe the library as being built for the latest and planned features of React.
+[^1]: Whenever possible, Atomic provides a seemless experience between using it and the RedwoodJS framework.
+[^2]: "modern" is used to describe the library as being built for the latest and planned features of React.
 
 <!-- - 🪑 &nbsp;Build extenable datagrids and tables with [React Table](https://github.com/TanStack/react-table) -->
 <!-- - ⛵ &nbsp;Position non-disruptive, floating content using [Floating UI](https://github.com/floating-ui/floating-ui) -->
