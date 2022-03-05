@@ -16,8 +16,8 @@ export const ColorModeAtom = atom<ColorMode>({
   key: 'atomic.colorMode',
   default: undefined,
   effects: [
+    MatchMediaEffect('prefers-color-scheme: dark', 'dark', 'light'),
     LocalStorageEffect('atomic.colorMode'),
-    MatchMediaEffect('prefers-color-scheme: dark', 'light', 'dark'),
     SetElementClassEffect(document.body),
   ],
 })
