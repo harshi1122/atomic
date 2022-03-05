@@ -21,15 +21,21 @@ import { AtomEffect } from 'recoil'
  */
 export const SetElementClassEffect =
   <T extends string>(element: HTMLElement): AtomEffect<T> =>
-  ({ onSet }) => {
+  ({ getLoadable, node, onSet, trigger }) => {
+    switch (trigger) {
+      case 'get': {
+        const val = getLoadable(node).getValue()
+        if (!element.classList.contains(val)) element.classList.add(val)
+        break
+      }
+    }
+
     onSet((newVal, oldVal, _) => {
       if (!(element instanceof HTMLElement)) return
       if (!(element.classList instanceof DOMTokenList)) return
       if (typeof oldVal !== 'undefined' && typeof oldVal !== 'string') return
 
-      const classes = element.classList
-
-      if (!classes.contains(oldVal)) return classes.add(newVal)
-      classes.replace(oldVal, newVal)
+      if (!element.classList.contains(oldVal)) return element.classList.add(newVal)
+      element.classList.replace(oldVal, newVal)
     })
   }
