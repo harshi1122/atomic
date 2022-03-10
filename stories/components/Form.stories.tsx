@@ -15,7 +15,7 @@ import {
   Select,
   Submit,
   Text,
-  useTriggersBreakpoint,
+  useMediaWidth,
 } from '../../dist'
 import type { FormProps } from '../../dist'
 
@@ -26,7 +26,7 @@ export default {
 } as Meta
 
 const Template: Story<FormProps> = (args) => {
-  const isMd = useTriggersBreakpoint('md')
+  const isMd = useMediaWidth('md')
   return (
     <Flex {...(isMd ? { m: 'auto', p: [6, 0, 0, 0], width: '50%' } : {})}>
       <Card outline shadow="sm">
@@ -95,7 +95,7 @@ export const Default: Story<FormProps> = Template.bind({})
 Default.args = Template.args
 
 export const Error: Story<FormProps> = (args) => {
-  const isMd = useTriggersBreakpoint('md')
+  const isMd = useMediaWidth('md')
   return (
     <Flex
       gap={8}

@@ -1,8 +1,8 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
 
-<Meta title="Hooks/useTriggersBreakpoint" />
+<Meta title="Hooks/useMediaWidth" />
 
-# useTriggersBreakpoint
+# useMediaWidth
 
 A hook which returns a boolean when the corresponding [width media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/width) would be applied.
 
@@ -12,11 +12,11 @@ A hook which returns a boolean when the corresponding [width media feature](http
 ### Example
 
 ```tsx
-import { useTriggersBreakpoint } from '@locktech/atomic'
+import { useMediaWidth } from '@locktech/atomic'
 
 export const Component = () => {
-  const isAtLeastSm = useTriggersBreakpoint('sm') // returns `true` when the device's width is at least the breakpoint "sm"
-  const isWiderThan400px = useTriggersBreakpoint('400px', 'max') // returns `false` when the device's width is less than 400px
+  const isAtLeastSm = useMediaWidth('sm') // returns `true` when the device's width is at least the breakpoint "sm"
+  const isWiderThan400px = useMediaWidth('400px', 'max') // returns `false` when the device's width is less than 400px
   return ...
 }
 ```

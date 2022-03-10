@@ -20,7 +20,7 @@ import { Overlay } from './Overlay'
 
 import { useStyler } from '../../context'
 import { css } from '../../css'
-import { useTriggersBreakpoint } from '../../hooks'
+import { useMediaWidth } from '../../hooks'
 
 // ==
 // List
@@ -300,7 +300,7 @@ const MenuList: FC<MenuListProps> = ({
   sheetAnimations,
   ...p
 }: MenuListProps) => {
-  const isSm = useTriggersBreakpoint('sm')
+  const isSm = useMediaWidth('sm')
 
   const FragmentOrPortal = isSm ? Fragment : Portal
   const PanelOrSheet = isSm ? MenuListPanel : MenuListSheet

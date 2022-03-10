@@ -22,11 +22,11 @@ const matchMin = (w: string) => window.matchMedia(`(min-width: ${w})`).matches
  *
  * @example
  *
- * useTriggersBreakpoint('sm')
- * useTriggersBreakpoint('400px')
- * useTriggersBreakpoint('lg', 'max')
+ * useMediaWidth('sm')
+ * useMediaWidth('400px')
+ * useMediaWidth('lg', 'max')
  */
-export const useTriggersBreakpoint = (
+export const useMediaWidth = (
   bp: Breakpoint,
   variant: 'max' | 'min' = 'min'
 ): boolean => {

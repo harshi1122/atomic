@@ -9,7 +9,7 @@ import type { OverlayAnimationVariants } from './Overlay'
 
 import { useStyler } from '../../context'
 import { css } from '../../css'
-import { useTriggersBreakpoint } from '../../hooks'
+import { useMediaWidth } from '../../hooks'
 
 // ==
 
@@ -116,7 +116,7 @@ export const Dialog: FC<DialogProps> = ({
   side,
 }) => {
   const styles = useStyler('Dialog', { side })
-  const isDraggable = useTriggersBreakpoint('sm', 'max')
+  const isDraggable = useMediaWidth('sm', 'max')
 
   const onDragEnd = useCallback(
     (_, p: PanInfo) => {
